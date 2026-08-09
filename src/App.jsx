@@ -234,40 +234,40 @@ const LANGUAGES = [
 const CERTIFICATES = [
 { name: "Öğrenciler için Yapay Zekâ Yetkinliği", nameEn: "AI Fluency for Students",
   originalName: "AI Fluency for Students",
-  issuer: "Anthropic", date: "2026", image: "" }, // assets/sertifikalar/anthropic-ai-fluency.jpg
+  issuer: "Anthropic", date: "2026", image: "assets/sertifikalar/anthropic-ai-fluency.jpg" },
 
 { name: "Modern Yapay Zekâya Giriş", nameEn: "Introduction to Modern AI",
   originalName: "Introduction to Modern AI",
-  issuer: "Cisco", date: "Ara 2024", dateEn: "Dec 2024", image: "" }, // assets/sertifikalar/cisco-modern-ai.jpg
+  issuer: "Cisco", date: "Ara 2024", dateEn: "Dec 2024", image: "assets/sertifikalar/cisco-modern-ai.jpg" },
 
 { name: "Veri Bilimine Giriş", nameEn: "Introduction to Data Science",
   originalName: "Introduction to Data Science",
-  issuer: "Cisco", date: "Eki 2024", dateEn: "Oct 2024", image: "" }, // assets/sertifikalar/cisco-veri-bilimi.jpg
+  issuer: "Cisco", date: "Eki 2024", dateEn: "Oct 2024", image: "assets/sertifikalar/cisco-veri-bilimi.jpg" },
 
 { name: "Makine Öğrenmesine Giriş Çalıştayı", nameEn: "Introduction to Machine Learning Workshop",
   issuer: "İEÜ Yazılım Topluluğu", issuerEn: "IUE Software Community",
-  date: "Mar 2025", dateEn: "Mar 2025", image: "" }, // assets/sertifikalar/ieu-makine-ogrenmesi-calistayi.jpg
+  date: "Mar 2025", dateEn: "Mar 2025", image: "assets/sertifikalar/ieu-makine-ogrenmesi-calistayi.jpg" },
 
 { name: "Çevik Proje Yönetimi", nameEn: "Agile Project Management",
-  issuer: "BTK Akademi", date: "Oca 2026", dateEn: "Jan 2026", image: "" }, // assets/sertifikalar/btk-cevik-proje-yonetimi.jpg
+  issuer: "BTK Akademi", date: "Oca 2026", dateEn: "Jan 2026", image: "assets/sertifikalar/btk-cevik-proje-yonetimi.jpg" },
 
 { name: "Microsoft Project ile Proje Yönetimi", nameEn: "Project Management with Microsoft Project",
-  issuer: "BTK Akademi", date: "Şub 2026", dateEn: "Feb 2026", image: "" }, // assets/sertifikalar/btk-microsoft-project.jpg
+  issuer: "BTK Akademi", date: "Şub 2026", dateEn: "Feb 2026", image: "assets/sertifikalar/btk-microsoft-project.jpg" },
 
 { name: "ISO 9001:2015 Kalite Yönetim Sistemi", nameEn: "ISO 9001:2015 Quality Management Systems",
-  issuer: "Sigmacert Global", date: "Mar 2026", dateEn: "Mar 2026", image: "" }, // assets/sertifikalar/sigmacert-iso-9001.jpg
+  issuer: "Sigmacert Global", date: "Mar 2026", dateEn: "Mar 2026", image: "assets/sertifikalar/sigmacert-iso-9001.jpg" },
 
 { name: "Kuika Designer ve Builder", nameEn: "Kuika Designer and Builder",
   issuer: "İEÜ ÖÖM · Kuika Akademi", issuerEn: "IUE Lifelong Learning · Kuika Academy",
-  date: "2025", image: "" }, // assets/sertifikalar/kuika-designer-builder.jpg
+  date: "2025", image: "assets/sertifikalar/kuika-designer-builder.jpg" },
 
 { name: "Kariyer ve Yetkinlik Buluşmaları", nameEn: "Career and Competency Meetings",
   issuer: "Savunma Sanayii Akademi", issuerEn: "Defence Industry Academy",
-  date: "2024 – 2026", image: "" }, // assets/sertifikalar/savunma-sanayii-akademi.jpg
+  date: "2024 – 2026", image: "assets/sertifikalar/savunma-sanayii-akademi.jpg" },
 
 { name: "Temel Bilgi Güvenliği", nameEn: "Fundamentals of Information Security",
   issuer: "İzmir Ekonomi Üniversitesi", issuerEn: "Izmir University of Economics",
-  date: "Kas 2024", dateEn: "Nov 2024", image: "" }]; // assets/sertifikalar/ieu-bilgi-guvenligi.jpg
+  date: "Kas 2024", dateEn: "Nov 2024", image: "assets/sertifikalar/ieu-bilgi-guvenligi.jpg" }];
 
 /* -------------------------------------------------------------------------
    EXPERIENCE — two-column blocks.
