@@ -1223,15 +1223,15 @@ function PersonalCard({ project, index, lang, t, onOpen }) {
 /* =========================================================================
    CERTIFICATES
    ========================================================================= */
-function CertThumb({ img, name, initials, onOpen }) {
+function CertThumb({ img, name, initials }) {
   const [broken, setBroken] = useState(false);
   if (img && !broken) {
     return (
-      <button className="cert-thumb has-image" onClick={onOpen} aria-label={name}>
+      <span className="cert-thumb has-image">
         <img src={img} alt="" loading="lazy" onError={() => setBroken(true)} />
-      </button>);
+      </span>);
   }
-  return <div className="cert-thumb is-empty" aria-hidden="true"><span className="cert-initials">{initials}</span></div>;
+  return <span className="cert-thumb is-empty" aria-hidden="true"><span className="cert-initials">{initials}</span></span>;
 }
 
 function Certificates({ t, lang }) {
@@ -1259,16 +1259,18 @@ function Certificates({ t, lang }) {
           const name = pick(c, "name");
           const issuer = pick(c, "issuer");
           const img = typeof c.image === "string" && c.image.trim() !== "" ? c.image : null;
+          const open = () => setShot({ src: img, alt: name, issuer: issuer, date: pick(c, "date"), original: c.originalName && c.originalName !== name ? c.originalName : null });
+          const Tag = img ? "button" : "div";
           return (
-            <div key={i} className="cert-row">
-              <CertThumb img={img} name={name} initials={initialsOf(issuer)}
-                onOpen={() => setShot({ src: img, alt: name, original: c.originalName && c.originalName !== name ? c.originalName : null })} />
+            <Tag key={i} className={"cert-row" + (img ? " is-clickable" : "")}
+              {...img ? { onClick: open, type: "button", "aria-label": name } : {}}>
+              <CertThumb img={img} name={name} initials={initialsOf(issuer)} />
               <div className="cert-text">
                 <div className="cert-name">{name}</div>
                 <div className="cert-date">{pick(c, "date")}</div>
                 <div className="cert-issuer">{issuer}</div>
               </div>
-            </div>);
+            </Tag>);
 
         })}
       </div>
@@ -1279,15 +1281,36 @@ function Certificates({ t, lang }) {
           </button>
         </div>
       }
-      {shot &&
-      <div className="lightbox" onClick={() => setShot(null)} role="dialog" aria-modal="true" aria-label={shot.alt}>
-          <div className="lightbox-frame" onClick={(e) => e.stopPropagation()}>
-            <img src={shot.src} alt={shot.alt} />
-            {shot.original && <div className="lightbox-original">{shot.original}</div>}
-          </div>
-        </div>
-      }
+      {shot && <CertSheet cert={shot} t={t} onClose={() => setShot(null)} />}
     </section>);
+
+}
+
+function CertSheet({ cert, t, onClose }) {
+  const panelRef = useRef(null);
+  const closeBtnRef = useRef(null);
+
+  useSheetBehavior(cert, onClose, panelRef, closeBtnRef);
+
+  if (!cert) return null;
+
+  return (
+    <div className="sheet-backdrop" onClick={onClose}>
+      <div className="sheet-panel is-cert" ref={panelRef} role="dialog" aria-modal="true" aria-labelledby="cert-sheet-title" onClick={(e) => e.stopPropagation()}>
+        <div className="sheet-handle" aria-hidden="true" />
+        <button className="sheet-close" ref={closeBtnRef} onClick={onClose} aria-label={t.sheetClose}>×</button>
+        <div className="sheet-head">
+          <h3 id="cert-sheet-title" className="sheet-title">{cert.alt}</h3>
+          <div className="pcard-role">{cert.issuer}{cert.date ? " · " + cert.date : ""}</div>
+        </div>
+        {cert.src &&
+        <div className="cert-shot">
+            <img src={cert.src} alt={cert.alt} />
+          </div>
+        }
+        {cert.original && <div className="cert-original">{cert.original}</div>}
+      </div>
+    </div>);
 
 }
 
