@@ -3944,6 +3944,334 @@
 /* Eski buyutec gorunumu artik kullanilmiyor */
 .cert-row.is-clickable { cursor: pointer; }
 
+/* === PROJE MEDYA BLOGU === */
+.pcard-media-strip {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin: 4px 0 20px;
+}
+.pcard-media-strip:has(> :only-child) { grid-template-columns: 1fr; }
+
+.pmedia-item { margin: 0; min-width: 0; }
+
+.pmedia-frame {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--muted) 55%, transparent);
+  display: grid;
+  place-items: center;
+}
+.pmedia-frame video,
+.pmedia-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.pmedia-frame a { display: block; width: 100%; height: 100%; cursor: zoom-in; }
+
+.pmedia-cap {
+  margin-top: 8px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  color: var(--text-mute);
+}
+
+@media (max-width: 640px) {
+  .pcard-media-strip { grid-template-columns: 1fr; gap: 14px; }
+  .pmedia-cap { font-size: 10px; }
+}
+
+/* Eski tek-video kurallari artik kullanilmiyor */
+.pcard-media { display: none; }
+
+/* === MEDYA BUTONU VE PANELI === */
+
+.media-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 28px;
+  padding: 0 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: border-color 200ms, color 200ms;
+}
+.media-btn:hover { border-color: var(--accent-1); color: var(--text); }
+.media-btn:focus-visible { outline: 2px solid var(--accent-1); outline-offset: 3px; }
+.media-btn-icon { font-size: 9px; color: var(--accent-1); }
+.media-btn-count {
+  min-width: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: color-mix(in oklab, var(--accent-1) 22%, transparent);
+  color: var(--text);
+  font-size: 10px;
+  text-align: center;
+}
+
+.sheet-panel.is-media { max-width: 860px; }
+
+.media-list { display: flex; flex-direction: column; gap: 22px; margin-top: 18px; }
+.media-item { margin: 0; }
+
+.media-frame {
+  width: 100%;
+  max-height: 56svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--muted) 45%, transparent);
+}
+.media-frame video,
+.media-frame img {
+  display: block;
+  max-width: 100%;
+  max-height: 56svh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.media-cap {
+  margin-top: 8px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  line-height: 1.6;
+  color: var(--text-mute);
+}
+
+/* Panel icindeki proje diyalogunda medya biraz daha kucuk dursun */
+.sheet-panel:not(.is-media) .media-frame,
+.sheet-panel:not(.is-media) .media-frame video,
+.sheet-panel:not(.is-media) .media-frame img { max-height: 42svh; }
+
+@media (max-width: 640px) {
+  .media-frame, .media-frame video, .media-frame img { max-height: 46svh; }
+  .media-cap { font-size: 10px; }
+}
+
+/* Kart ici satir arasi medya artik kullanilmiyor */
+.pcard-media, .pcard-media-strip { display: none; }
+
+/* === DUZELTMELER: medya basligi, sertifika gorunumu, kaydirma === */
+
+/* 1. Medya aciklamasi ince cerceve icinde, daha okunakli */
+.media-cap {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--accent-1);
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--surface) 45%, transparent);
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.65;
+  color: var(--text-dim);
+}
+
+/* 2. Medya butonu: Selcuklu yildizi, sayi rozeti yok */
+.media-btn-mark {
+  display: inline-flex;
+  width: 12px;
+  height: 12px;
+  color: var(--accent-1);
+}
+.media-btn-mark svg { width: 100%; height: 100%; display: block; }
+.media-btn-count { display: none; }
+
+/* 3. Sertifikada buyutec imleci yerine normal isaretci */
+.cert-row.is-clickable,
+.cert-row.is-clickable .cert-thumb,
+.cert-row.is-clickable .cert-thumb img { cursor: pointer; }
+
+/* 4. Karanlik temada sertifika gorselleri parlamasin */
+[data-theme="dark"] .cert-thumb.has-image img,
+[data-theme="dark"] .media-frame img {
+  filter: brightness(0.78) contrast(1.04) saturate(0.94);
+  transition: filter 240ms;
+}
+[data-theme="dark"] .cert-row.is-clickable:hover .cert-thumb.has-image img {
+  filter: brightness(0.94) contrast(1.02) saturate(1);
+}
+[data-theme="dark"] .sheet-panel .media-frame img,
+[data-theme="dark"] .sheet-panel.is-cert .cert-shot img {
+  filter: brightness(0.9) contrast(1.02);
+}
+
+/* 5. Hizli kaydirmada takilma: bolumler gorunur alana girene kadar
+      boyanmasin, gorseller yer ayirsin */
+.section { content-visibility: auto; contain-intrinsic-size: auto 900px; }
+.cert-thumb { contain: paint; }
+.cert-thumb img, .media-frame img { content-visibility: auto; }
+
+/* === DUZELTME: content-visibility geri alindi === */
+
+/* HATA: .section uzerindeki content-visibility: auto, bolume containment
+   uyguluyordu. Bu da icindeki position: fixed panelleri viewport yerine
+   bolume gore konumlandirip bolum sinirinda kirpiyordu. Geri aliniyor. */
+.section {
+  content-visibility: visible;
+  contain-intrinsic-size: auto;
+}
+.cert-thumb { contain: none; }
+.cert-thumb img { content-visibility: visible; }
+
+/* Panelin her zaman viewport'a gore ortalandigindan emin ol */
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+}
+
+/* Takilma asil burada: panel icinde birden fazla gorsel/video varken
+   kaydirma. Sadece medya ogesine uygulaniyor — icinde fixed konumlu
+   bir sey olmadigi icin guvenli. */
+.media-item {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 420px;
+}
+.sheet-panel {
+  overscroll-behavior: contain;
+  transform: translateZ(0);
+}
+
+/* === METIN VE DUZEN TURU CSS === */
+
+/* 2. Dil degistiginde ust bar butonlari kaymasin */
+.nav-links a, .nav-link {
+  min-width: 116px;
+  justify-content: center;
+  text-align: center;
+}
+.nav-cta, .cta-pill { min-width: 148px; justify-content: center; }
+.lang-toggle button, .lang-opt { min-width: 34px; text-align: center; }
+.nav-inner { justify-content: center; }
+
+/* 3. Isim altindaki odak satiri karanlik temada lacivert */
+[data-theme="dark"] .hero-subtitle { color: var(--accent-glow); }
+
+/* 5. PORTFOLYO / KONUM etiketleri lacivert, degerler beyaz,
+      yalnizca Turkiye kirmizi kalsin */
+[data-theme="dark"] .meta-key { color: var(--accent-glow); }
+[data-theme="dark"] .meta-row:last-child .meta-val { color: var(--accent-hot); }
+
+/* 12. Tarih basligin yaninda, medya butonu sola yasli */
+.pcard-year-inline {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-mute);
+  white-space: nowrap;
+}
+.pcard-foot { display: flex; align-items: center; gap: 20px; }
+.pcard-foot-left { display: inline-flex; align-items: center; gap: 10px; }
+.pcard-links { margin-left: auto; display: inline-flex; align-items: center; gap: 16px; }
+.pcard-year { display: none; }
+
+/* 16. Kisisel kartlarda durum rozeti sol altta */
+.pcard-mini-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 10px;
+}
+.status-pill.is-mini { font-size: 9px; padding: 2px 7px; }
+.pcard-mini-tags { margin-top: 10px; }
+
+/* 19. Sertifika panelinde kurum adi kucuk cerceve icinde */
+.cert-sheet-meta { display: flex; align-items: center; gap: 12px; margin-top: 10px; }
+.cert-issuer-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--surface) 55%, transparent);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--text);
+}
+.cert-sheet-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-mute);
+}
+
+/* 20. Deneyimde tarih ile baslik arasi acilsin */
+.exp-period, .exp-date { margin-bottom: 10px; display: block; }
+.exp-entry .exp-role, .exp-entry h3 { margin-top: 6px; }
+
+/* 26. Iletisim: sol metin tek satira sigsin */
+.contact-lede { font-size: 21px; line-height: 1.5; max-width: 46ch; }
+@media (max-width: 900px) { .contact-lede { font-size: 19px; } }
+
+/* === DUZELTME TURU 3 === */
+
+/* Ana sayfadaki lacivert denemesi geri alindi */
+[data-theme="dark"] .hero-subtitle { color: var(--accent-1); }
+[data-theme="dark"] .meta-key { color: var(--accent-1); }
+[data-theme="dark"] .meta-row:last-child .meta-key,
+[data-theme="dark"] .meta-row:last-child .meta-val { color: var(--accent-hot); }
+
+/* Ust bar: dil degisince genislik degismesin */
+.nav-link { min-width: 148px; justify-content: center; }
+.nav-cta { min-width: 208px; justify-content: center; }
+.lang-btn, .lang-toggle > * { min-width: 36px; text-align: center; }
+
+/* Hakkimda: sag blok sabit kalsin */
+.about-grid { align-items: start; overflow: visible; }
+.about-side { position: sticky; top: 96px; align-self: start; overflow: visible; }
+.section, .about, .about-wrap { overflow: visible; }
+
+/* Diller bloğunun altina ince cizgi */
+.lang-list { padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+
+/* Iletisim: e-posta blogu kucultuldu, cizgiler hizalansin */
+.mailto { padding: 18px 0; margin-bottom: 0; }
+.mailto-addr { font-size: 21px; }
+.mailto-arrow { font-size: 19px; }
+.contact-lede { margin-bottom: 20px; padding-bottom: 20px; }
+
+/* Deneyim: satirlar artik olculen yuksekliğe gore yerlesiyor */
+.exp-row-wrap { top: 0; }
+.exp-period { top: -15px; }
+.exp-row { gap: 8px; }
+
+/* === DUZELTME 4 === */
+
+/* HATA: .media-item uzerindeki content-visibility, panel icinde kaydirirken
+   icerik yuksekliğini degistirip kaydirma konumunu sifirliyordu. Kaldirildi.
+   Gorsel cozumleme yuku zaten decoding="async" ile ana is parcacigindan
+   cikarilmisti, o korunuyor. */
+.media-item {
+  content-visibility: visible;
+  contain-intrinsic-size: auto;
+}
+.cert-thumb img, .media-frame img { content-visibility: visible; }
+
+/* Panel kaydirmasi net calissin */
+.sheet-panel { overflow-y: auto; overscroll-behavior: contain; }
+.sheet-backdrop { overscroll-behavior: contain; }
+
 </style>
 </head>
 

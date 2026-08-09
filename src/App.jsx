@@ -16,6 +16,14 @@ const { useState, useEffect, useRef } = React;
 const PROJECTS = [
 {
   id: "p01",
+  media: [
+    { type: "image", src: "assets/projeler/nexa-egitim-egrileri.png",
+      tr: "Eğitim eğrileri, 50 epoch. Doğrulama kaybı sona kadar düşüyor, mAP 40. tur civarında oturuyor — aşırı öğrenme yok.",
+      en: "Training curves over 50 epochs. Validation loss keeps falling and mAP plateaus around epoch 40 — no overfitting." },
+    { type: "image", src: "assets/projeler/nexa-karisiklik-matrisi.png",
+      tr: "Normalize karışıklık matrisi. Plaka 0,88; koltuk sınıfları zayıf. Boş slalom satırı eksiklik değil: slalom ayrı bir sınıf olarak değil, aracın yatay salınımının sayılmasıyla belirleniyor.",
+      en: "Normalised confusion matrix. Plate 0.88; the seat classes are weak. The empty slalom row is by design — swerving is detected by counting lateral oscillation, not as a class." }
+  ],
   tier: "featured",
   title: "Akıllı Yol Güvenliği",
   status: "elendi",
@@ -27,15 +35,13 @@ const PROJECTS = [
     "10 açık kaynak veri setini yarışmanın 21 resmî sınıfına yeniden eşledim (~32.425 görüntü).",
     "Aynı klipten gelen ardışık karelerin eğitim/doğrulama/test bölümlerine dağılmasını group_fn ile engelledim.",
     "Plaka yönü ve koltuk yön ayrımını bozduğu için flip augmentation'ı kapattım.",
-    "YOLOv8s ve YOLOv8m'i kendi donanımımda karşılaştırıp YOLOv8s'i seçtim.",
-    "Model ve OCR ağırlıklarının derleme anında imaja gömüldüğü çevrimdışı Docker paketlemesine karar verdim."
+    "YOLOv8s ve YOLOv8m'i kendi donanımımda karşılaştırıp YOLOv8s'i seçtim."
   ],
   decisionsEn: [
     "Re-mapped ten open-source datasets onto the competition's 21 official classes (~32,425 images).",
     "Prevented consecutive frames from the same clip leaking across the train/val/test splits, using a group_fn mechanism.",
     "Disabled flip augmentation, because it breaks plate orientation and left/right seat distinction.",
-    "Compared YOLOv8s against YOLOv8m on my own hardware and selected YOLOv8s.",
-    "Decided on an offline Docker packaging approach with model and OCR weights baked into the image at build time."
+    "Compared YOLOv8s against YOLOv8m on my own hardware and selected YOLOv8s."
   ],
   outcomeTr: "mAP@0.5 0,701 genel · plaka bölgesi tespiti 0,896 · ~12 ms/kare · 32.425 görüntülük veri seti. Ön Tasarım Raporu 85,67/100 ile geçildi. Final aşamasında baraj puanı geçilemedi; plaka bölgesi doğru bulunuyordu ama OCR katmanı geçerli plaka metni üretemedi.",
   outcomeEn: "mAP@0.5 0.701 overall · 0.896 for plate-region detection · ~12 ms per frame · 32,425-image dataset. The preliminary report passed at 85.67/100. The project did not clear the threshold at the final stage: plate regions were located correctly, but the OCR layer could not produce valid plate text.",
@@ -46,6 +52,20 @@ const PROJECTS = [
 },
 {
   id: "p02",
+  media: [
+    { type: "video", src: "assets/projeler/sinav-planlama-demo.mp4",
+      tr: "Çizelgenin üretilmesi ve sonucun tabloya dökülmesi.",
+      en: "Generating the timetable and populating the results table." },
+    { type: "image", src: "assets/projeler/sinav-planlama-takvim.png",
+      tr: "Öğrenci başına ilk ve son sınav tarihleri.",
+      en: "First and last exam dates per student." },
+    { type: "image", src: "assets/projeler/sinav-planlama-kurallar.png",
+      tr: "Ders bazlı özel kurallar: süre, sınıf kapasitesi, çizelge dışı bırakma.",
+      en: "Per-course rule overrides: duration, room capacity, exclusion from the schedule." },
+    { type: "image", src: "assets/projeler/sinav-planlama-disa-aktarim.png",
+      tr: "CSV, Excel ve PDF dışa aktarım.",
+      en: "CSV, Excel and PDF export." }
+  ],
   tier: "featured",
   title: "Sınav Planlama ve Yönetim Sistemi",
   status: "tamamlandi",
@@ -63,8 +83,8 @@ const PROJECTS = [
     "Proposed parallelising the scheduling computation — runtime dropped noticeably.",
     "Proposed solving persistence by storing the last-opened files and filters and recomputing on each launch."
   ],
-  outcomeTr: "Sürüm 1.0.0 tamamlandı; Windows, macOS ve Linux paketleri yayımlandı.",
-  outcomeEn: "Version 1.0.0 completed, with Windows, macOS and Linux packages published.",
+  outcomeTr: "Uygulama tamamlandı; Windows, macOS ve Linux için paketler yayımlandı.",
+  outcomeEn: "The application was completed and packaged for Windows, macOS and Linux.",
   tags: ["Java", "JavaFX", "SQLite", "Gradle"],
   category: "Masaüstü / Java",
   repoUrl: "https://github.com/TalatKarasakal/sinav-programi-olusturma-uygulamasi",
@@ -72,21 +92,26 @@ const PROJECTS = [
 },
 {
   id: "p03",
+  media: [
+    { type: "video", src: "assets/projeler/ayrik-olay-demo.mp4",
+      tr: "İki dosya girdisinin ayrıştırılması ve simülasyonun yürütülmesi — 2024 sürümü.",
+      en: "Parsing the two input files and running the simulation — the 2024 version." }
+  ],
   tier: "featured",
   title: "Ayrık Olay Simülasyonu",
   status: "tamamlandi",
-  roleTr: "3 kişilik orijinal takım üyesi (2024) · ayrıştırıcı sınıflarda çekirdek düzeltmeler",
-  roleEn: "Member of the original three-person team (2024) · core fixes in the parser classes",
-  descTr: "İki dosya girdisini işleyip iş akışı simülasyon raporu üreten Java uygulaması. İş tiplerini, görevleri ve istasyonları modelliyor; istasyon başına FIFO veya en erken teslim tarihi (EDD) önceliklendirmesi seçilebiliyor. Sonuç bir Gantt zaman çizelgesi ve istasyon bazlı özet olarak sunuluyor. 2024 katmanında ayrıştırıcı sınıflardaki çekirdek hata düzeltmeleri bana ait; 2026'daki fork'ta çekirdek yeniden yazıldı, o katmandaki katkım arayüz tarafında.",
-  descEn: "A Java application that processes two input files and produces a workflow simulation report. It models job types, tasks and stations, with per-station FIFO or earliest-due-date prioritisation. Output is a Gantt timeline plus a per-station summary. In the 2024 layer the core bug fixes in the parser classes are mine; the core was rewritten in the 2026 fork, where my contribution is on the interface side.",
+  roleTr: "4 kişilik orijinal takım üyesi (2024) · ayrıştırıcı sınıflarda çekirdek düzeltmeler",
+  roleEn: "Member of the original four-person team (2024) · core fixes in the parser classes",
+  descTr: "İki dosya girdisini işleyip iş akışı simülasyon raporu üreten Java uygulaması. İş tiplerini, görevleri ve istasyonları modelliyor; istasyon başına FIFO veya en erken teslim tarihi (EDD) önceliklendirmesi seçilebiliyor. Rapor iş ve istasyon bazlı özet olarak sunuluyor. 2024 katmanında ayrıştırıcı sınıflardaki çekirdek hata düzeltmeleri bana ait; 2026'daki fork'ta çekirdek yeniden yazıldı, o katmandaki katkım arayüz tarafında.",
+  descEn: "A Java application that processes two input files and produces a workflow simulation report. It models job types, tasks and stations, with per-station FIFO or earliest-due-date prioritisation. The report is presented as a per-job and per-station summary. In the 2024 layer the core bug fixes in the parser classes are mine; the core was rewritten in the 2026 fork, where my contribution is on the interface side.",
   decisionsTr: [
     "İki katmanı bilinçli olarak ayrı değerlendiriyorum: 2024 çekirdek katkısı ile 2026 arayüz katkısı aynı şey değil."
   ],
   decisionsEn: [
     "I keep the two layers deliberately separate: the 2024 core contribution and the 2026 interface work are not the same thing."
   ],
-  outcomeTr: "142 test (JUnit 5) ve JaCoCo kapsam raporu.",
-  outcomeEn: "142 tests (JUnit 5) and a JaCoCo coverage report.",
+  outcomeTr: "142 test (JUnit 5) ve JaCoCo kapsam raporu. Bilinen sınır: istasyon kullanım oranı hesabı, eş zamanlı işlenen görev sürelerini kapasiteye bölmeden topluyor; kapasitesi birden büyük istasyonlarda oran %100\u0027ü aşıyor. Hata teslimden sonra tespit edildi, kod teslim edildiği hâliyle bırakıldı.",
+  outcomeEn: "142 tests (JUnit 5) and a JaCoCo coverage report. Known limitation: the station utilisation calculation sums concurrent task durations without dividing by capacity, so the rate exceeds 100% on stations with capacity above one. The defect was identified after submission; the code is left as delivered.",
   tags: ["Java", "JUnit 5", "Maven"],
   category: "Masaüstü / Java",
   repoUrl: "https://github.com/TalatKarasakal/ayrik-olay-simulasyonu-uygulamasi",
@@ -94,6 +119,11 @@ const PROJECTS = [
 },
 {
   id: "p04",
+  media: [
+    { type: "video", src: "assets/projeler/iae-demo.mp4",
+      tr: "Dil yapılandırması, ardından üç gönderimin derlenip çalıştırılması; PASS, FAIL ve RUNTIME_ERROR ayrı ayrı sınıflanıyor.",
+      en: "Language configuration, then three submissions compiled and run, with PASS, FAIL and RUNTIME_ERROR classified separately." }
+  ],
   tier: "project",
   title: "Bütünleşik Ödev Değerlendirme Sistemi",
   status: "tamamlandi",
@@ -108,6 +138,11 @@ const PROJECTS = [
 },
 {
   id: "p05",
+  media: [
+    { type: "image", src: "assets/projeler/oyun-kutuphanesi.jpg",
+      tr: "Tür bazlı katalog görünümü, kapak görselleri ve JSON içe/dışa aktarma.",
+      en: "Genre-grouped catalogue view with cover art and JSON import/export." }
+  ],
   tier: "project",
   title: "Oyun Kütüphanesi",
   status: "tamamlandi",
@@ -134,52 +169,56 @@ const PROJECTS = [
   repoUrl: "https://github.com/TalatKarasakal/portfoy-takip-uygulamasi",
   period: "2026"
 },
-{ id: "p07", tier: "personal", title: "Kağanlar Çağı",
+{ id: "p07", status: "devam", tier: "personal", title: "Kağanlar Çağı",
   descTr: "Türk devletleri temalı gerçek zamanlı strateji oyunu. Simülasyon çekirdeği deterministik çalışıyor: aynı başlangıç durumu ve aynı girdi dizisi her çalıştırmada aynı sonucu veriyor. Uygarlık, birim ve bina tanımları koddan ayrı JSON dosyalarında tutuluyor.",
   descEn: "A real-time strategy game themed on Turkic states. The simulation core is deterministic: the same initial state and input sequence produce the same result on every run. Civilisation, unit and building definitions live in JSON files, separate from the code.",
   tags: ["C++20", "SDL3", "CMake"], category: "Oyun",
   repoUrl: "https://github.com/TalatKarasakal/savas-oyunu", period: "2026" },
 
-{ id: "p08", tier: "personal", title: "Kariyer Takip Uygulaması",
-  descTr: "İş ve staj başvurularının takibi ile özgeçmiş üretimini tek veritabanında birleştiren masaüstü uygulaması. Başvuru durumu, mülakat tarihleri ve şirket notları aynı yerde tutuluyor. Metin üretimi cihazda çalışan bir dil modeli üzerinden yapıldığı için veriler dışarı çıkmıyor.",
+{ id: "p08", status: "devam", tier: "personal", title: "Kariyer Takip Uygulaması",
+  descTr: "İş ve staj başvurularının takibi ile öz geçmiş üretimini tek veritabanında birleştiren masaüstü uygulaması. Başvuru durumu, mülakat tarihleri ve şirket notları aynı yerde tutuluyor. Metin üretimi cihazda çalışan bir dil modeli üzerinden yapıldığı için veriler dışarı çıkmıyor.",
   descEn: "A desktop application that combines job and internship application tracking with résumé generation on a single database. Application status, interview dates and company notes live in one place. Text generation runs through a language model on the machine itself, so nothing leaves the device.",
   tags: ["Python", "PySide6", "SQLAlchemy", "Ollama"], category: "Masaüstü",
   repoUrl: "https://github.com/TalatKarasakal/kariyer-takip-uygulamasi", period: "2026" },
 
-{ id: "p09", tier: "personal", title: "Yapılacaklar Yöneticisi",
+{ id: "p09", status: "devam", tier: "personal", title: "Yapılacaklar Yöneticisi",
   descTr: "Yerel bir dil modeliyle öncelik ve zaman planı öneren yapılacaklar uygulaması. Öneriler ayrı bir panelde birikiyor ve kabul edilene kadar görev listesine yazılmıyor — model hiçbir şeyi kendiliğinden değiştirmiyor.",
   descEn: "A to-do application that proposes priorities and time blocks through a local language model. Suggestions collect in a separate panel and are not written to the task list until accepted — the model changes nothing on its own.",
   tags: ["Python", "PySide6", "Ollama"], category: "Masaüstü",
   repoUrl: "https://github.com/TalatKarasakal/yapilacaklar", period: "2026" },
 
-{ id: "p10", tier: "personal", title: "Spor ve Diyet Planlayıcı",
+{ id: "p10", status: "devam", tier: "personal", title: "Spor ve Diyet Planlayıcı",
   descTr: "Antrenman ve beslenme planı üreten masaüstü uygulaması. Plan üretilirken eldeki ekipman, sakatlık geçmişi ve diyet kısıtları girdi olarak alınıyor. İlerleme PyQtGraph ile çizilen grafikler üzerinden izleniyor.",
   descEn: "A desktop application that generates training and nutrition plans, taking available equipment, injury history and dietary constraints as inputs. Progress is tracked through PyQtGraph charts.",
   tags: ["Python", "PySide6", "Ollama", "PyQtGraph"], category: "Masaüstü",
   repoUrl: "https://github.com/TalatKarasakal/spor-diyet-uygulamasi", period: "2026" },
 
-{ id: "p11", tier: "personal", title: "Kütüphanem",
+{ id: "p11", status: "devam", tier: "personal", title: "Kütüphanem",
   descTr: "Kitap, film ve dizi koleksiyonlarını tek yerde tutan masaüstü uygulaması. Her tür için ayrı alan şeması var; veriler tamamen cihazda, IndexedDB üzerinde saklanıyor. Excel ve CSV ile içe ve dışa aktarma destekleniyor.",
   descEn: "A desktop application that keeps book, film and series collections in one place. Each type has its own field schema, and all data stays on the device in IndexedDB. Excel and CSV import and export are supported.",
   tags: ["Electron", "React", "TypeScript", "IndexedDB"], category: "Masaüstü",
   repoUrl: "https://github.com/TalatKarasakal/kutuphane-takip-sistemi", period: "2026" },
 
-{ id: "p12", tier: "personal", title: "Unity 2D Tenis Oyunu",
+{ id: "p12", status: "tamamlandi", tier: "personal", title: "Unity 2D Tenis Oyunu",
   descTr: "Unity ile oyun geliştirmenin temellerini öğrenmek için iki kişilik bir ekiple yapılan 2B tenis oyunu. Üç zorluk seviyesinde bir rakip ve basit bir puanlama akışı var. WebGL olarak derlendiği için tarayıcıda oynanabiliyor.",
   descEn: "A 2D tennis game built by a two-person team to learn the basics of game development in Unity, with a three-level opponent and a simple scoring loop. Compiled to WebGL, so it runs in the browser.",
   tags: ["Unity 6", "C#", "WebGL"], category: "Oyun",
   repoUrl: "https://github.com/TalatKarasakal/tenis-oyunu",
-  liveUrl: "https://talatkarasakal.github.io/tenis-oyunu/",
   period: "Haz – Tem 2025", periodEn: "Jun – Jul 2025" },
 
-{ id: "p13", tier: "personal", title: "Sınav Oluşturma Sistemi",
+{ id: "p13", status: "tamamlandi", tier: "personal", title: "Sınav Oluşturma Sistemi",
   descTr: "Öğretmenin bir soru havuzu tuttuğu ve seçtiği kriterlere göre otomatik sınav ürettiği masaüstü uygulaması.",
   descEn: "A desktop application where a teacher maintains a question bank and generates exams automatically from selected criteria.",
   tags: ["Python"], category: "Masaüstü",
   repoUrl: "https://github.com/TalatKarasakal/sinav-olusturma-sistemi",
   period: "2026" },
 
-{ id: "p14", tier: "personal", title: "Bluejack Kart Oyunu",
+{ id: "p14", status: "tamamlandi",
+  media: [
+    { type: "video", src: "assets/projeler/bluejack-terminal-demo.mp4",
+      tr: "Terminal sürümünde bir tur oynanışı.",
+      en: "A round of play in the terminal version." }
+  ], tier: "personal", title: "Bluejack Kart Oyunu",
   descTr: "Java ve nesne yönelimli tasarım pratiği olarak yazılmış kart oyunu. Kart, Deste, Oyuncu ve Oynanış sınıflarından oluşuyor; kart dağıtma, tur kontrolü ve puanlama akışını içeriyor.",
   descEn: "A card game written as an exercise in Java and object-oriented design, built from Card, Deck, Player and Gameplay classes, covering dealing, turn control and scoring.",
   tags: ["Java", "OOP"], category: "Oyun",
@@ -215,12 +254,7 @@ const SKILLS = [
 { tr: "Ayrıca kullandığım teknolojiler", en: "Also worked with",
   items: ["TypeScript / JavaScript", "React", "PySide6",
           "Unity", "SQLAlchemy", "Docker", "YOLOv8 / Ultralytics"],
-  secondary: true },
-
-{ tr: "Şu sıralar öğreniyorum", en: "Currently learning",
-  items: ["ASP.NET Core", "Entity Framework Core", "Makine öğrenmesi"],
-  itemsEn: ["ASP.NET Core", "Entity Framework Core", "Machine learning"],
-  learning: true }];
+  secondary: true },];
 
 const LANGUAGES = [
 { tr: "İngilizce", en: "English", levelTr: "B2",                       levelEn: "B2" },
@@ -277,32 +311,33 @@ const EXPERIENCE = [
   orgTr: "İzmir Ekonomi Üniversitesi · Kurumsal İletişim Ofisi, Etkinlik Birimi",
   orgEn: "Izmir University of Economics · Corporate Communications, Events Unit",
   period: "Ağu – Ara 2025 · Şub – Tem 2026", periodEn: "Aug – Dec 2025 · Feb – Jul 2026",
-  descTr: "Kurumsal İletişim Ofisi Etkinlik Birimi'nde, üniversitenin yıl boyunca düzenlediği büyük ölçekli etkinliklerin saha koordinasyonunda görev aldım. Akademik yıl açılışı, mezuniyet törenleri, Kıdem Takdir Töreni, Bahar Şenlikleri konseri ve üniversitenin 25. kuruluş yıl dönümü kutlamaları bu kapsamdaydı. Çalışma biçimi ağırlıklı olarak koordinasyondu: farklı birimlerin ve dış tedarikçilerin aynı takvim üzerinde buluşması, etkinlik günü değişen koşullara göre planın yeniden düzenlenmesi. Görev, sözleşmenin sona ermesiyle Temmuz 2026'da tamamlandı.",
-  descEn: "In the Events Unit of the Corporate Communications Office, I worked on the field coordination of the university's large-scale events across the year: the academic year opening, graduation ceremonies, the long-service awards, the spring festival concert and the university's 25th anniversary. The work was mostly coordination — getting different departments and outside suppliers onto one schedule, and reworking the plan on the day as conditions changed. The role ended in July 2026 when the contract expired." },
+  descTr: "Kurumsal İletişim Ofisi Etkinlik Birimi'nde, üniversitenin yıl boyunca düzenlediği büyük ölçekli etkinliklerin saha koordinasyonunda görev aldım. Akademik yıl açılışı, mezuniyet törenleri, Kıdem Takdir Töreni, Bahar Şenlikleri konseri ve üniversitenin 25. kuruluş yıl dönümü kutlamaları bu kapsamdaydı. Görev, sözleşmenin sona ermesiyle Temmuz 2026'da tamamlandı.",
+  descEn: "In the Events Unit of the Corporate Communications Office, I worked on the field coordination of the university's large-scale events across the year: the academic year opening, graduation ceremonies, the long-service awards, the spring festival concert and the university's 25th anniversary. The role ended in July 2026 when the contract expired." },
 
 { roleTr: "Proje Yönetimi Stajyeri", roleEn: "Project Management Intern",
   orgTr: "SCA Social", orgEn: "SCA Social",
   period: "Oca – Şub 2026 · uzaktan", periodEn: "Jan – Feb 2026 · remote",
-  descTr: "Savunma sanayii odaklı bir proje üzerinde uzaktan çalıştım. Proje Başlatma Belgesi ve Gantt çizelgesini hazırladım, bütçe ve maliyet tablolarını kurguladım. Kişisel verilerin korunmasına ilişkin bir vaka analizini resmî dokümantasyona dönüştürdüm. Yapay zekâyı planlama ve senaryo çalışmalarında destek aracı olarak kullandım; çıktıları kendim gözden geçirip düzelttim. Stajın bana asıl kazandırdığı, bir işin teknik tarafından önce belge ve takvim tarafının kurulması gerektiğini görmek oldu.",
-  descEn: "A remote placement on a defence-sector project. I prepared the project initiation document and the Gantt chart, and built the budget and cost tables. I turned a data-protection case analysis into formal documentation. I used AI as a support tool in the planning and scenario work, reviewing and correcting the output myself. What the placement taught me was that the paperwork and the schedule have to be set up before the technical side starts." },
+  descTr: "Stajın ilk dört haftasında yönetim ve organizasyon, bilişim hukuku, yapay zekâ ve proje yönetimi alanlarında teorik eğitim aldım. Devamında savunma sanayii odaklı yıllık bütçe planlaması ve maliyet tabloları hazırladım. İnşaat projelerindeki belirsizlik ve risklerin erken tespiti için yapay zekâ temelli bir simülasyon yaklaşımı tasarlayarak derin öğrenme ve görüntü işleme tekniklerinin risk analizindeki kullanım senaryolarını modelledim. Bilişim hukuku kapsamında KVKK süreçlerini vaka analizi üzerinden inceleyip veri sorumlusuna başvuru ve Kurul şikâyet mekanizmalarını resmî dokümantasyona dönüştürdüm. Son aşamada Proje Başlatma Belgesi ve Gantt çizelgesi hazırlayarak bir projenin kapsam, kaynak ve zaman planlamasını uçtan uca kurguladım.",
+  descEn: "The first four weeks covered theory in management and organisation, information technology law, artificial intelligence and project management. I then prepared annual budget planning and cost tables for the defence sector. To catch uncertainty and risk early in construction projects, I designed an AI-based simulation approach and modelled how deep learning and computer vision techniques could be used in risk analysis. Under information technology law, I examined data-protection procedures through a case study and turned the application and complaint mechanisms into formal documentation. In the final stage I prepared a project initiation document and a Gantt chart, planning a project's scope, resources and schedule end to end." },
 
 { roleTr: "Tanıtım Personeli", roleEn: "Outreach Staff",
   orgTr: "İzmir Ekonomi Üniversitesi", orgEn: "Izmir University of Economics",
   period: "Tem – Eyl 2024 · Tem – Ağu 2025", periodEn: "Jul – Sep 2024 · Jul – Aug 2025",
-  descTr: "Aday öğrenci tanıtım döneminde kampüs turları yürüttüm ve bölüm bilgilendirmelerinde görev aldım. İşin özü, aynı bilgiyi çok farklı hazırlık seviyelerindeki kişilere anlaşılır biçimde aktarmaktı — sorunun ne olduğunu anlamadan cevap vermenin işe yaramadığı bir ortam.",
-  descEn: "During the admissions outreach period I ran campus tours and worked on departmental information sessions. The core of the job was conveying the same information clearly to people at very different levels of preparation — an environment where answering before you understand the question does not work." },
+  descTr: "Aday öğrenci tanıtım döneminde kampüs turları yürüttüm ve bölüm bilgilendirmelerinde görev aldım. İşin özü, aynı bilgiyi çok farklı hazırlık seviyelerindeki kişilere anlaşılır biçimde aktarmaktı.",
+  descEn: "During the admissions outreach period I ran campus tours and worked on departmental information sessions. The core of the job was conveying the same information clearly to people at very different levels of preparation." },
 
-{ roleTr: "Denetim Kurulu Üyesi", roleEn: "Audit Board Member",
+{ roleTr: "Kulüp Üyesi · Denetim Kurulu Üyesi", roleEn: "Club Member · Audit Board Member",
   orgTr: "IEU Software Community", orgEn: "IEU Software Community",
-  period: "Eyl 2025 – devam", periodEn: "Sep 2025 – present",
-  descTr: "Topluluğun denetim kurulunda görev alıyorum; etkinlik ve karar kayıtlarının düzenli tutulmasını takip ediyorum. Topluluğun düzenlediği teknik çalıştaylara da katılıyorum — makine öğrenmesine giriş çalıştayı bunlardan biriydi. Bölüm dışından gelen öğrencilerin de katıldığı etkinliklerde, anlatılan konunun hazırlık düzeyi çok farklı bir gruba aynı anda ulaşması gerekiyor; bu, içeriğin nasıl kurgulandığı konusunda iyi bir gözlem alanı.",
-  descEn: "I serve on the community's audit board, following the upkeep of activity and decision records, and I take part in the technical workshops the community runs — an introduction to machine learning was one of them. At events open to students from outside the department, the same material has to land for a group with very different levels of preparation, which is a good place to watch how content gets structured." },
+  period: "Eki 2024 – devam · denetim kurulu: Eyl 2025 – Tem 2026",
+  periodEn: "Oct 2024 – present · audit board: Sep 2025 – Jul 2026",
+  descTr: "2024-2025 döneminde kulüp üyesi olarak Cisco ve yapay zekâ alanındaki kurs ve çalıştaylara katıldım; makine öğrenmesine giriş çalıştayı bunlardan biriydi. Eylül 2025 – Temmuz 2026 arasında denetim kurulunda görev aldım: etkinlik planlamalarına katkı sağladım, Bahar Şenlikleri stant organizasyonunda destek verdim ve kulübün düzenlediği seminerlerde yönetime destek oldum.",
+  descEn: "As a club member in 2024-2025 I attended Cisco and artificial intelligence courses and workshops, including an introduction to machine learning. Between September 2025 and July 2026 I served on the audit board: contributing to event planning, supporting the spring festival stand, and assisting the committee at the seminars the club ran." },
 
 { roleTr: "Kulüp Üyesi", roleEn: "Club Member",
   orgTr: "Endüstri Sistemleri Topluluğu", orgEn: "Industrial Systems Community",
   period: "Eki 2024 – devam", periodEn: "Oct 2024 – present",
-  descTr: "Etkinlik organizasyonu ve şirket davet süreçlerinde görev alıyorum. Konuşmacı ve firma iletişiminin takibi, tarih ve mekân planlaması, etkinlik günü saha koordinasyonu bu kapsamda. İşin çoğu, birbirine bağlı çok sayıda küçük adımın doğru sırada tamamlanmasını izlemek — bir adım kayınca sonrasının tamamı kayıyor.",
-  descEn: "I work on event organisation and company invitations: following up with speakers and firms, planning dates and venues, and coordinating on the day. Most of the work is watching that a long chain of small interdependent steps completes in the right order — when one slips, everything after it slips." }];
+  descTr: "Topluluğun düzenlediği etkinliklerin organizasyon ekibinde yer alıyorum. Etkinliklere katılım için şirketlerden insan kaynakları uzmanları ve yöneticilerle LinkedIn üzerinden iletişime geçerek davet süreçlerini yürütüyorum. Etkinlik günlerinde konuk ağırlama, genel koordinasyon ve katılımcı yönetiminde görev alıyorum.",
+  descEn: "I am part of the organising team for the community's events. I run the invitation process, reaching out to human resources specialists and managers at companies through LinkedIn. On event days I work on hosting guests, general coordination and attendee management." }];
 
 /* -------------------------------------------------------------------------
    CONTACT
@@ -336,25 +371,26 @@ const COPY = {
     firstName: "Talat", lastName: "Karasakal",
     bio: "İzmir Ekonomi Üniversitesi'nde bilgisayar mühendisliği okuyorum. Görüntü işleme ve masaüstü uygulama projelerinde çalıştım; ilgim mimari kararlar ve ölçülebilir sonuçlar tarafında.",
     btnProjects: "Projeleri Gör", btnContact: "İletişime geç",
-    marquee: ["YAPAY ZEKÂ", "BİLGİSAYARLI GÖRÜ", "YAZILIM", "JAVA", "TEKNOFEST", "MASAÜSTÜ UYGULAMALAR"],
+    marquee: ["YAPAY ZEKÂ", "BİLGİSAYARLI GÖRÜ", "NESNE TESPİTİ", "VERİ SETİ TASARIMI", "MASAÜSTÜ UYGULAMALAR", "JAVA"],
     aboutTitle: "Hakkımda",
-    lede: "Bir sistemin neden öyle kurulduğunu açıklayabilmeyi, onu çalışır hâle getirmekten daha zor ve daha kıymetli buluyorum.",
+    lede: "Bir sistemin neden öyle kurulduğunu açıklamayı, onu çalışır hâle getirmekten daha zor ve daha kıymetli buluyorum.",
     ledeEm: "neden öyle kurulduğunu",
-    aboutP1: "Bilgisayar mühendisliği okuyorum ve çoğunlukla masaüstü uygulamalar ile görüntü işleme tarafında çalışıyorum. Bir işi yaparken en çok ilgimi çeken kısım, seçeneklerin karşılaştırıldığı yer oluyor: hangi modelin, hangi kütüphanenin, hangi veri kurgusunun neden seçildiği. Bir aracı kullanabilmek ile onu neden seçtiğini anlatabilmek arasındaki farkı önemsiyorum; yazdığım her satırın arkasında durabilmek istiyorum.",
+    aboutP1: "Bilgisayar mühendisliği okuyorum ve çoğunlukla masaüstü uygulamalar ve görüntü işleme tarafında çalışıyorum. Bir işi yaparken en çok ilgimi çeken kısım, seçeneklerin karşılaştırıldığı yer oluyor: hangi modelin, hangi kütüphanenin, hangi veri kurgusunun neden seçildiği. Bir aracı kullanabilmek ile onu neden seçtiğini anlatabilmek arasındaki farkı önemsiyorum; yazdığım her satırın arkasında durabilmek istiyorum.",
     aboutP2: "En kapsamlı çalışmam TEKNOFEST 2026 Akıllı Yol Güvenliği yarışması oldu. Üç kişilik ekipte yapay zekâ tarafından sorumluydum: on ayrı veri setini tek bir sınıf şemasına eşledim, veri sızıntısını önleyecek bölümleme kurdum ve iki model boyutunu kendi donanımımda karşılaştırarak seçtim. Bu projeden çıkardığım en kalıcı şey, bir veri setinin nasıl kurulduğunun model seçiminden daha belirleyici olabildiği.",
-    aboutP3: "Şu sıralar C# ve .NET tarafında ilerliyorum, makine öğrenmesi kurslarına devam ediyorum. Yakın hedefim 2026-2027 döneminde bir yazılım stajı; uzun vadede savunma sanayii ve kurumsal teknoloji tarafında çalışmak istiyorum.",
+    aboutP3: "Yakın hedefim 2026-2027 döneminde bir yazılım stajı; uzun vadede savunma sanayii ve kurumsal teknoloji tarafında çalışmayı hedefliyorum.",
     nowTag: "ŞİMDİ",
     now: [
+    ["Öğreniyor", "C# ve .NET · ASP.NET Core · Entity Framework Core · makine öğrenmesi"],
     ["Geliştiriyor", "Kişisel projeler ve portfolyo"],
     ["Planlıyor", "4. sınıf bitirme projesi"]],
 
     skillLearnBadge: "öğreniyor",
     langTitle: "Diller",
     projTitle: "Projeler",
-    tierFeatured: "Öne çıkanlar", tierProject: "Projeler", tierPersonal: "Kişisel çalışmalar",
+    tierFeatured: "Öne çıkanlar", tierProject: "Projeler", tierPersonal: "Diğer çalışmalar",
     decisionsLabel: "Kararlar", outcomeLabel: "Sonuç",
     liveLabel: "canlı demo", sheetClose: "Kapat",
-    seeMore: "Tümünü göster", seeLess: "Daha az göster", showPersonal: "Kişisel çalışmaları göster",
+    seeMore: "Tümünü göster", seeLess: "Daha az göster", showPersonal: "Diğer çalışmaları göster",
     seeAll: "Tüm depoları GitHub'da gör",
     certTitle: "Sertifikalar",
     expTitle: "Deneyim",
@@ -384,25 +420,26 @@ const COPY = {
     firstName: "Talat", lastName: "Karasakal",
     bio: "I study computer engineering at Izmir University of Economics. I've worked on computer vision and desktop application projects; my interest sits on the side of architectural decisions and measurable results.",
     btnProjects: "View Projects", btnContact: "Get in touch",
-    marquee: ["ARTIFICIAL INTELLIGENCE", "COMPUTER VISION", "SOFTWARE", "JAVA", "TEKNOFEST", "DESKTOP APPLICATIONS"],
+    marquee: ["ARTIFICIAL INTELLIGENCE", "COMPUTER VISION", "OBJECT DETECTION", "DATASET DESIGN", "DESKTOP APPLICATIONS", "JAVA"],
     aboutTitle: "About",
     lede: "Being able to explain why a system is built the way it is, is harder and worth more than getting it to run.",
     ledeEm: "why a system is built the way it is",
     aboutP1: "I study computer engineering and mostly work on desktop applications and computer vision. The part of a job that interests me most is where the options get compared: which model, which library, which dataset design was chosen and why. I care about the difference between being able to use a tool and being able to explain why you picked it — I want to be able to stand behind every line I ship.",
     aboutP2: "My most substantial work so far was the TEKNOFEST 2026 Smart Road Safety competition, where I was responsible for the AI side in a three-person team: I mapped ten separate datasets onto a single class schema, built a split that prevents data leakage, and chose between two model sizes by benchmarking them on my own hardware. The lasting lesson was that how a dataset is constructed can matter more than which model you pick.",
-    aboutP3: "I'm currently working through C# and .NET and continuing with machine learning coursework. My near-term goal is a software internship in the 2026-2027 window; longer term I want to work in the Turkish defence industry and enterprise technology.",
+    aboutP3: "My near-term goal is a software internship in the 2026-2027 window; longer term I aim to work in the Turkish defence industry and enterprise technology.",
     nowTag: "NOW",
     now: [
+    ["Learning", "C# and .NET · ASP.NET Core · Entity Framework Core · machine learning"],
     ["Building", "Personal projects and this portfolio"],
     ["Planning", "Final-year capstone project"]],
 
     skillLearnBadge: "learning",
     langTitle: "Languages",
     projTitle: "Projects",
-    tierFeatured: "Featured", tierProject: "Projects", tierPersonal: "Personal work",
+    tierFeatured: "Featured", tierProject: "Projects", tierPersonal: "Other work",
     decisionsLabel: "Decisions", outcomeLabel: "Outcome",
     liveLabel: "live demo", sheetClose: "Close",
-    seeMore: "Show all", seeLess: "Show less", showPersonal: "Show personal work",
+    seeMore: "Show all", seeLess: "Show less", showPersonal: "Show other work",
     seeAll: "See all repositories on GitHub",
     certTitle: "Certificates",
     expTitle: "Experience",
@@ -750,11 +787,11 @@ function Hero({ onJump, t }) {
 
   useEffect(() => {
     const fmt = new Intl.DateTimeFormat("en-GB", {
-      timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false
+      timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit", hour12: false
     });
     const tick = () => setTime(`${fmt.format(new Date())} TRT`);
     tick();
-    const id = setInterval(tick, 1000);
+    const id = setInterval(tick, 15000);
     return () => clearInterval(id);
   }, []);
 
@@ -1044,6 +1081,7 @@ function ProjectSheet({ project, lang, t, onClose }) {
         </div>
         <p className="pcard-desc">{desc}</p>
         <div className="pcard-stack">{project.tags.map((s) => <span key={s} className="stack-pill">{s}</span>)}</div>
+        <MediaList items={project.media} lang={lang} />
         {(decisions && decisions.length > 0 || outcome) &&
         <div className="pcard-detail">
             {decisions && decisions.length > 0 &&
@@ -1080,23 +1118,62 @@ function GithubIcon() {
   return <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.34c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.18-.89-1.18-.73-.5.05-.49.05-.49.81.06 1.23.83 1.23.83.72 1.23 1.89.87 2.35.67.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.52.56.83 1.28.83 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0z" /></svg>;
 }
 
-function ProjectMedia({ url, title }) {
-  const ref = useRef(null);
-  if (/\.gif($|\?)/i.test(url)) {
-    return <div className="pcard-media"><img src={url} alt={title} loading="lazy" /></div>;
-  }
+function MediaList({ items, lang }) {
+  if (!items || items.length === 0) return null;
   return (
-    <div className="pcard-media"
-      onMouseEnter={() => {const v = ref.current;if (v && v.play) {const p = v.play();if (p && p.catch) p.catch(() => {});}}}
-      onMouseLeave={() => {const v = ref.current;if (v) {v.pause();v.currentTime = 0;}}}>
-      <video ref={ref} src={url} muted loop playsInline preload="metadata" />
+    <div className="media-list">
+      {items.map((m, i) => {
+        const cap = lang === "en" ? m.en : m.tr;
+        return (
+          <figure key={i} className="media-item">
+            <div className="media-frame">
+              {m.type === "video" ?
+              <video src={m.src} controls muted playsInline preload="metadata" /> :
+              <img src={m.src} alt={cap || ""} loading="lazy" decoding="async" />
+              }
+            </div>
+            {cap && <figcaption className="media-cap">{cap}</figcaption>}
+          </figure>);
+
+      })}
     </div>);
+
+}
+
+function MediaSheet({ project, lang, t, onClose }) {
+  const panelRef = useRef(null);
+  const closeBtnRef = useRef(null);
+  useSheetBehavior(project, onClose, panelRef, closeBtnRef);
+  if (!project) return null;
+  return (
+    <div className="sheet-backdrop" onClick={onClose}>
+      <div className="sheet-panel is-media" ref={panelRef} role="dialog" aria-modal="true"
+        aria-labelledby="media-sheet-title" onClick={(e) => e.stopPropagation()}>
+        <div className="sheet-handle" aria-hidden="true" />
+        <button className="sheet-close" ref={closeBtnRef} onClick={onClose} aria-label={t.sheetClose}>×</button>
+        <div className="sheet-head">
+          <h3 id="media-sheet-title" className="sheet-title">{project.title}</h3>
+        </div>
+        <MediaList items={project.media} lang={lang} />
+      </div>
+    </div>);
+
+}
+
+
+function MediaButton({ lang, onClick }) {
+  return (
+    <button type="button" className="media-btn" onClick={onClick}>
+      <span className="media-btn-mark" aria-hidden="true"><StarMark /></span>
+      {lang === "en" ? "Media" : "Medya"}
+    </button>);
 
 }
 
 function ProjectCard({ project, index, lang, t, variant }) {
   const ref = useRevealRef();
   const [pos, setPos] = useState({ x: 50, y: 50 });
+  const [mediaOpen, setMediaOpen] = useState(false);
   const featured = variant === "featured";
   const accentClass = featured ? "" : " pcard-blue";
 
@@ -1169,11 +1246,10 @@ function ProjectCard({ project, index, lang, t, variant }) {
         <div className="pcard-headline">
           {!featured && <span className="pcard-id">{String(index + 1).padStart(2, "0")}</span>}
           {statusLabel && <span className="status-pill">{statusLabel}</span>}
+          {period && <span className="pcard-year-inline">{period}</span>}
         </div>
         <span className="pcard-tag">{project.category}</span>
       </header>
-
-      {project.videoUrl && <ProjectMedia url={project.videoUrl} title={project.title} />}
 
       {featured ?
       <div className="pcard-body">
@@ -1184,7 +1260,11 @@ function ProjectCard({ project, index, lang, t, variant }) {
       }
 
       <footer className="pcard-foot">
-        <span className="pcard-year">{period || ""}</span>
+        <span className="pcard-foot-left">
+          {project.media && project.media.length > 0 &&
+        <MediaButton lang={lang} onClick={() => setMediaOpen(true)} />
+        }
+        </span>
         <span className="pcard-links">
           {live &&
         <a className="pcard-link is-live" href={live} target="_blank" rel="noopener noreferrer">{t.liveLabel}</a>
@@ -1196,6 +1276,7 @@ function ProjectCard({ project, index, lang, t, variant }) {
         }
         </span>
       </footer>
+      {mediaOpen && <MediaSheet project={project} lang={lang} t={t} onClose={() => setMediaOpen(false)} />}
     </article>);
 
 }
@@ -1203,6 +1284,8 @@ function ProjectCard({ project, index, lang, t, variant }) {
 function PersonalCard({ project, index, lang, t, onOpen }) {
   const ref = useRevealRef();
   const period = lang === "en" && project.periodEn ? project.periodEn : project.period;
+  const statusLabel = project.status && STATUS_LABELS[project.status] ?
+  STATUS_LABELS[project.status][lang === "en" ? "en" : "tr"] : null;
 
   return (
     <li ref={ref} className="reveal" style={{ "--stagger": index % 8 * 40 + "ms" }}>
@@ -1211,8 +1294,9 @@ function PersonalCard({ project, index, lang, t, onOpen }) {
           <span className="pcard-mini-title">{project.title}</span>
           <span className="pcard-mini-year">{period || ""}</span>
         </div>
+        <div className="pcard-mini-tags">{project.tags.slice(0, 3).map((s) => <span key={s}>{s}</span>)}</div>
         <div className="pcard-mini-foot">
-          <div className="pcard-mini-tags">{project.tags.slice(0, 3).map((s) => <span key={s}>{s}</span>)}</div>
+          {statusLabel && <span className="status-pill is-mini">{statusLabel}</span>}
           <span className="pcard-mini-arrow" aria-hidden="true">›</span>
         </div>
       </button>
@@ -1228,7 +1312,7 @@ function CertThumb({ img, name, initials }) {
   if (img && !broken) {
     return (
       <span className="cert-thumb has-image">
-        <img src={img} alt="" loading="lazy" onError={() => setBroken(true)} />
+        <img src={img} alt="" loading="lazy" decoding="async" onError={() => setBroken(true)} />
       </span>);
   }
   return <span className="cert-thumb is-empty" aria-hidden="true"><span className="cert-initials">{initials}</span></span>;
@@ -1301,14 +1385,16 @@ function CertSheet({ cert, t, onClose }) {
         <button className="sheet-close" ref={closeBtnRef} onClick={onClose} aria-label={t.sheetClose}>×</button>
         <div className="sheet-head">
           <h3 id="cert-sheet-title" className="sheet-title">{cert.alt}</h3>
-          <div className="pcard-role">{cert.issuer}{cert.date ? " · " + cert.date : ""}</div>
+          <div className="cert-sheet-meta">
+            <span className="cert-issuer-chip">{cert.issuer}</span>
+            {cert.date && <span className="cert-sheet-date">{cert.date}</span>}
+          </div>
         </div>
         {cert.src &&
         <div className="cert-shot">
             <img src={cert.src} alt={cert.alt} />
           </div>
         }
-        {cert.original && <div className="cert-original">{cert.original}</div>}
       </div>
     </div>);
 
@@ -1363,17 +1449,24 @@ function Experience({ t, lang }) {
   const compact = useMediaQuery("(max-width: 900px)");
   const [openIdx, setOpenIdx] = useState(null);
   const n = EXPERIENCE.length;
-  const step = 170;
+  const step = 130;
   const listRef = React.useRef(null);
   const [measured, setMeasured] = React.useState(0);
   React.useLayoutEffect(() => {
     const fit = () => {
       const el = listRef.current;if (!el) return;
-      let bottom = 0;const base = el.getBoundingClientRect().top;
-      el.querySelectorAll(".exp-row-wrap").forEach((r) => {
-        bottom = Math.max(bottom, r.getBoundingClientRect().bottom - base);
+      const rows = Array.from(el.querySelectorAll(".exp-row-wrap"));
+      if (rows.length === 0) return;
+      const sideBottom = [0, 0];
+      let prevTop = 0;
+      rows.forEach((r, i) => {
+        const side = i % 2;
+        const start = i === 0 ? 0 : Math.max(sideBottom[side], prevTop + step);
+        r.style.top = start + "px";
+        prevTop = start;
+        sideBottom[side] = start + r.offsetHeight + 48;
       });
-      setMeasured(Math.ceil(bottom) + 16);
+      setMeasured(Math.ceil(Math.max(sideBottom[0], sideBottom[1])));
     };
     fit();
     window.addEventListener("resize", fit);
@@ -1419,7 +1512,7 @@ function Experience({ t, lang }) {
         {EXPERIENCE.map((e, i) => {
           const period = lang === "en" && e.periodEn ? e.periodEn : e.period;
           return (
-            <article key={i} className={"exp-row-wrap side-" + (i % 2 === 0 ? "left" : "right")} style={{ "--exp-top": i * step + "px" }}>
+            <article key={i} className={"exp-row-wrap side-" + (i % 2 === 0 ? "left" : "right")} style={{ "--exp-top": "0px" }}>
               <span className="exp-connector" />
               <span className="exp-node" />
               <span className="exp-period">{period}</span>
@@ -1452,10 +1545,6 @@ function Contact({ t }) {
             <span className="mailto-addr">{EMAIL}</span>
             <span className="mailto-arrow">↗</span>
           </a>
-          <div className="contact-availability">
-            <span className="avail-dot" />
-            <span>{t.avail}</span>
-          </div>
           {CV_URL !== "" &&
           <div className="cv-btn">
               <a className="btn btn-ghost" href={CV_URL} download rel="noopener">{t.cvLabel}</a>
