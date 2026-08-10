@@ -35,11 +35,11 @@
   <meta property="og:locale" content="tr_TR">
   <meta property="og:locale:alternate" content="en_US">
   <meta property="og:site_name" content="Talat Karasakal">
-  <meta property="og:title" content="Talat Karasakal — Bilgisayar Mühendisliği">
-  <meta property="og:description" content="Yapay Zekâ · Bilgisayarlı Görü · Yazılım Geliştirme">
+  <meta property="og:title" content="Talat Karasakal — Bilgisayar Mühendisliği Öğrencisi">
+  <meta property="og:description" content="TEKNOFEST nesne tespiti hattı, Java masaüstü uygulamaları ve bilgisayarlı görü projeleri. İzmir Ekonomi Üniversitesi.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Talat Karasakal — Bilgisayar Mühendisliği">
-  <meta name="twitter:description" content="Yapay Zekâ · Bilgisayarlı Görü · Yazılım Geliştirme">
+  <meta name="twitter:title" content="Talat Karasakal — Bilgisayar Mühendisliği Öğrencisi">
+  <meta name="twitter:description" content="TEKNOFEST nesne tespiti hattı, Java masaüstü uygulamaları ve bilgisayarlı görü projeleri. İzmir Ekonomi Üniversitesi.">
   <link rel="icon"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-16 -16 32 32'%3E%3Crect x='-16' y='-16' width='32' height='32' fill='%23070B14'/%3E%3Cg fill='%23B23A4B'%3E%3Crect x='-9' y='-9' width='18' height='18'/%3E%3Crect x='-9' y='-9' width='18' height='18' transform='rotate(45)' opacity='0.55'/%3E%3C/g%3E%3C/svg%3E">
 
@@ -3930,6 +3930,25 @@
     .mailto-addr { font-size: 21px; }
     .mailto-arrow { font-size: 19px; }
     @media (max-width: 900px) { .contact-lede { font-size: 19px; } }
+
+/* === DUZELTME 7 === */
+
+/* Deneyim: dugumler ve baglayicilar yolun merkezine kadar uzansin.
+   Satir genisligi calc(50% - 48px) oldugu icin dugumun 52px disari
+   tasmasi gerekiyor; onceki 36px degeri yolun solunda kaliyordu. */
+.exp-row-wrap.side-left .exp-node { right: -52px; }
+.exp-row-wrap.side-right .exp-node { left: -52px; }
+.exp-row-wrap.side-left .exp-connector { right: -48px; width: 48px; }
+.exp-row-wrap.side-right .exp-connector { left: -48px; width: 48px; }
+
+/* Hakkimda: sag blok sabit, kendi kaydirmasi yok.
+   Yapiskan davranis kaldirildi; iki blok yan yana, birlikte akiyor. */
+.about-side {
+  position: static;
+  max-height: none;
+  overflow: visible;
+  padding-right: 0;
+}
 
 </style>
 </head>

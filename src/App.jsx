@@ -1454,20 +1454,24 @@ function Experience({ t, lang }) {
   const step = 92;
   const listRef = React.useRef(null);
   const [measured, setMeasured] = React.useState(0);
+  const [rowTops, setRowTops] = React.useState([]);
   React.useLayoutEffect(() => {
     const fit = () => {
       const el = listRef.current;if (!el) return;
       const rows = Array.from(el.querySelectorAll(".exp-row-wrap"));
       if (rows.length === 0) return;
       const sideBottom = [0, 0];
+      const tops = [];
       let prevTop = 0;
       rows.forEach((r, i) => {
         const side = i % 2;
         const start = i === 0 ? 0 : Math.max(sideBottom[side], prevTop + step);
         r.style.top = start + "px";
         prevTop = start;
+        tops.push(start);
         sideBottom[side] = start + r.offsetHeight + 48;
       });
+      setRowTops(tops);
       setMeasured(Math.ceil(Math.max(sideBottom[0], sideBottom[1])));
     };
     fit();
@@ -1478,13 +1482,20 @@ function Experience({ t, lang }) {
   const totalHeight = measured || (n - 1) * step + 200;
   const roadPath = (offset) => {
     const cx = 45 + offset, amp = 34;
-    let d = `M${cx},0`;
+    const stops = rowTops.length === n ?
+    rowTops.concat([totalHeight]) :
+    Array.from({ length: n + 1 }, (_, i) => Math.min(i * step, totalHeight));
+    let d = `M${cx},${stops[0].toFixed(0)}`;
     for (let i = 0; i < n; i++) {
-      const segEnd = Math.min((i + 1) * step, totalHeight);
-      const bulge = (i % 2 === 0 ? 45 - amp : 45 + amp) + offset;
-      const c1 = (i * step + step * 0.35).toFixed(0);
-      const c2 = (i * step + step * 0.7).toFixed(0);
-      d += ` C${bulge},${c1} ${bulge},${c2} ${cx},${segEnd.toFixed(0)}`;
+      const a = stops[i], b = stops[i + 1];
+      const seg = Math.max(b - a, 1);
+      // Kivrim geometrisi her segmentte ayni: sabit bir "giris mesafesi" ve
+      // sabit genlik. Segment kisaysa ikisi de ayni oranda kuculur, boylece
+      // kivrilma acisi degismez.
+      const lead = 72;
+      const k = Math.min(1, seg / (lead * 2));
+      const bulge = (i % 2 === 0 ? 45 - amp * k : 45 + amp * k) + offset;
+      d += ` C${bulge},${(a + lead * k).toFixed(0)} ${bulge},${(b - lead * k).toFixed(0)} ${cx},${b.toFixed(0)}`;
     }
     return d;
   };
