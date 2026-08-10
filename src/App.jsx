@@ -323,13 +323,13 @@ const EXPERIENCE = [
 { roleTr: "Tanıtım Personeli", roleEn: "Outreach Staff",
   orgTr: "İzmir Ekonomi Üniversitesi", orgEn: "Izmir University of Economics",
   period: "Tem – Eyl 2024 · Tem – Ağu 2025", periodEn: "Jul – Sep 2024 · Jul – Aug 2025",
-  descTr: "Aday öğrenci tanıtım döneminde kampüs turları yürüttüm ve bölüm bilgilendirmelerinde görev aldım. İşin özü, aynı bilgiyi çok farklı hazırlık seviyelerindeki kişilere anlaşılır biçimde aktarmaktı.",
-  descEn: "During the admissions outreach period I ran campus tours and worked on departmental information sessions. The core of the job was conveying the same information clearly to people at very different levels of preparation." },
+  descTr: "2024 tanıtım döneminde çağrı merkezi biriminde çalıştım; İzmir Ekonomi Üniversitesi ile ilgilenen adayların sorularını yanıtladım ve bilgilendirme yaptım. 2025 döneminde transfer biriminde görev aldım: aday öğrenciler ve velilere kampüs içi turlar düzenledim, üniversite ve ilgilendikleri bölümler hakkındaki sorularını yanıtladım. İşin özü, aynı bilgiyi çok farklı hazırlık seviyelerindeki kişilere anlaşılır biçimde aktarmaktı.",
+  descEn: "In the 2024 admissions period I worked in the call centre unit, answering questions from prospective students interested in Izmir University of Economics. In 2025 I worked in the transfer unit: running campus tours for prospective students and their families, and answering their questions about the university and the departments they were considering. The core of the job was conveying the same information clearly to people at very different levels of preparation." },
 
 { roleTr: "Kulüp Üyesi · Denetim Kurulu Üyesi", roleEn: "Club Member · Audit Board Member",
   orgTr: "IEU Software Community", orgEn: "IEU Software Community",
-  period: "Eki 2024 – devam · denetim kurulu: Eyl 2025 – Tem 2026",
-  periodEn: "Oct 2024 – present · audit board: Sep 2025 – Jul 2026",
+  period: "Eki 2024 – devam",
+  periodEn: "Oct 2024 – present",
   descTr: "2024-2025 döneminde kulüp üyesi olarak Cisco ve yapay zekâ alanındaki kurs ve çalıştaylara katıldım; makine öğrenmesine giriş çalıştayı bunlardan biriydi. Eylül 2025 – Temmuz 2026 arasında denetim kurulunda görev aldım: etkinlik planlamalarına katkı sağladım, Bahar Şenlikleri stant organizasyonunda destek verdim ve kulübün düzenlediği seminerlerde yönetime destek oldum.",
   descEn: "As a club member in 2024-2025 I attended Cisco and artificial intelligence courses and workshops, including an introduction to machine learning. Between September 2025 and July 2026 I served on the audit board: contributing to event planning, supporting the spring festival stand, and assisting the committee at the seminars the club ran." },
 
@@ -1017,6 +1017,8 @@ function CompactProjectRow({ project, index, lang, t, onOpen }) {
 
 // Body-scroll lock + focus trap shared by every bottom-sheet dialog.
 function useSheetBehavior(active, onClose, panelRef, closeBtnRef) {
+  const closeRef = useRef(onClose);
+  closeRef.current = onClose;
   useEffect(() => {
     if (!active) return;
     const prevActive = document.activeElement;
@@ -1026,9 +1028,9 @@ function useSheetBehavior(active, onClose, panelRef, closeBtnRef) {
     document.body.style.left = "0";
     document.body.style.right = "0";
     document.body.style.width = "100%";
-    const raf = requestAnimationFrame(() => {if (closeBtnRef.current) closeBtnRef.current.focus();});
+    const raf = requestAnimationFrame(() => {if (closeBtnRef.current) closeBtnRef.current.focus({ preventScroll: true });});
     function onKey(e) {
-      if (e.key === "Escape") {onClose();return;}
+      if (e.key === "Escape") {closeRef.current();return;}
       if (e.key === "Tab" && panelRef.current) {
         const focusables = panelRef.current.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])');
         if (focusables.length === 0) return;
@@ -1049,7 +1051,7 @@ function useSheetBehavior(active, onClose, panelRef, closeBtnRef) {
       window.scrollTo(0, scrollY);
       if (prevActive && prevActive.focus) prevActive.focus();
     };
-  }, [active, onClose]);
+  }, [active]);
 }
 
 function ProjectSheet({ project, lang, t, onClose }) {
@@ -1449,7 +1451,7 @@ function Experience({ t, lang }) {
   const compact = useMediaQuery("(max-width: 900px)");
   const [openIdx, setOpenIdx] = useState(null);
   const n = EXPERIENCE.length;
-  const step = 130;
+  const step = 92;
   const listRef = React.useRef(null);
   const [measured, setMeasured] = React.useState(0);
   React.useLayoutEffect(() => {
@@ -1596,11 +1598,13 @@ function App() {
     return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
   });
   const [lang, setLang] = useState(() => {
-    const stored = localStorage.getItem("tk-lang");
-    if (stored === "tr" || stored === "en") return stored;
-    return (navigator.language || "").toLowerCase().startsWith("tr") ? "tr" : "en";
+    try {
+      const saved = localStorage.getItem("tk-lang");
+      if (saved === "tr" || saved === "en") return saved;
+      const nav = (navigator.languages && navigator.languages[0]) || navigator.language || "tr";
+      return String(nav).toLowerCase().startsWith("tr") ? "tr" : "en";
+    } catch (e) {return "tr";}
   });
-
   const t = COPY[lang];
   const firstTheme = useRef(true);
 
