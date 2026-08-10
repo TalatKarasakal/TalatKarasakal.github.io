@@ -3992,6 +3992,27 @@
   .nav-panel-tools { display: none; }
 }
 
+/* === DUZELTME 9: MOBIL MENU HIZASI === */
+
+@media (max-width: 900px) {
+  /* Ust bar sagdan hizalansin; onceki turda eklenen ortalama kurali
+     mobilde gecerli olmasin */
+  .nav-inner { justify-content: flex-end; }
+  .nav-links { min-width: 0; }
+  .nav-right { margin-left: auto; }
+
+  /* Panel menu dugmesinin altinda, sag kenara yasli */
+  .nav-panel {
+    left: auto !important;
+    right: 16px;
+    transform: none;
+    min-width: 240px;
+    max-width: calc(100vw - 32px);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+}
+
 </style>
 </head>
 
