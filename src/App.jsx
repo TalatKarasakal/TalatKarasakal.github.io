@@ -767,10 +767,31 @@ function Nav({ active, onJump, theme, onToggleTheme, lang, onLang, t, showBrand 
       {menu &&
       <div className="nav-panel">
           {items.map((it) =>
-        <button key={it.id} className={active === it.id ? "is-active" : ""} onClick={() => {setMenu(false);onJump(it.id);}}>
+        <button key={it.id} className={"nav-panel-item" + (active === it.id ? " is-active" : "")} onClick={() => {setMenu(false);onJump(it.id);}}>
               <span>{it.num}</span><span>{it.label}</span>
             </button>
         )}
+          <div className="nav-panel-tools">
+            <div className="lang-switch nav-btn" role="group" aria-label="Language">
+              <button className={"lang-opt" + (lang === "tr" ? " is-active" : "")} onClick={() => onLang("tr")}>TR</button>
+              <button className={"lang-opt" + (lang === "en" ? " is-active" : "")} onClick={() => onLang("en")}>EN</button>
+              <span className="lang-pill" data-pos={lang} />
+            </div>
+            <button className="theme-toggle nav-btn" onClick={onToggleTheme}
+          aria-label={theme === "dark" ? t.ctaTitle[0] : t.ctaTitle[1]}
+          title={theme === "dark" ? t.ctaTitle[0] : t.ctaTitle[1]}>
+              {theme === "dark" ?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                  <circle cx="12" cy="12" r="4" />
+                  <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" strokeLinecap="round" />
+                </svg> :
+
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                  <path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" strokeLinejoin="round" />
+                </svg>
+            }
+            </button>
+          </div>
         </div>
       }
       <div className="nav-glow" />

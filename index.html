@@ -3950,6 +3950,48 @@
   padding-right: 0;
 }
 
+/* === DUZELTME 8: MOBIL MENU === */
+
+@media (max-width: 900px) {
+  /* Menu dugmesi en saga, ust bar sagdan hizali */
+  .nav-right { margin-left: auto; gap: 0; }
+  .nav-right .nav-menu-btn { order: 99; margin-left: 0; }
+
+  /* Dil ve tema dugmeleri ust bardan gizlenip panele tasiniyor */
+  .nav-right > .lang-switch,
+  .nav-right > .theme-toggle { display: none; }
+
+  /* Panel menu dugmesinin altinda, saga yasli */
+  .nav-panel {
+    left: auto;
+    right: 16px;
+    min-width: 240px;
+    max-width: calc(100vw - 32px);
+  }
+
+  /* Panel icindeki arac satiri: iletisim maddesinin altinda */
+  .nav-panel-tools {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: 10px;
+    padding: 14px 16px 4px;
+    border-top: 1px solid var(--line);
+  }
+  .nav-panel-tools .lang-switch { position: relative; }
+  .nav-panel-tools .theme-toggle {
+    width: 40px; height: 40px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .nav-panel-tools .theme-toggle svg { width: 18px; height: 18px; }
+}
+
+/* Genis ekranda panel araclari gorunmesin, ust barda zaten varlar */
+@media (min-width: 901px) {
+  .nav-panel-tools { display: none; }
+}
+
 </style>
 </head>
 
