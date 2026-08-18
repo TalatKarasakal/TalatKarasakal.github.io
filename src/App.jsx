@@ -366,7 +366,7 @@ const COPY = {
     specHead: "KİMLİK",
     spec: { handle: "kullanıcı", role: "rol", uni: "üniversite", focus: "odak", loc: "konum", open: "açık" },
     focusLine: "Yapay zekâ · Bilgisayarlı görü · Yazılım",
-    openLine: "staj · Eylül 2026'dan itibaren",
+    openLine: "staj · Ekim 2026'dan itibaren",
     tagline: "Yapay Zekâ · Bilgisayarlı Görü · Yazılım Geliştirme",
     firstName: "Talat", lastName: "Karasakal",
     bio: "İzmir Ekonomi Üniversitesi'nde bilgisayar mühendisliği okuyorum. Görüntü işleme ve masaüstü uygulama projelerinde çalıştım; ilgim mimari kararlar ve ölçülebilir sonuçlar tarafında.",
@@ -380,7 +380,7 @@ const COPY = {
     aboutP3: "Yakın hedefim 2026-2027 döneminde bir yazılım stajı; uzun vadede savunma sanayii ve kurumsal teknoloji tarafında çalışmayı hedefliyorum.",
     nowTag: "ŞİMDİ",
     now: [
-    ["Öğreniyor", "C# ve .NET · ASP.NET Core · Entity Framework Core · makine öğrenmesi"],
+    ["Öğreniyor", "C# ve .NET · ASP.NET Core · Entity Framework Core · Makine Öğrenmesi"],
     ["Geliştiriyor", "Kişisel projeler ve portfolyo"],
     ["Planlıyor", "4. sınıf bitirme projesi"]],
 
@@ -398,7 +398,7 @@ const COPY = {
     contactLede: "Staj fırsatları ve proje iş birlikleri için bana ulaşabilirsiniz.",
     emailLabel: "E-POSTA",
     cvLabel: "Özgeçmişi indir (PDF)",
-    avail: "Eylül 2026'dan itibaren staja açığım",
+    avail: "Ekim 2026'dan itibaren staja açığım",
     socialLabels: { GitHub: "GitHub", LinkedIn: "LinkedIn", Email: "E-posta" },
     footer: ["© 2026 — Talat Karasakal", "Türkiye"]
   },
@@ -415,7 +415,7 @@ const COPY = {
     specHead: "IDENTITY",
     spec: { handle: "handle", role: "role", uni: "university", focus: "focus", loc: "location", open: "open_to" },
     focusLine: "Artificial intelligence · Computer vision · Software",
-    openLine: "internship · from September 2026",
+    openLine: "internship · from October 2026",
     tagline: "Artificial Intelligence · Computer Vision · Software Development",
     firstName: "Talat", lastName: "Karasakal",
     bio: "I study computer engineering at Izmir University of Economics. I've worked on computer vision and desktop application projects; my interest sits on the side of architectural decisions and measurable results.",
@@ -447,7 +447,7 @@ const COPY = {
     contactLede: "Get in touch about internship opportunities and project collaborations.",
     emailLabel: "EMAIL",
     cvLabel: "Download CV (PDF)",
-    avail: "Open to internships from September 2026",
+    avail: "Open to internships from October 2026",
     socialLabels: { GitHub: "GitHub", LinkedIn: "LinkedIn", Email: "Email" },
     footer: ["© 2026 — Talat Karasakal", "Türkiye"]
   }
