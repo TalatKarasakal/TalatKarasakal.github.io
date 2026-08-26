@@ -357,6 +357,13 @@ const COPY = {
     role: "Bilgisayar Mühendisliği Öğrencisi",
     university: "İzmir Ekonomi Üniversitesi",
     location: "Türkiye",
+    // SEO — sekme basligi ve meta etiketleri. Uc metin de index.html'deki
+    // <title>, <meta name="description"> ve og:description degerlerinden
+    // birebir tasindi; og:description digerinden farkli oldugu icin ayri
+    // anahtar olarak duruyor.
+    seoTitle: "Talat Karasakal — Bilgisayar Mühendisliği Öğrencisi",
+    seoDescription: "Talat Karasakal — İzmir Ekonomi Üniversitesi bilgisayar mühendisliği öğrencisi. TEKNOFEST nesne tespiti hattı, Java masaüstü uygulamaları ve bilgisayarlı görü projeleri.",
+    ogDescription: "TEKNOFEST nesne tespiti hattı, Java masaüstü uygulamaları ve bilgisayarlı görü projeleri. İzmir Ekonomi Üniversitesi.",
     nav: { hero: "Ana Sayfa", about: "Hakkımda", projects: "Projeler", certificates: "Sertifikalar", experience: "Deneyim", contact: "İletişim" },
     menuLabel: "Menü",
     cta: "Staja açık",
@@ -406,6 +413,10 @@ const COPY = {
     role: "Computer Engineering Student",
     university: "Izmir University of Economics",
     location: "Türkiye",
+    // seoTitle / seoDescription / ogDescription burada bilerek yok:
+    // Ingilizce karsiliklari henuz yazilmadi ve uretilmiyor. Anahtar
+    // olmadigi surece dil efekti ilgili etiketi hic degistirmez, yani
+    // EN modda etiketler index.html'deki degeriyle kalir.
     nav: { hero: "Index", about: "About", projects: "Projects", certificates: "Certificates", experience: "Experience", contact: "Contact" },
     menuLabel: "Menu",
     cta: "Open to internships",
@@ -1656,7 +1667,26 @@ function App() {
   useEffect(() => {
     document.documentElement.setAttribute("lang", lang);
     try {localStorage.setItem("tk-lang", lang);} catch (e) {}
-  }, [lang]);
+
+    // Sayfa icerigi cevriliyordu ama sekme basligi ve meta etiketleri
+    // index.html'deki Turkce degerde kaliyordu. Ceviri sozlugunde
+    // karsiligi olmayan alan hic dokunulmadan birakilir; boylece bir
+    // dilin metni yazilmamissa o etiket oldugu gibi kalir, bos kalmaz.
+    const setMeta = (selector, value) => {
+      if (!value) return;
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute("content", value);
+    };
+    if (t.seoTitle) document.title = t.seoTitle;
+    setMeta('meta[name="description"]', t.seoDescription);
+    setMeta('meta[property="og:title"]', t.seoTitle);
+    setMeta('meta[name="twitter:title"]', t.seoTitle);
+    setMeta('meta[property="og:description"]', t.ogDescription);
+    setMeta('meta[name="twitter:description"]', t.ogDescription);
+    // Bunlar veriden turuyor, ceviri gerektirmiyor.
+    setMeta('meta[property="og:locale"]', lang === "en" ? "en_US" : "tr_TR");
+    setMeta('meta[property="og:locale:alternate"]', lang === "en" ? "tr_TR" : "en_US");
+  }, [lang, t]);
 
   useEffect(() => {
     // Pick the last section whose top has crossed a fixed line near the
