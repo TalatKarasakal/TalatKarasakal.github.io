@@ -891,6 +891,15 @@ function Hero({ onJump, t }) {
               <div><dt>{t.spec.uni}</dt><dd>{t.university}</dd></div>
               <div><dt>{t.spec.focus}</dt><dd>{t.focusLine}</dd></div>
               <div><dt>{t.spec.loc}</dt><dd>{t.location}</dd></div>
+              {/* Su an nerede calisildigini gosteren opsiyonel satir.
+                  Hem etiket (spec.current) hem deger (currentLine) ceviri
+                  sozlugunde tanimli olmadikca hic render edilmez, boylece
+                  metin yazilmadan once sayfada bos satir olusmaz.
+                  Asagidaki openLine ileriye donuk musaitligi anlatiyor;
+                  bu satir onun yerini almiyor, oncesine giriyor. */}
+              {t.spec.current && t.currentLine &&
+              <div><dt>{t.spec.current}</dt><dd>{t.currentLine}</dd></div>
+              }
               <div><dt>{t.spec.open}</dt><dd>{t.openLine}</dd></div>
             </dl>
             <div className="spec-foot">
