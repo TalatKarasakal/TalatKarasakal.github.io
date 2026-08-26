@@ -1,72 +1,103 @@
-# Masaüstü / mobil içerik farkı
+# Mobilde ne görünmüyor?
 
-**Çıkarıldığı tarih:** 26 Ağustos 2026
-**Durum:** rapor. **Hiçbir maddesi değiştirilmedi.** Neyin kasıtlı, neyin gözden kaçmış olduğuna Talat karar verecek.
+**Tarih:** 26 Ağustos 2026 · **Durum:** rapor, hiçbir şey değiştirilmedi.
 
-Farklar üç kaynaktan geliyor:
+## Nasıl ölçüldü
 
-1. `index.html` içindeki CSS medya sorguları
-2. `src/App.jsx` içindeki `useMediaQuery` bileşen değişimleri
-3. Veri kırpma (`slice`, `excerpt`)
+Tahminle değil, ölçümle. Site iki genişlikte açılıp **gözle görünen bütün metinler** toplandı ve karşılaştırıldı:
 
-Kırılma noktaları: **≤1180px** nav daralır · **≤1100/1024px** yalnızca düzen · **≤900px** bileşen değişimi (asıl kırılma) · **≤640px** CSS ile içerik gizleme · **yükseklik ≤940/700px** ayrı bir eksen.
+- **1440 × 900** (masaüstü): 238 ayrı metin
+- **375 × 812** (telefon): 159 ayrı metin
+
+Aradaki 88 metnin her biri tek tek incelendi: hangisi gerçekten yok, hangisi bir düğmenin arkasında duruyor. Sonra telefonda menü açıldı, "göster" düğmelerine basıldı ve paneller açılarak neyin hâlâ ulaşılamadığı bulundu.
 
 ---
 
-## 1. Mobilde tamamen görünmeyen içerik
+## 1. Telefonda hiç ulaşılamayan içerik
 
-### CSS ile bilinçle gizlenmiş görünenler
+Bunlar hiçbir düğmenin arkasında değil — telefonda hiç yok.
 
-Hepsi `index.html:3633` içindeki tek bir `@media (max-width: 640px)` bloğunda, elle yazılmış `display: none` kuralları:
+### a) Hero'daki tanıtım paragrafı
 
-| İçerik | Kaynak | Not |
+Adının hemen altındaki iki cümle:
+
+> "İzmir Ekonomi Üniversitesi'nde bilgisayar mühendisliği okuyorum. Görüntü işleme ve masaüstü uygulama projelerinde çalıştım; ilgim mimari kararlar ve ölçülebilir sonuçlar tarafında."
+
+Hakkımda bölümündeki paragraflardan **ayrı** bir metin, yani telefonda karşılığı yok.
+Kaynak: `t.bio`, `src/App.jsx:867` · gizleyen kural: `.hero-bio { display: none }`, `index.html:3633` bloğu
+
+### b) "Staja açık" düğmesi
+
+Masaüstünde üst barın sağında duran, tıklandığında İletişim'e giden düğme. Telefonda yok **ve hamburger menüsünde de yok** — ölçümle doğrulandı: panelde 6 menü maddesi, TR/EN ve tema düğmesi var, bu düğme yok.
+Kaynak: `t.cta`, `src/App.jsx:767` · gizleyen kural: `.nav-cta { display: none }`
+
+### c) Kayan yazı şeridi
+
+Hero'nun altındaki şerit: YAPAY ZEKÂ · BİLGİSAYARLI GÖRÜ · NESNE TESPİTİ · VERİ SETİ TASARIMI · MASAÜSTÜ UYGULAMALAR · JAVA
+Kodda `aria-hidden="true"` ile süs olarak işaretlenmiş.
+Kaynak: `t.marquee`, `src/App.jsx:907`
+
+### d) İletişim'deki kullanıcı adları
+
+`@TalatKarasakal` ve `/in/talat-karasakal`. "GitHub" ve "LinkedIn" yazıları ve bağlantıların kendisi duruyor; yalnızca kullanıcı adları gizli.
+Kaynak: `src/App.jsx:1609` · gizleyen kural: `.social-handle { display: none }`
+
+### e) Proje kategorisi — **bu diğerlerinden farklı**
+
+Masaüstü proje kartının sağ üstündeki etiket: "Bilgisayarlı Görü", "Masaüstü / Java", "Masaüstü / Finans" gibi.
+
+Telefonda ne satırda ne de satıra dokununca açılan panelde var. **Bunu gizleyen bir CSS kuralı yok** — panelin koduna hiç eklenmemiş. Diğer maddeler elle yazılmış `display: none` kurallarıyken bu bir eksiklik.
+Masaüstü: `src/App.jsx:1289` · Mobil panel: `ProjectSheet`, `src/App.jsx:1093` — bu alanı hiç render etmiyor
+
+### f) Süs öğeleri
+
+- Selçuklu madalyonu — hero'nun sağ alt köşesindeki geometrik yıldız (hayvan değil)
+- Bölüm başlıklarının yanındaki ince çizgi (`.sec-rule`)
+- Arka plandaki ışık lekeleri (`.atm-blob`)
+- Ayırıcılardaki hayvan figürleri ve ikinci ayırıcı çizgisi
+
+---
+
+## 2. Yalnızca kısa ekranlarda kaybolan
+
+Bunlar **genişliğe değil yüksekliğe** bağlı, yani telefonu **yatay çevirince** ve kısa laptop ekranlarında kayboluyor:
+
+- **Hero'nun en üst satırı** — `PORTFOLYO — 15:28 TRT — KONUM — Türkiye`. Ekran yüksekliği 700px altına düşünce gidiyor (`index.html:3412`). Telefon dikey tutulurken duruyor.
+- Hero tanıtım paragrafı kısa ekranlarda 3 satıra (yükseklik 940px altı), sonra 2 satıra (700px altı) kırpılıyor — ama telefonda zaten tamamen gizli.
+
+---
+
+## 3. Kaybolmayan, bir dokunma arkasındaki içerik
+
+Telefonda proje satırına dokununca açılan panel **masaüstü kartındaki her şeyi** veriyor. Ölçümle doğrulandı (TEKNOFEST projesi):
+
+| Alan | Masaüstü kartı | Mobil panel |
 |---|---|---|
-| `t.bio` — hero'daki iki cümlelik tanıtım | `src/App.jsx:867` | `.hero-bio`. About bölümündeki metinlerden **ayrı** bir içerik, yani telefonda karşılığı yok |
-| `t.cta` — "Staja açık" üst bar düğmesi | `src/App.jsx:767` | `.nav-cta`. Aşağıya bakın — bu muhtemelen gözden kaçmış |
-| `s.handle` — `@TalatKarasakal`, `/in/talat-karasakal` | `src/App.jsx:1609` | `.social-handle`. Etiketler (GitHub/LinkedIn) ve bağlantılar duruyor, kayıp hafif |
-| `t.marquee` — YAPAY ZEKÂ · BİLGİSAYARLI GÖRÜ · … | `src/App.jsx:907` | `.hero-marquee`. JSX'te `aria-hidden="true"`, yani zaten dekoratif işaretlenmiş |
+| Durum rozeti, başlık, rol | var | var |
+| Açıklama | var | var |
+| Etiketler | 5 tane | **5 tane** (satırda ilk 4 görünür, panelde tamamı) |
+| "Kararlar" listesi | 4 madde | 4 madde |
+| "Sonuç" | var | var |
+| Dönem | var | var |
+| Repo bağlantısı | var | var |
+| Medya | "Medya" düğmesine basmak gerekir | **panelde doğrudan görünür** |
+| **Kategori** | var | **yok** ← tek eksik |
 
-Tamamen dekoratif olduğu için listeye alınmayanlar (aynı blok): `.hero-tail`, `.divider-figure`, `.atm-blob`, `.sec-rule`, ikinci `.divider-rule`.
+Medya tarafında telefon aslında **daha iyi**: masaüstünde ayrı bir düğmeye basmak gerekirken panelde görseller doğrudan açılıyor. Eksik olan tek şey, proje satırında medya olduğunu belli eden bir ipucu (masaüstündeki "Medya" düğmesi orada yok).
 
-### Kasıtlı gibi durmayan iki madde
+Deneyim bölümünde **eşitlik tam**: satırda ilk 2 cümle özet görünüyor, dokununca panelde dönem, kurum ve tam açıklama açılıyor. Hiçbir şey kaybolmuyor.
 
-Bunlar CSS gizlemesi değil, **asimetri**:
+Ayrıca bilerek düğme arkasına alınanlar: sertifikaların 5–10'u ("Tümünü göster"), kişisel projeler ("Diğer çalışmaları göster"), menü maddeleri ve dil/tema düğmeleri (hamburger menüsü).
 
-1. **`project.category`** — masaüstü `ProjectCard`'da `pcard-tag` olarak var (`src/App.jsx:1289`, örn. "Bilgisayarlı Görü"), ama 900px altında açılan `ProjectSheet` (`src/App.jsx:1093`) bu alanı **hiç render etmiyor**. Sonuç: telefonda proje kategorisi hiçbir yerde görünmüyor. Tarayıcıda doğrulandı.
+---
 
-2. **`.nav-cta`** — gizlenmiş, ama mobil menü panelinde karşılığı konmamış. Dil ve tema düğmeleri panele taşınmış (`index.html:3967`), bu üçüncü düğme taşınmamış. Sonuç: telefonda müsaitlik sinyali üst bardan tamamen kayboluyor.
+## 4. Özet — karar gereken iki madde
 
-## 2. Yükseklik tabanlı kayıplar (genişlikten bağımsız)
+Aşağıdakiler kasıtlı görünmüyor, çünkü ikisi de "gizlenmiş" değil, **eksik**:
 
-Kısa laptop ekranlarını **ve yatay tutulan telefonları** etkiler:
+1. **Proje kategorisi** — mobil panele hiç eklenmemiş (§1e).
+2. **"Staja açık" düğmesi** — gizlenmiş ama hamburger menüsüne taşınmamış (§1b).
 
-- `.hero-bio p` → 3 satıra kırpılıyor (`index.html:3367`, yükseklik ≤940px), 2 satıra (`index.html:3408`, ≤700px). CSS yorumu "keep the bio" diyor, yani kasıtlı.
-- `.hero-meta` (PORTFOLYO + saat, KONUM + Türkiye) → `display: none` (`index.html:3412`, ≤700px).
+Geri kalanı ya bilinçli `display: none` kurallarıyla çıkarılmış, ya süs, ya da bir düğmenin arkasında duruyor.
 
-## 3. Kaybolmayan, bir tık arkasına geçen içerik
-
-900px altında bileşenler değişiyor; içerik panelde açılıyor:
-
-| Masaüstü | Mobil | Yer |
-|---|---|---|
-| `ProjectCard` — kararlar, sonuç, açıklama, tüm etiketler, medya düğmesi kartta açık | `CompactProjectRow` → dokunma → `ProjectSheet` | `src/App.jsx:979` |
-| Tüm deneyim açıklamaları doğrudan açık | `CompactExpRow` (2 cümle özet) → `ExperienceSheet` (tam metin) | `src/App.jsx:1486` |
-| 10 sertifika listelenir | İlk 4 + "Tümünü göster" | `src/App.jsx:1364` |
-| Kişisel projeler (8 kayıt) doğrudan görünür | "Diğer çalışmaları göster" arkasında | `src/App.jsx:1015` |
-
-Deneyim tarafında **eşitlik tam**: `ExperienceSheet` masaüstündeki her alanı (dönem, rol, kurum, tam açıklama) veriyor.
-
-Proje tarafında ters yönde bir avantaj var: `ProjectSheet` medyayı `MediaList` ile **panelin içinde** gösteriyor, masaüstünde ise ayrı bir "Medya" düğmesine basmak gerekiyor. Eksik olan tek şey mobil satırda medya olduğuna dair **ipucu** — `MediaButton` yalnızca `ProjectCard` içinde (`src/App.jsx:1303`). SITE-PLAN G7 bu ipucunu istiyordu; mobil içeriğe dokunulmaması gereği bu tur ertelendi.
-
-## 4. Kırpılan veri
-
-- `CompactProjectRow`: `tags.slice(0, 4)` (`src/App.jsx:1047`) — masaüstü kartı tüm etiketleri gösteriyor.
-- `PersonalCard`: `tags.slice(0, 3)` (`src/App.jsx:1335`) — her genişlikte aynı.
-- `CompactExpRow`: `excerpt(desc, 2)` (`src/App.jsx:1454`) + CSS'te 3 satır `line-clamp`.
-- Nav: ≤1180px'te `.nav-links li:nth-child(n+4)` gizleniyor (`index.html:3513`); 4-6. bağlantılar menü düğmesine taşınıyor.
-
-## 5. Yalnızca mobilde olan
-
-- `.sheet-handle` — panel tutamacı, masaüstünde gizli (`index.html:2545`). `aria-hidden`, dekoratif.
-- "Tümünü göster" ve "Diğer çalışmaları göster" düğmeleri — yalnızca `compact` durumunda render ediliyor.
-- Dil ve tema düğmeleri 900px altında üst bardan menü paneline taşınıyor. DOM'da iki kez bulunuyorlar ama **aynı anda yalnızca biri görünür**; çift kontrol sorunu yok.
+İlgili SITE-PLAN maddesi: **G7-mobil** (proje satırında medya ipucu) — bu kararlar verilmeden başlanmamalı.
