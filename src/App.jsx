@@ -544,12 +544,7 @@ const STAR_SVG_DATA = `data:image/svg+xml;utf8,${encodeURIComponent(
    Animal dividers — each kind maps to a portrait image in assets/, framed
    in a circular ring that follows the theme's line/muted tones.
    ------------------------------------------------------------------------- */
-const __R = {};
-const ANIMAL_IMAGES = { kurt: __R.kurt || "assets/kurt.webp", kartal: __R.kartal || "assets/kartal.webp", at: __R.at || "assets/at.webp", geyik: __R.geyik || "assets/geyik.webp" };
-
-function AnimalGlyph({ kind }) {
-  return <img className="hero-tail-img" src={ANIMAL_IMAGES[kind]} alt="" />;
-}
+const ANIMAL_IMAGES = { kurt: "assets/kurt.webp", kartal: "assets/kartal.webp", at: "assets/at.webp", geyik: "assets/geyik.webp" };
 
 function Divider({ kind }) {
   const ref = useRef(null);
