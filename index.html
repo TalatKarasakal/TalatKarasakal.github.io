@@ -3674,10 +3674,6 @@
         display: none;
       }
 
-      .divider .divider-rule+.divider-rule {
-        display: none;
-      }
-
       .sec-title {
         font-size: 30px;
       }
@@ -3703,10 +3699,6 @@
       .hero-meta {
         font-size: 10px;
         gap: 16px;
-      }
-
-      .atm-blob {
-        display: none;
       }
 
       :root {
@@ -3753,17 +3745,29 @@
         grid-template-columns: auto 1fr;
       }
 
-      .sec-rule {
-        display: none;
-      }
-
       .social {
         grid-template-columns: auto 1fr auto;
-        gap: 14px;
+        gap: 2px 14px;
+      }
+
+      .social-num {
+        grid-row: 1 / span 2;
+        grid-column: 1;
+      }
+
+      .social-label {
+        grid-row: 1;
+        grid-column: 2;
       }
 
       .social-handle {
-        display: none;
+        grid-row: 2;
+        grid-column: 2;
+      }
+
+      .social-arrow {
+        grid-row: 1 / span 2;
+        grid-column: 3;
       }
     }
 

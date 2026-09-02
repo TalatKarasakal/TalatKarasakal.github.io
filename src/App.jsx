@@ -624,29 +624,49 @@ function ScrollDriver() {
       root.style.setProperty("--scroll-progress", "0");
       return () => window.removeEventListener("resize", setNavH);
     }
-    let raw = window.scrollY;
+    // Konum artik `scroll` olayindan degil, her karede dogrudan
+    // okunuyor. Dokunmatik kaydirmada tarayici scroll olaylarini parmak
+    // hareketi boyunca topaklayarak gonderiyor; olaydan beslenen dongu
+    // bu yuzden bayat bir hedefe dogru yumusarken once geride kaliyor,
+    // olay gelince sicrayarak yetisiyordu. Hero madalyonundaki "dona
+    // dona ilerleme" gorunumu buydu.
+    const kabaIsaretci = window.matchMedia("(pointer: coarse)").matches;
     let current = window.scrollY;
     let raf = 0;
-    const onScroll = () => {raw = window.scrollY;};
-    const snapNow = () => {current = window.scrollY;raw = current;};
-    window.addEventListener("scroll", onScroll, { passive: true });
+    let sonY = null;
+    let sonP = null;
+    const snapNow = () => {current = window.scrollY;};
     window.addEventListener("resize", snapNow);
     const loop = () => {
-      if (isJumping || Math.abs(raw - current) > 400) {
+      // Once okumalar, sonra yazmalar: ayni karede duzen (layout)
+      // tekrar tekrar hesaplanmasin.
+      const raw = window.scrollY;
+      const maxScroll = root.scrollHeight - window.innerHeight;
+      // Yumusatma yalnizca fare/trackpad icin. Dokunmatikte kaydirma
+      // zaten yumusak geliyor, orada yumusatma sadece gecikme uretir.
+      if (kabaIsaretci || isJumping || Math.abs(raw - current) > 400) {
         current = raw;
       } else {
         current += (raw - current) * 0.12;
         if (Math.abs(raw - current) < 0.02) current = raw;
       }
-      const maxScroll = root.scrollHeight - window.innerHeight;
       const progress = maxScroll > 0 ? current / maxScroll : 0;
-      root.style.setProperty("--scroll-y", current.toFixed(2));
-      root.style.setProperty("--scroll-progress", progress.toFixed(4));
-      scrollSubscribers.forEach((fn) => fn(current, progress));
+      const y = current.toFixed(2);
+      const pr = progress.toFixed(4);
+      // Deger degismediyse yazmiyoruz. Onceden sayfa hic kaydirilmasa
+      // bile her karede <html> uzerindeki ozel ozellikler yeniden
+      // yazilip tum belgenin stili yeniden hesaplaniyordu.
+      if (y !== sonY || pr !== sonP) {
+        root.style.setProperty("--scroll-y", y);
+        root.style.setProperty("--scroll-progress", pr);
+        scrollSubscribers.forEach((fn) => fn(current, progress));
+        sonY = y;
+        sonP = pr;
+      }
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
-    return () => {window.removeEventListener("scroll", onScroll);window.removeEventListener("resize", snapNow);window.removeEventListener("resize", setNavH);cancelAnimationFrame(raf);};
+    return () => {window.removeEventListener("resize", snapNow);window.removeEventListener("resize", setNavH);cancelAnimationFrame(raf);};
   }, [reduced]);
   return null;
 }
