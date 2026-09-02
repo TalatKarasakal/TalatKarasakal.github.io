@@ -583,11 +583,36 @@ function Divider({ kind }) {
 /* =========================================================================
    ATMOSPHERE + UTILITIES
    ========================================================================= */
+/* --- Tema gecisi susu: hilal + yildiz -------------------------------
+   Isik lekeleri sol ust <-> sag alt kosegeninde yer degistiriyor. Bu
+   ikili obur kosegende (sag ust <-> sol alt) ayni sureyle yol aliyor.
+   Karanlik modda ay sag ustte, yildiz sol altta. Hilalin acikligi
+   ekranin merkezine donuk; kosegen boyunca yer degistirirken donerek
+   merkeze donuk kalmayi suruduruyor.
+   Kaldirmak icin: bu bilesen, Atmosphere icindeki iki satir ve
+   index.html sonundaki "Tema gecisi susu" CSS blogu silinir. */
+function SeljukCrescent() {
+  return (
+    <svg viewBox="0 0 100 100" aria-hidden="true">
+      <defs>
+        <mask id="tk-hilal">
+          <rect width="100" height="100" fill="black" />
+          <circle cx="50" cy="50" r="38" fill="white" />
+          <circle cx="32" cy="50" r="32" fill="black" />
+        </mask>
+      </defs>
+      <circle cx="50" cy="50" r="38" fill="currentColor" mask="url(#tk-hilal)" />
+    </svg>);
+
+}
+
 function Atmosphere() {
   return (
     <div className="atmosphere" aria-hidden="true">
       <div className="atm-blob atm-red" />
       <div className="atm-blob atm-blue" />
+      <div className="atm-moon"><SeljukCrescent /></div>
+      <div className="atm-star"><StarMark /></div>
       <div className="atm-grain" />
       <div className="atm-vignette" />
     </div>);

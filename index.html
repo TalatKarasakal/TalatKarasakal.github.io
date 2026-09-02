@@ -4124,6 +4124,84 @@
       color: var(--text-dim);
     }
 
+
+    /* === Tema gecisi susu: hilal + yildiz ================================
+       Isik lekeleri (.atm-blob) sol ust <-> sag alt kosegeninde yer
+       degistiriyor. Bu ikili obur kosegende, ayni 1500ms suresiyle yol
+       aliyor. Cok belli belirsiz durmasi icin opaklik dusuk tutuldu;
+       yalnizca gecis aninda ([data-swap="1"]) biraz belirginlesiyor.
+       Yeni renk uretilmedi, mevcut tokenlar kullanildi.
+       Kaldirmak icin: bu blok + App.jsx icindeki SeljukCrescent bileseni
+       ve Atmosphere icindeki .atm-moon / .atm-star satirlari silinir. */
+
+    .atm-moon,
+    .atm-star {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: grid;
+      place-items: center;
+      pointer-events: none;
+      will-change: transform, opacity;
+      transition:
+        transform 1500ms cubic-bezier(0.62, 0.02, 0.35, 1),
+        opacity 700ms ease;
+    }
+
+    .atm-moon {
+      width: 30px;
+      height: 30px;
+      color: var(--text);
+      opacity: 0.07;
+      /* Karanlik mod: sag ust. Hilalin acikligi sol-asagiya, yani
+         ekranin merkezine donuk. */
+      transform: translate3d(calc(100vw - 74px), 96px, 0) rotate(-45deg);
+    }
+
+    .atm-star {
+      width: 20px;
+      height: 20px;
+      color: var(--accent-1);
+      opacity: 0.09;
+      /* Karanlik mod: sol alt. */
+      transform: translate3d(44px, calc(100vh - 88px), 0);
+    }
+
+    .atm-moon svg,
+    .atm-star svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Aydinlik mod: ikisi de kosegenin obur ucuna geciyor. Ay 135deg'e
+       donuyor ki aciklik yine merkeze baksin (sol alttan sag yukariya). */
+    [data-theme="light"] .atm-moon {
+      transform: translate3d(44px, calc(100vh - 88px), 0) rotate(135deg);
+      opacity: 0.05;
+    }
+
+    [data-theme="light"] .atm-star {
+      transform: translate3d(calc(100vw - 68px), 96px, 0);
+      opacity: 0.07;
+    }
+
+    /* Gecis aninda yol alirken biraz gorunur olsunlar. */
+    [data-swap="1"] .atm-moon {
+      opacity: 0.16;
+    }
+
+    [data-swap="1"] .atm-star {
+      opacity: 0.2;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .atm-moon,
+      .atm-star {
+        transition: opacity 300ms ease;
+      }
+    }
+
 </style>
 </head>
 
