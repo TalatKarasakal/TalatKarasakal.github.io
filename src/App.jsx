@@ -264,6 +264,8 @@ const LANGUAGES = [
 /* -------------------------------------------------------------------------
    CERTIFICATES — *En variants fall back to the base field.
    image: "" → initials placeholder tile. Fill in a path to show a thumbnail.
+   note / noteEn → panel acildiginda gorselin altinda cikan kisa aciklama.
+   Alan yoksa aciklama satiri hic render edilmez.
    ------------------------------------------------------------------------- */
 const CERTIFICATES = [
 { name: "Öğrenciler için Yapay Zekâ Yetkinliği", nameEn: "AI Fluency for Students",
@@ -306,6 +308,11 @@ const CERTIFICATES = [
 /* -------------------------------------------------------------------------
    EXPERIENCE — two-column blocks.
    ------------------------------------------------------------------------- */
+/* EXPERIENCE — her kayit opsiyonel bir `media` dizisi tasiyabilir; bicim
+   PROJECTS.media ile ayni: { type: "image" | "video", src, tr, en }.
+   Alan yoksa kart tiklanmaya devam eder, panelde yalnizca metin gorunur.
+   Gorseller eklendiginde karta sessiz bir gosterge de kendiliginden
+   dusuyor. */
 const EXPERIENCE = [
 { roleTr: "Çalışan Öğrenci", roleEn: "Student Employee",
   orgTr: "İzmir Ekonomi Üniversitesi · Kurumsal İletişim Ofisi, Etkinlik Birimi",
@@ -1401,7 +1408,7 @@ function Certificates({ t, lang }) {
           const name = pick(c, "name");
           const issuer = pick(c, "issuer");
           const img = typeof c.image === "string" && c.image.trim() !== "" ? c.image : null;
-          const open = () => setShot({ src: img, alt: name, issuer: issuer, date: pick(c, "date"), original: c.originalName && c.originalName !== name ? c.originalName : null });
+          const open = () => setShot({ src: img, alt: name, issuer: issuer, date: pick(c, "date"), note: pick(c, "note"), original: c.originalName && c.originalName !== name ? c.originalName : null });
           const Tag = img ? "button" : "div";
           return (
             <Tag key={i} className={"cert-row" + (img ? " is-clickable" : "")}
@@ -1453,6 +1460,7 @@ function CertSheet({ cert, t, onClose }) {
             <img src={cert.src} alt={cert.alt} />
           </div>
         }
+        {cert.note && <p className="cert-note">{cert.note}</p>}
       </div>
     </div>);
 
@@ -1472,6 +1480,12 @@ function CompactExpRow({ item, index, lang, t, onOpen }) {
         <span className="crow-title">{lang === "tr" ? item.roleTr : item.roleEn}</span>
         <span className="crow-role">{lang === "tr" ? item.orgTr : item.orgEn}</span>
         <span className="crow-excerpt">{excerpt(desc, 2)}</span>
+        {item.media && item.media.length > 0 &&
+        <span className="exp-media-hint">
+            <span className="media-btn-mark" aria-hidden="true"><StarMark /></span>
+            {(lang === "en" ? "Media" : "Medya") + " · " + item.media.length}
+          </span>
+        }
         <span className="crow-chevron" aria-hidden="true">›</span>
       </button>
     </li>);
@@ -1498,6 +1512,7 @@ function ExperienceSheet({ item, lang, t, onClose }) {
           <div className="pcard-role">{lang === "tr" ? item.orgTr : item.orgEn}</div>
         </div>
         <p className="pcard-desc">{lang === "tr" ? item.descTr : item.descEn}</p>
+        <MediaList items={item.media} lang={lang} />
       </div>
     </div>);
 
@@ -1585,15 +1600,30 @@ function Experience({ t, lang }) {
               <span className="exp-connector" />
               <span className="exp-node" />
               <span className="exp-period">{period}</span>
-              <div className="exp-row">
-                <h3 className="exp-role">{lang === "tr" ? e.roleTr : e.roleEn}</h3>
+              {/* Kartin her yeri fare ile tiklanabilir; klavye ve ekran
+                  okuyucu icin gercek denetim basliktaki dugme. Boylece
+                  h3 basligi baslik olarak kalmaya devam ediyor. */}
+              <div className="exp-row is-clickable" onClick={() => setOpenIdx(i)}>
+                <h3 className="exp-role">
+                  <button type="button" className="exp-role-btn" aria-haspopup="dialog"
+                  onClick={(ev) => {ev.stopPropagation();setOpenIdx(i);}}>
+                    {lang === "tr" ? e.roleTr : e.roleEn}
+                  </button>
+                </h3>
                 <div className="exp-org">{lang === "tr" ? e.orgTr : e.orgEn}</div>
                 <p className="exp-desc">{lang === "tr" ? e.descTr : e.descEn}</p>
+                {e.media && e.media.length > 0 &&
+                <span className="exp-media-hint">
+                    <span className="media-btn-mark" aria-hidden="true"><StarMark /></span>
+                    {(lang === "en" ? "Media" : "Medya") + " · " + e.media.length}
+                  </span>
+                }
               </div>
             </article>);
 
         })}
       </div>
+      <ExperienceSheet item={openIdx === null ? null : EXPERIENCE[openIdx]} lang={lang} t={t} onClose={() => setOpenIdx(null)} />
     </section>);
 
 }

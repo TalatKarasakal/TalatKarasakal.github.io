@@ -4064,6 +4064,66 @@
   }
 }
 
+
+    /* === Deneyim kartlari, medya gostergesi ve sertifika aciklamasi ======
+       Tek parca eklenti: istenmezse bu blogun tamami silinebilir.
+       Renk uretilmedi; yalnizca mevcut tokenlar kullanildi ve kart dili
+       .cert-row desenini tekrar ediyor. */
+
+    .exp-row.is-clickable {
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      background: color-mix(in oklab, var(--muted) 45%, transparent);
+      cursor: pointer;
+      transition: border-color 220ms, transform 220ms;
+    }
+
+    .exp-row.is-clickable:hover {
+      border-color: var(--accent-1);
+      transform: translateY(-2px);
+    }
+
+    /* Baslik h3 olarak kaliyor; icindeki dugme yalnizca denetim. */
+    .exp-role-btn {
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: none;
+      font: inherit;
+      color: inherit;
+      letter-spacing: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .exp-role-btn:focus-visible {
+      outline: 2px solid var(--accent-1);
+      outline-offset: 3px;
+    }
+
+    /* Yalnizca kaydin media dizisi varsa render ediliyor. */
+    .exp-media-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      justify-self: start;
+      margin-top: 2px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+    }
+
+    .cert-note {
+      margin-top: 16px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--text-dim);
+    }
+
 </style>
 </head>
 

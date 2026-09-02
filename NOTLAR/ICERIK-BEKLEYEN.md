@@ -60,3 +60,37 @@ Bu dosyadaki metinleri **Talat yazar**. Kod tarafı hazır; alan boş olduğu s�
 - **Kod tarafı:** **hazır.** Efekt `src/App.jsx:1676` civarında; anahtar yoksa ilgili etiketi **hiç değiştirmiyor**, yani şu anda EN modda etiketler `index.html`'deki Türkçe değeriyle kalıyor. Boş değer oluşmuyor, gerileme yok.
 - **Not:** Bu üç metin yazıldığında bile paylaşım önizlemesi (LinkedIn, WhatsApp, Twitter) düzelmez — o tarayıcılar JavaScript çalıştırmıyor ve yalnızca statik HTML'i okuyor. Önizleme ancak SITE-PLAN G9 (ön render) tamamlandığında düzelir; o zaman bu değerler statik HTML'e de işlenir.
 - **Durum:** bekliyor
+
+---
+
+### [D1] Deneyim kayıtlarına görseller
+
+- **Dosya:** `src/App.jsx` — `EXPERIENCE` dizisi, satır 316. Her kayda opsiyonel bir `media` dizisi eklenecek.
+- **Nerede görünecek:** Deneyim kartına dokunulunca/tıklanınca açılan panelde, açıklamanın altında (`ExperienceSheet`, `src/App.jsx:1515`). Kartta ayrıca "Medya · N" göstergesi kendiliğinden belirir.
+- **Gereken içerik:** her görsel için bir nesne, `PROJECTS.media` ile birebir aynı biçimde:
+  ```js
+  media: [
+    { type: "image", src: "assets/deneyim/<dosya>.jpg",
+      tr: "Türkçe altyazı", en: "English caption" }
+  ]
+  ```
+  `type` `"image"` veya `"video"`. Görsel dosyaları `public/assets/` altına konmalı — şu an orada yalnızca `projeler/` ve `sertifikalar/` klasörleri var, deneyim için yeni bir klasör açılmalı.
+  Altyazı (`tr` / `en`) aynı zamanda görselin `alt` metni oluyor, yani boş bırakılmamalı.
+- **Neden gerekli:** Deneyim bölümü şu an yalnızca metin; LinkedIn'deki gibi görsel kanıt gösterilemiyor.
+- **Kod tarafı:** **hazır.** `media` alanı yoksa kart yine tıklanır, panelde yalnızca metin görünür ve gösterge hiç render edilmez. Yol tarayıcıda geçici bir kayıtla uçtan uca doğrulandı (kart göstergesi, panelde görsel, altyazı).
+- **Durum:** bekliyor
+
+---
+
+### [D2] Sertifika açıklamaları
+
+- **Dosya:** `src/App.jsx` — `CERTIFICATES` dizisi, satır 270. İlgili kayda `note` ve `noteEn` alanları eklenecek.
+- **Nerede görünecek:** Sertifikaya tıklanınca açılan panelde, sertifika görselinin hemen altında (`src/App.jsx:1463`).
+- **Gereken içerik:** her sertifika için kısa bir açıklama, TR + EN:
+  ```js
+  note: "Türkçe kısa açıklama", noteEn: "Short English description",
+  ```
+  Dizideki diğer alanların adlandırma düzenine uyuyor (`name`/`nameEn`, `date`/`dateEn`). `noteEn` yoksa TR metne düşülür.
+- **Neden gerekli:** Sertifika panelinde şu an yalnızca ad, kurum, tarih ve görsel var; sertifikanın neyi kapsadığı anlatılmıyor.
+- **Kod tarafı:** **hazır.** Alan yoksa açıklama satırı hiç render edilmiyor; notu olmayan bir sertifikada panelin son öğesi görselin kendisi olarak kalıyor (tarayıcıda doğrulandı).
+- **Durum:** bekliyor
