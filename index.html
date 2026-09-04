@@ -4,6 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Taryicinin kendi cubuklarini boyamak icin okudugu deger. JS ilk
+       render'da temaya gore guncelliyor; buradaki iki satir yalnizca JS
+       calismadan onceki ilk kareyi dogru tutuyor. -->
+  <meta name="theme-color" content="#070B14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#EDE9E1" media="(prefers-color-scheme: light)">
   <title>Talat Karasakal — Bilgisayar Mühendisliği Öğrencisi</title>
   <meta name="description"
     content="Talat Karasakal — İzmir Ekonomi Üniversitesi bilgisayar mühendisliği öğrencisi. TEKNOFEST nesne tespiti hattı, Java masaüstü uygulamaları ve bilgisayarlı görü projeleri.">
@@ -576,6 +581,7 @@
     /* ---------- DARK (default) — deep navy ground, burgundy accent ---------- */
     :root,
     [data-theme="dark"] {
+      color-scheme: dark;
       --bg-0: #070B14;
       --bg-1: #0B1220;
       --bg-2: #111A2C;
@@ -603,6 +609,7 @@
 
     /* ---------- LIGHT — warm paper, cool ink ---------- */
     [data-theme="light"] {
+      color-scheme: light;
       --bg-0: #EDE9E1;
       --bg-1: #F5F2EC;
       --bg-2: #FBF9F5;
@@ -642,6 +649,7 @@
 
     html {
       overflow-x: clip;
+      background: var(--bg-0);
     }
 
     body {

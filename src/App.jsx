@@ -1734,6 +1734,24 @@ function App() {
     document.documentElement.setAttribute("data-theme", theme);
     document.documentElement.style.setProperty("--star-mask", `url("${STAR_SVG_DATA}")`);
     try {localStorage.setItem("tk-theme", theme);} catch (e) {}
+
+    // Tema kullanicinin secimiyle degisiyor, isletim sisteminin
+    // tercihiyle degil. index.html'deki iki theme-color metasi
+    // prefers-color-scheme'e bagli oldugu icin secim sistemden farkli
+    // oldugunda taryicinin ust/alt cubugu ters temada kaliyordu.
+    // Burada tek ve kosulsuz bir meta yazip aktif temanin --bg-0
+    // degerini veriyoruz; kosulsuz meta kosullulari geciyor.
+    const arka = getComputedStyle(document.documentElement).
+    getPropertyValue("--bg-0").trim();
+    if (arka) {
+      let tc = document.querySelector('meta[name="theme-color"]:not([media])');
+      if (!tc) {
+        tc = document.createElement("meta");
+        tc.setAttribute("name", "theme-color");
+        document.head.appendChild(tc);
+      }
+      tc.setAttribute("content", arka);
+    }
     // The two glows park at each other's corner across themes; on a toggle they
     // cross the viewport, pass through one another and swap places.
     if (firstTheme.current) {firstTheme.current = false;return;}
