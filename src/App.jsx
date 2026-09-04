@@ -583,25 +583,48 @@ function Divider({ kind }) {
 /* =========================================================================
    ATMOSPHERE + UTILITIES
    ========================================================================= */
-/* --- Tema gecisi susu: hilal + yildiz -------------------------------
+/* --- Tema gecisi susu: hilal + gunes --------------------------------
    Isik lekeleri sol ust <-> sag alt kosegeninde yer degistiriyor. Bu
    ikili obur kosegende (sag ust <-> sol alt) ayni sureyle yol aliyor.
-   Karanlik modda ay sag ustte, yildiz sol altta. Hilalin acikligi
+   Karanlik modda ay sag ustte, gunes sol altta. Hilalin acikligi
    ekranin merkezine donuk; kosegen boyunca yer degistirirken donerek
    merkeze donuk kalmayi suruduruyor.
-   Kaldirmak icin: bu bilesen, Atmosphere icindeki iki satir ve
+   Kaldirmak icin: bu iki bilesen, Atmosphere icindeki iki satir ve
    index.html sonundaki "Tema gecisi susu" CSS blogu silinir. */
 function SeljukCrescent() {
+  // Hilal iki daire ve bir maskeyle ciziliyor. Kalinligi kesen dairenin
+  // yeri ve yaricapi belirliyor: cx 38 / r 36 ile en kalin noktada
+  // 14 birim kaliyor (onceki 32 / 32 degerleri 24 veriyordu), boylece
+  // boynuzlar uzayip hilal inceliyor.
   return (
     <svg viewBox="0 0 100 100" aria-hidden="true">
       <defs>
         <mask id="tk-hilal">
           <rect width="100" height="100" fill="black" />
           <circle cx="50" cy="50" r="38" fill="white" />
-          <circle cx="32" cy="50" r="32" fill="black" />
+          <circle cx="38" cy="50" r="36" fill="black" />
         </mask>
       </defs>
       <circle cx="50" cy="50" r="38" fill="currentColor" mask="url(#tk-hilal)" />
+    </svg>);
+
+}
+
+// Kosegenin obur ucundaki eslikci. Merkez daire + sekiz isin.
+function SunMark() {
+  return (
+    <svg viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="19" fill="currentColor" />
+      <g stroke="currentColor" strokeWidth="6" strokeLinecap="round">
+        <line x1="79" y1="50" x2="93" y2="50" />
+        <line x1="70.5" y1="70.5" x2="80.4" y2="80.4" />
+        <line x1="50" y1="79" x2="50" y2="93" />
+        <line x1="29.5" y1="70.5" x2="19.6" y2="80.4" />
+        <line x1="21" y1="50" x2="7" y2="50" />
+        <line x1="29.5" y1="29.5" x2="19.6" y2="19.6" />
+        <line x1="50" y1="21" x2="50" y2="7" />
+        <line x1="70.5" y1="29.5" x2="80.4" y2="19.6" />
+      </g>
     </svg>);
 
 }
@@ -612,7 +635,7 @@ function Atmosphere() {
       <div className="atm-blob atm-red" />
       <div className="atm-blob atm-blue" />
       <div className="atm-moon"><SeljukCrescent /></div>
-      <div className="atm-star"><StarMark /></div>
+      <div className="atm-sun"><SunMark /></div>
       <div className="atm-grain" />
       <div className="atm-vignette" />
     </div>);
