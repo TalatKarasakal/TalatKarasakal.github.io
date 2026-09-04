@@ -4060,6 +4060,14 @@
     padding: 10px;
   }
 
+  /* Secili maddenin gostergesi koseliydi, panel ise 22px yuvarlak.
+     Panel yaricapindan ic dolguyu (10px) dusunce 12px kaliyor; 14px
+     bunun biraz yumusagi ve pill dilindeki diger denetimlerle uyumlu.
+     Masaustunde panel koseli oldugu icin bu kural oraya uygulanmiyor. */
+  .nav-panel button {
+    border-radius: 14px;
+  }
+
   /* Dil solda, tema sagda, kenarlara yasli */
   .nav-panel-tools {
     display: flex;
