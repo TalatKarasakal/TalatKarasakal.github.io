@@ -97,9 +97,6 @@ Bu dosyadaki metinleri **Talat yazar**. Kod tarafı hazır; alan boş olduğu s�
 
 ---
 
-### [D3] Anket Uygulaması — gereksinim ve tasarım dokümanı (PDF)
+### [D3] Anket Uygulaması — gereksinim dokümanı (PDF)
 
-- **Dosya:** PDF `public/belgeler/anket-uygulamasi-gereksinim-tasarim.pdf` olarak konacak (klasör henüz yok). Ardından `src/App.jsx` — `PROJECTS` içindeki `p15` kaydında `docUrl: ""` alanı `"belgeler/anket-uygulamasi-gereksinim-tasarim.pdf"` olarak doldurulacak.
-- **Nerede görünecek:** Anket Uygulaması proje kartının alt satırında, GitHub bağlantısının solunda: "Gereksinim ve tasarım dokümanı (PDF)" / "Requirements and design document (PDF)". Mobilde proje panelinin alt satırında.
-- **Kod tarafı:** **hazır.** `docUrl` boş olduğu sürece bağlantı hiç render edilmiyor; kırık bağlantı ya da yer tutucu metin çıkmıyor.
-- **Durum:** bekliyor — PDF Talat'tan gelecek.
+- **Durum:** **tamamlandı — 28 Eylül 2026.** Dosya `public/belgeler/anket-uygulamasi-gereksinim-dokumani.pdf` (49 sayfa, 5,2 MB). `p15` kaydında `docUrl` dolu; kart altında "Medya"nın yanında "Doküman (PDF)" düğmesi, tam belge adı düğmenin `title`'ında.

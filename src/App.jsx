@@ -15,7 +15,8 @@ const { useState, useEffect, useRef } = React;
    Opsiyonel alanlar (yoksa hic render edilmez):
    ownershipTr / ownershipEn → "Rol" blogu: kimin neyi yaptigi
    gapsTr / gapsEn           → "Bilinen eksikler" blogu
-   docUrl      → site icindeki bir belge (orn. "belgeler/x.pdf"); bossa link yok
+   docUrl      → site icindeki bir belge (orn. "belgeler/x.pdf"); kart altinda
+                 Medya'nin yaninda dugme olarak cikar, bossa hic render edilmez
    media ogeleri w / h tasirsa <img> width/height alir, alt / altEn tasirsa
    altyazidan ayri, betimleyici alt metni olarak kullanilir.
    ------------------------------------------------------------------------- */
@@ -140,12 +141,12 @@ const PROJECTS = [
   descEn: "A web application where users create and publish surveys from templates, manage a survey together with co-owners, assign mandatory surveys to specific users, and collect responses either anonymously or tied to an account. It includes multi-member survey ownership with five separate permission fields, a response lock for mandatory assignments, saving of partial responses, and a survey-level rating score. It was carried out as part of the Probel internship, starting from a requirements and design document.",
   ownershipTr: "Gereksinimler, tasarım kararları ve ekran tasarımları bana ait. Sunucu tarafı Python kodu Claude ve Gemini desteğiyle oluşturuldu; arayüz kodunu Claude Code uyguladı.",
   ownershipEn: "The requirements, design decisions and screen designs are mine. The server-side Python code was produced with the help of Claude and Gemini; the interface code was implemented by Claude Code.",
-  gapsTr: "Bir işlevsel gereksinim karşılanmıyor, ikisi kısmen karşılanıyor; sistematik test senaryosu yok. CSRF koruması ve HTTPS kapsam dışı bırakıldı; uygulama canlıya alınmaya uygun değil.",
-  gapsEn: "One functional requirement is not met and two are partially met; there are no systematic test cases. CSRF protection and HTTPS were left out of scope; the application is not fit for production.",
+  gapsTr: "Bir işlevsel gereksinim karşılanmıyor, üçü kısmen karşılanıyor; hesap silmede parola onayı yok. Temel akışlar elle ve yapay zekâyla üretilen test senaryolarıyla denendi, hata dalları sistematik olarak test edilmedi. CSRF koruması ve HTTPS kapsam dışı bırakıldı; uygulama canlıya alınmaya uygun değil.",
+  gapsEn: "One functional requirement is not met and three are partially met; account deletion is not confirmed with a password. The core flows were tested by hand and with AI-generated test cases; error branches were not tested systematically. CSRF protection and HTTPS were left out of scope; the application is not fit for production.",
   tags: ["Python", "Flask", "SQLAlchemy", "Jinja2", "SQLite"],
   category: "Web / Python",
   repoUrl: "https://github.com/TalatKarasakal/anket-uygulamasi",
-  docUrl: "", // <TODO: Talat — PDF gelince doldur: "belgeler/anket-uygulamasi-gereksinim-tasarim.pdf">
+  docUrl: "belgeler/anket-uygulamasi-gereksinim-dokumani.pdf",
   period: "Ağu – Eyl 2026", periodEn: "Aug – Sep 2026"
 },
 {
@@ -461,7 +462,7 @@ const COPY = {
     tierFeatured: "Öne çıkanlar", tierProject: "Projeler", tierPersonal: "Diğer çalışmalar",
     decisionsLabel: "Kararlar", outcomeLabel: "Sonuç",
     ownershipLabel: "Rol", gapsLabel: "Bilinen eksikler",
-    docLabel: "Gereksinim ve tasarım dokümanı (PDF)",
+    docLabel: "Yazılım geliştirme ve gereksinim dokümanı (PDF)", docShort: "Doküman (PDF)",
     relatedProject: "İlgili proje",
     liveLabel: "canlı demo", sheetClose: "Kapat",
     seeMore: "Tümünü göster", seeLess: "Daha az göster", showPersonal: "Diğer çalışmaları göster",
@@ -517,7 +518,7 @@ const COPY = {
     tierFeatured: "Featured", tierProject: "Projects", tierPersonal: "Other work",
     decisionsLabel: "Decisions", outcomeLabel: "Outcome",
     ownershipLabel: "Role", gapsLabel: "Known gaps",
-    docLabel: "Requirements and design document (PDF)",
+    docLabel: "Software development and requirements document (PDF)", docShort: "Document (PDF)",
     relatedProject: "Related project",
     liveLabel: "live demo", sheetClose: "Close",
     seeMore: "Show all", seeLess: "Show less", showPersonal: "Show other work",
@@ -1299,7 +1300,10 @@ function ProjectSheet({ project, lang, t, onClose }) {
         <MediaList items={project.media} lang={lang} />
         <ProjectDetail project={project} lang={lang} t={t} />
         <footer className="pcard-foot">
-          <span className="pcard-year">{period || ""}</span>
+          <span className="pcard-foot-left">
+            <span className="pcard-year">{period || ""}</span>
+            <DocButton project={project} t={t} />
+          </span>
           <ProjectLinks project={project} t={t} />
         </footer>
       </div>
@@ -1349,14 +1353,10 @@ function ProjectDetail({ project, lang, t }) {
 function ProjectLinks({ project, t }) {
   const repo = isUrl(project.repoUrl) ? project.repoUrl : null;
   const live = isUrl(project.liveUrl) ? project.liveUrl : null;
-  const doc = typeof project.docUrl === "string" && project.docUrl.trim() !== "" ? project.docUrl : null;
   return (
     <span className="pcard-links">
       {live &&
       <a className="pcard-link is-live" href={live} target="_blank" rel="noopener noreferrer">{t.liveLabel}</a>
-      }
-      {doc &&
-      <a className="pcard-link" href={doc} target="_blank" rel="noopener noreferrer">{t.docLabel}</a>
       }
       {repo &&
       <a className="pcard-link" href={repo} target="_blank" rel="noopener noreferrer">
@@ -1415,6 +1415,21 @@ function MediaSheet({ project, lang, t, onClose }) {
 
 }
 
+
+// Site icindeki belge (orn. PDF). Medya dugmesiyle ayni dilde kisa bir
+// dugme; tam belge adi title'da. docUrl bossa hic render edilmez.
+function DocButton({ project, t }) {
+  const doc = typeof project.docUrl === "string" && project.docUrl.trim() !== "" ? project.docUrl : null;
+  if (!doc) return null;
+  return (
+    <a className="media-btn doc-btn" href={doc} target="_blank" rel="noopener noreferrer" title={t.docLabel}>
+      <span className="media-btn-mark" aria-hidden="true">
+        <svg viewBox="0 0 16 16"><path d="M3.5 1.5h6l3 3v10h-9z M9.5 1.5v3h3 M5.5 8.5h5 M5.5 11h5" fill="none" stroke="currentColor" strokeWidth="1.3" /></svg>
+      </span>
+      {t.docShort}
+    </a>);
+
+}
 
 function MediaButton({ lang, onClick }) {
   return (
@@ -1502,6 +1517,7 @@ function ProjectCard({ project, index, lang, t, variant }) {
           {project.media && project.media.length > 0 &&
         <MediaButton lang={lang} onClick={() => setMediaOpen(true)} />
         }
+          <DocButton project={project} t={t} />
         </span>
         <ProjectLinks project={project} t={t} />
       </footer>
