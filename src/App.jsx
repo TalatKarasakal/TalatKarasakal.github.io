@@ -125,6 +125,27 @@ const PROJECTS = [
   period: "Nis – May 2024", periodEn: "Apr – May 2024"
 },
 {
+  id: "p15",
+  cover: { src: "assets/projeler/anket-duzenleme.webp", w: 1600, h: 1882,
+    alt: "Anket düzenleme ekranı. Solda başlık ve açıklama alanları ile sırası değiştirilebilen dört soru: ölçek, evet/hayır, çoktan seçmeli ve açık uçlu. Sağda izin verilen soru tipleri, anonim yanıt ve değerlendirme ayarları, erişim ve bitiş seçenekleri; en altta Kaydet, Yayına al ve Anketi sil düğmeleri.",
+    altEn: "Survey editing screen. On the left, title and description fields and four reorderable questions: scale, yes/no, multiple choice and open-ended. On the right, allowed question types, anonymous response and rating settings, access and end-date options; at the bottom, Save, Publish and Delete survey buttons." },
+  tier: "project",
+  title: "Anket Uygulaması",
+  roleTr: "Probel stajı · bağımsız Ar-Ge projesi",
+  roleEn: "Probel internship · independent R&D project",
+  descTr: "Kullanıcıların şablondan anket oluşturup yayımladığı, anketi ortak sahiplerle yönettiği, belirli kullanıcılara zorunlu anket tanımlayabildiği ve yanıtları anonim ya da kayıtlı toplayabildiği bir web uygulaması. Beş ayrı izin alanıyla çok üyeli anket sahipliği, zorunlu tanımlamada yanıt kilidi, yarım yanıt kaydı ve anket bazında değerlendirme puanı içeriyor. Probel stajı kapsamında, gereksinim ve tasarım dokümanından başlanarak yürütüldü.",
+  descEn: "A web application where users create and publish surveys from templates, manage a survey together with co-owners, assign mandatory surveys to specific users, and collect responses either anonymously or tied to an account. It includes multi-member survey ownership with five separate permission fields, a response lock for mandatory assignments, saving of partial responses, and a survey-level rating score. It was carried out as part of the Probel internship, starting from a requirements and design document.",
+  ownershipTr: "Gereksinimler, tasarım kararları ve ekran tasarımları bana ait. Sunucu tarafı Python kodu Claude ve Gemini desteğiyle oluşturuldu; arayüz kodunu Claude Code uyguladı.",
+  ownershipEn: "The requirements, design decisions and screen designs are mine. The server-side Python code was produced with the help of Claude and Gemini; the interface code was implemented by Claude Code.",
+  gapsTr: "Bir işlevsel gereksinim karşılanmıyor, ikisi kısmen karşılanıyor; sistematik test senaryosu yok. CSRF koruması ve HTTPS kapsam dışı bırakıldı; uygulama canlıya alınmaya uygun değil.",
+  gapsEn: "One functional requirement is not met and two are partially met; there are no systematic test cases. CSRF protection and HTTPS were left out of scope; the application is not fit for production.",
+  tags: ["Python", "Flask", "SQLAlchemy", "Jinja2", "SQLite"],
+  category: "Web / Python",
+  repoUrl: "https://github.com/TalatKarasakal/anket-uygulamasi",
+  docUrl: "", // <TODO: Talat — PDF gelince doldur: "belgeler/anket-uygulamasi-gereksinim-tasarim.pdf">
+  period: "Ağu – Eyl 2026", periodEn: "Aug – Sep 2026"
+},
+{
   id: "p04",
   media: [
     { type: "video", src: "assets/projeler/iae-demo.mp4",
@@ -321,6 +342,32 @@ const CERTIFICATES = [
    projectId → PROJECTS icindeki bir id; panelde o proje kartina baglanti.
    ------------------------------------------------------------------------- */
 const EXPERIENCE = [
+{ roleTr: "Bilgisayar Mühendisliği Stajyeri", roleEn: "Computer Engineering Intern",
+  orgTr: "Probel Yazılım ve Bilişim Sistemleri A.Ş.",
+  orgEn: "Probel Yazılım ve Bilişim Sistemleri A.Ş.",
+  period: "Ağu – Eyl 2026", periodEn: "Aug – Sep 2026",
+  location: "İzmir", locationEn: "Izmir",
+  descTr: "Probel'in Bilgi Teknolojileri ve Ar-Ge biriminde zorunlu yaz stajı. Ar-Ge kapsamında verilen bağımsız projede web tabanlı bir anket uygulamasının gereksinim ve tasarım dokümanını IEEE 830/1016 yapısında hazırladım (77 işlevsel gereksinim, 20 kullanım senaryosu, izlenebilirlik matrisi); teknoloji yığınını ve süreç modelini seçtim, ardından uygulama aşamasını yürüttüm.",
+  descEn: "Mandatory summer internship in Probel's Information Technology and R&D unit. For the independent project assigned under R&D, I prepared the requirements and design document for a web-based survey application following the IEEE 830/1016 structure (77 functional requirements, 20 use cases, a traceability matrix); I chose the technology stack and the process model, and then ran the implementation phase.",
+  media: [
+    { type: "image", src: "assets/deneyim/probel-anket-ana-sayfa.webp", w: 1600, h: 1000,
+      tr: "Ana sayfa: erişimdeki, sahip olunan ve yanıtlanan anketler üç sütunda. Üstteki şerit, zorunlu tanımlanan anket tamamlanmadan başka anket yanıtlanamayacağını bildiriyor.",
+      en: "Home page: accessible, owned and answered surveys in three columns. The banner at the top says no other survey can be answered until the mandatory one is completed.",
+      alt: "Anket uygulamasının ana sayfası. Üstte zorunlu tanımlanmış bir anketi bildiren uyarı şeridi ve Ankete git bağlantısı; altında Erişimdekiler, Anketlerim ve Yanıtladıklarım başlıklı üç sütunda anket kartları. Kartlarda Zorunlu, Yayında, Yayında değil, Yarım ve Gönderildi etiketleri ile soru, yanıt ve üye sayıları görünüyor.",
+      altEn: "Home page of the survey application. At the top, a warning banner about a mandatory survey with a Go to survey link; below, survey cards in three columns titled Accessible, My surveys and Answered. The cards show Mandatory, Published, Not published, Partial and Submitted labels along with question, response and member counts." },
+    { type: "image", src: "assets/deneyim/probel-anket-uyelik-izinler.webp", w: 1600, h: 1000,
+      tr: "Üyeler ekranı: anketin ortak sahipleri beş ayrı izin alanıyla yetkilendiriliyor; yöneticilik iznini yalnızca birincil sahip verebiliyor.",
+      en: "Members screen: a survey's co-owners are authorised through five separate permission fields; only the primary owner can grant the admin permission.",
+      alt: "Üyeler ekranı. Üstte iki üyenin e-posta adreslerini ve içerik düzenleme, yayın yönetimi, yanıtları görme, kullanıcı tanımlama ve yöneticilik sütunlarında izin durumlarını gösteren tablo; altında yeni üye eklemek için e-posta alanı, beş izin onay kutusu ve Kaydet düğmesi.",
+      altEn: "Members screen. At the top, a table showing two members' email addresses and their permissions in the content editing, publishing, viewing responses, assigning users and admin columns; below, an email field for adding a member, five permission checkboxes and a Save button." },
+    { type: "image", src: "assets/deneyim/probel-anket-ozet-degerlendirme.webp", w: 1600, h: 1702,
+      tr: "Yanıt özeti: soru bazında dağılımlar, özete katılmayan yarım yanıtlar için ayrı sayaç ve anket bazında değerlendirme puanının dağılımı.",
+      en: "Response summary: per-question distributions, a separate count for partial responses that are left out of the summary, and the distribution of the survey-level rating.",
+      alt: "Anonim bir anketin özet ekranı. Üstte 3 gönderilmiş yanıt, özete dahil edilmeyen 1 yarım yanıt ve 8,33 değerlendirme ortalaması; altında ölçek, evet/hayır ve çoktan seçmeli sorular için yatay çubuk grafikler, açık uçlu yanıtların listesi ve 0-10 arası değerlendirme puanlarının dağılımı.",
+      altEn: "Summary screen of an anonymous survey. At the top, 3 submitted responses, 1 partial response excluded from the summary and an average rating of 8.33; below, horizontal bar charts for the scale, yes/no and multiple-choice questions, a list of open-ended answers and the distribution of 0-10 rating scores." }
+  ],
+  projectId: "p15" },
+
 { roleTr: "Çalışan Öğrenci", roleEn: "Student Employee",
   orgTr: "İzmir Ekonomi Üniversitesi · Kurumsal İletişim Ofisi, Etkinlik Birimi",
   orgEn: "Izmir University of Economics · Corporate Communications, Events Unit",
