@@ -12,6 +12,13 @@ const { useState, useEffect, useRef } = React;
    tier: "project"  → normal card: role + description + tags + link
    tier: "personal" → compact row: title, one-line description, tags, links
    Links only render when the URL actually starts with http(s).
+   Opsiyonel alanlar (yoksa hic render edilmez):
+   cover       → kartin ustunde kapak: { src, w, h, alt, altEn }
+   ownershipTr / ownershipEn → "Rol" blogu: kimin neyi yaptigi
+   gapsTr / gapsEn           → "Bilinen eksikler" blogu
+   docUrl      → site icindeki bir belge (orn. "belgeler/x.pdf"); bossa link yok
+   media ogeleri w / h tasirsa <img> width/height alir, alt / altEn tasirsa
+   altyazidan ayri, betimleyici alt metni olarak kullanilir.
    ------------------------------------------------------------------------- */
 const PROJECTS = [
 {
@@ -306,30 +313,33 @@ const CERTIFICATES = [
   date: "Kas 2024", dateEn: "Nov 2024", image: "assets/sertifikalar/ieu-bilgi-guvenligi.jpg" }];
 
 /* -------------------------------------------------------------------------
-   EXPERIENCE — two-column blocks.
+   EXPERIENCE — LinkedIn tarzi kartlar: kartta unvan, kurum, tarih ve konum;
+   aciklama, gorseller ve proje baglantisi karta tiklaninca acilan panelde.
+   location / locationEn → kartta tarihin yaninda.
+   media → bicim PROJECTS.media ile ayni. Alan yoksa kart yine acilir,
+           panelde yalnizca metin gorunur; varsa karta gosterge duser.
+   projectId → PROJECTS icindeki bir id; panelde o proje kartina baglanti.
    ------------------------------------------------------------------------- */
-/* EXPERIENCE — her kayit opsiyonel bir `media` dizisi tasiyabilir; bicim
-   PROJECTS.media ile ayni: { type: "image" | "video", src, tr, en }.
-   Alan yoksa kart tiklanmaya devam eder, panelde yalnizca metin gorunur.
-   Gorseller eklendiginde karta sessiz bir gosterge de kendiliginden
-   dusuyor. */
 const EXPERIENCE = [
 { roleTr: "Çalışan Öğrenci", roleEn: "Student Employee",
   orgTr: "İzmir Ekonomi Üniversitesi · Kurumsal İletişim Ofisi, Etkinlik Birimi",
   orgEn: "Izmir University of Economics · Corporate Communications, Events Unit",
   period: "Ağu – Ara 2025 · Şub – Tem 2026", periodEn: "Aug – Dec 2025 · Feb – Jul 2026",
+  location: "İzmir", locationEn: "Izmir",
   descTr: "Kurumsal İletişim Ofisi Etkinlik Birimi'nde, üniversitenin yıl boyunca düzenlediği büyük ölçekli etkinliklerin saha koordinasyonunda görev aldım. Akademik yıl açılışı, mezuniyet törenleri, Kıdem Takdir Töreni, Bahar Şenlikleri konseri ve üniversitenin 25. kuruluş yıl dönümü kutlamaları bu kapsamdaydı. Görev, sözleşmenin sona ermesiyle Temmuz 2026'da tamamlandı.",
   descEn: "In the Events Unit of the Corporate Communications Office, I worked on the field coordination of the university's large-scale events across the year: the academic year opening, graduation ceremonies, the long-service awards, the spring festival concert and the university's 25th anniversary. The role ended in July 2026 when the contract expired." },
 
 { roleTr: "Proje Yönetimi Stajyeri", roleEn: "Project Management Intern",
   orgTr: "SCA Social", orgEn: "SCA Social",
-  period: "Oca – Şub 2026 · uzaktan", periodEn: "Jan – Feb 2026 · remote",
+  period: "Oca – Şub 2026", periodEn: "Jan – Feb 2026",
+  location: "Uzaktan", locationEn: "Remote",
   descTr: "Stajın ilk dört haftasında yönetim ve organizasyon, bilişim hukuku, yapay zekâ ve proje yönetimi alanlarında teorik eğitim aldım. Devamında savunma sanayii odaklı yıllık bütçe planlaması ve maliyet tabloları hazırladım. İnşaat projelerindeki belirsizlik ve risklerin erken tespiti için yapay zekâ temelli bir simülasyon yaklaşımı tasarlayarak derin öğrenme ve görüntü işleme tekniklerinin risk analizindeki kullanım senaryolarını modelledim. Bilişim hukuku kapsamında KVKK süreçlerini vaka analizi üzerinden inceleyip veri sorumlusuna başvuru ve Kurul şikâyet mekanizmalarını resmî dokümantasyona dönüştürdüm. Son aşamada Proje Başlatma Belgesi ve Gantt çizelgesi hazırlayarak bir projenin kapsam, kaynak ve zaman planlamasını uçtan uca kurguladım.",
   descEn: "The first four weeks covered theory in management and organisation, information technology law, artificial intelligence and project management. I then prepared annual budget planning and cost tables for the defence sector. To catch uncertainty and risk early in construction projects, I designed an AI-based simulation approach and modelled how deep learning and computer vision techniques could be used in risk analysis. Under information technology law, I examined data-protection procedures through a case study and turned the application and complaint mechanisms into formal documentation. In the final stage I prepared a project initiation document and a Gantt chart, planning a project's scope, resources and schedule end to end." },
 
 { roleTr: "Tanıtım Personeli", roleEn: "Outreach Staff",
   orgTr: "İzmir Ekonomi Üniversitesi", orgEn: "Izmir University of Economics",
   period: "Tem – Eyl 2024 · Tem – Ağu 2025", periodEn: "Jul – Sep 2024 · Jul – Aug 2025",
+  location: "İzmir", locationEn: "Izmir",
   descTr: "2024 tanıtım döneminde çağrı merkezi biriminde çalıştım; İzmir Ekonomi Üniversitesi ile ilgilenen adayların sorularını yanıtladım ve bilgilendirme yaptım. 2025 döneminde transfer biriminde görev aldım: aday öğrenciler ve velilere kampüs içi turlar düzenledim, üniversite ve ilgilendikleri bölümler hakkındaki sorularını yanıtladım. İşin özü, aynı bilgiyi çok farklı hazırlık seviyelerindeki kişilere anlaşılır biçimde aktarmaktı.",
   descEn: "In the 2024 admissions period I worked in the call centre unit, answering questions from prospective students interested in Izmir University of Economics. In 2025 I worked in the transfer unit: running campus tours for prospective students and their families, and answering their questions about the university and the departments they were considering. The core of the job was conveying the same information clearly to people at very different levels of preparation." },
 
@@ -337,12 +347,14 @@ const EXPERIENCE = [
   orgTr: "IEU Software Community", orgEn: "IEU Software Community",
   period: "Eki 2024 – devam",
   periodEn: "Oct 2024 – present",
+  location: "İzmir", locationEn: "Izmir",
   descTr: "2024-2025 döneminde kulüp üyesi olarak Cisco ve yapay zekâ alanındaki kurs ve çalıştaylara katıldım; makine öğrenmesine giriş çalıştayı bunlardan biriydi. Eylül 2025 – Temmuz 2026 arasında denetim kurulunda görev aldım: etkinlik planlamalarına katkı sağladım, Bahar Şenlikleri stant organizasyonunda destek verdim ve kulübün düzenlediği seminerlerde yönetime destek oldum.",
   descEn: "As a club member in 2024-2025 I attended Cisco and artificial intelligence courses and workshops, including an introduction to machine learning. Between September 2025 and July 2026 I served on the audit board: contributing to event planning, supporting the spring festival stand, and assisting the committee at the seminars the club ran." },
 
 { roleTr: "Kulüp Üyesi", roleEn: "Club Member",
   orgTr: "Endüstri Sistemleri Topluluğu", orgEn: "Industrial Systems Community",
   period: "Eki 2024 – devam", periodEn: "Oct 2024 – present",
+  location: "İzmir", locationEn: "Izmir",
   descTr: "Topluluğun düzenlediği etkinliklerin organizasyon ekibinde yer alıyorum. Etkinliklere katılım için şirketlerden insan kaynakları uzmanları ve yöneticilerle LinkedIn üzerinden iletişime geçerek davet süreçlerini yürütüyorum. Etkinlik günlerinde konuk ağırlama, genel koordinasyon ve katılımcı yönetiminde görev alıyorum.",
   descEn: "I am part of the organising team for the community's events. I run the invitation process, reaching out to human resources specialists and managers at companies through LinkedIn. On event days I work on hosting guests, general coordination and attendee management." }];
 
@@ -403,6 +415,9 @@ const COPY = {
     projTitle: "Projeler",
     tierFeatured: "Öne çıkanlar", tierProject: "Projeler", tierPersonal: "Diğer çalışmalar",
     decisionsLabel: "Kararlar", outcomeLabel: "Sonuç",
+    ownershipLabel: "Rol", gapsLabel: "Bilinen eksikler",
+    docLabel: "Gereksinim ve tasarım dokümanı (PDF)",
+    relatedProject: "İlgili proje",
     liveLabel: "canlı demo", sheetClose: "Kapat",
     seeMore: "Tümünü göster", seeLess: "Daha az göster", showPersonal: "Diğer çalışmaları göster",
     seeAll: "Tüm depoları GitHub'da gör",
@@ -456,6 +471,9 @@ const COPY = {
     projTitle: "Projects",
     tierFeatured: "Featured", tierProject: "Projects", tierPersonal: "Other work",
     decisionsLabel: "Decisions", outcomeLabel: "Outcome",
+    ownershipLabel: "Role", gapsLabel: "Known gaps",
+    docLabel: "Requirements and design document (PDF)",
+    relatedProject: "Related project",
     liveLabel: "live demo", sheetClose: "Close",
     seeMore: "Show all", seeLess: "Show less", showPersonal: "Show other work",
     seeAll: "See all repositories on GitHub",
@@ -473,12 +491,23 @@ const COPY = {
 
 const isUrl = (u) => typeof u === "string" && /^https?:\/\//.test(u);
 
-// First `n` sentences of a paragraph — the mobile teaser for long blocks.
-const excerpt = (s, n) => {
-  if (!s) return "";
-  const parts = s.match(/[^.!?]+[.!?]+/g);
-  return parts ? parts.slice(0, n || 2).join(" ").trim() : s;
-};
+// Deneyim panelinden proje kartina gecis: panel olay yayinlar, Projects
+// bolumu dinler. Iki bolum birbirinin durumunu bilmek zorunda kalmiyor.
+const OPEN_PROJECT_EVENT = "tk:open-project";
+const projectAnchor = (id) => "proje-" + id;
+
+// Nav atlamalari ve proje baglantisi ayni kaydirmayi kullaniyor.
+// Bolum basliklarinin ustunde zaten bosluk var; tek bir kart icin daha
+// genis pay (offset) gerekiyor, yoksa sabit menunun altinda kaliyor.
+function scrollToElement(el, opts) {
+  const top = el.getBoundingClientRect().top + window.scrollY - (opts && opts.offset || 60);
+  const before = window.scrollY;
+  beginScrollJump();
+  if (opts && opts.instant) {window.scrollTo(0, top);return;}
+  window.scrollTo({ top, behavior: "smooth" });
+  // Fallback: some engines ignore smooth window scrolling when an ancestor clips overflow.
+  setTimeout(() => {if (Math.abs(window.scrollY - before) < 2 && Math.abs(top - before) > 2) window.scrollTo(0, top);}, 240);
+}
 
 /* =========================================================================
    MOTIFS
@@ -1060,6 +1089,31 @@ function Projects({ t, lang }) {
   const personal = PROJECTS.filter((p) => p.tier === "personal");
   const openProject = PROJECTS.find((p) => p.id === openId) || null;
 
+  // Deneyim panelindeki "ilgili proje" baglantisi buraya duser. Masaustunde
+  // kart zaten tum ayrintiyi gosterdigi icin karta kaydirip vurguluyoruz;
+  // 900px altinda satir yalnizca baslik oldugu icin proje paneli aciliyor.
+  useEffect(() => {
+    function onOpenProject(e) {
+      const el = document.getElementById(projectAnchor(e.detail));
+      if (!el) return;
+      el.classList.add("is-visible");
+      if (compact) {
+        scrollToElement(el, { instant: true, offset: 96 });
+        // Panel kapaninca odak bu satira donsun, deneyim kartina degil.
+        const btn = el.querySelector("button");
+        if (btn) btn.focus({ preventScroll: true });
+        setOpenId(e.detail);
+        return;
+      }
+      scrollToElement(el, { offset: 96 });
+      el.focus({ preventScroll: true });
+      el.classList.add("is-target");
+      setTimeout(() => el.classList.remove("is-target"), 1800);
+    }
+    window.addEventListener(OPEN_PROJECT_EVENT, onOpenProject);
+    return () => window.removeEventListener(OPEN_PROJECT_EVENT, onOpenProject);
+  }, [compact]);
+
   function renderTier(label, list, variant) {
     if (list.length === 0) return null;
     return (
@@ -1112,7 +1166,7 @@ function CompactProjectRow({ project, index, lang, t, onOpen }) {
   const role = lang === "tr" ? project.roleTr : project.roleEn;
   const statusLabel = project.status && STATUS_LABELS[project.status] ? STATUS_LABELS[project.status][lang] : null;
   return (
-    <li ref={ref} className="crow reveal" style={{ "--stagger": index % 6 * 40 + "ms" }}>
+    <li ref={ref} id={projectAnchor(project.id)} className="crow reveal" style={{ "--stagger": index % 6 * 40 + "ms" }}>
       <button className="crow-btn" onClick={() => onOpen(project.id)} aria-haspopup="dialog">
         <span className="crow-top">
           {statusLabel && <span className="status-pill">{statusLabel}</span>}
@@ -1175,12 +1229,8 @@ function ProjectSheet({ project, lang, t, onClose }) {
 
   const role = lang === "tr" ? project.roleTr : project.roleEn;
   const desc = lang === "tr" ? project.descTr : project.descEn;
-  const decisions = lang === "tr" ? project.decisionsTr : project.decisionsEn;
-  const outcome = lang === "tr" ? project.outcomeTr : project.outcomeEn;
   const statusLabel = project.status && STATUS_LABELS[project.status] ? STATUS_LABELS[project.status][lang] : null;
   const period = lang === "en" && project.periodEn ? project.periodEn : project.period;
-  const repo = isUrl(project.repoUrl) ? project.repoUrl : null;
-  const live = isUrl(project.liveUrl) ? project.liveUrl : null;
 
   return (
     <div className="sheet-backdrop" onClick={onClose}>
@@ -1192,37 +1242,86 @@ function ProjectSheet({ project, lang, t, onClose }) {
           <h3 id="sheet-title" className="sheet-title">{project.title}</h3>
           {role && <div className="pcard-role">{role}</div>}
         </div>
+        <ProjectCover cover={project.cover} lang={lang} />
         <p className="pcard-desc">{desc}</p>
         <div className="pcard-stack">{project.tags.map((s) => <span key={s} className="stack-pill">{s}</span>)}</div>
         <MediaList items={project.media} lang={lang} />
-        {(decisions && decisions.length > 0 || outcome) &&
-        <div className="pcard-detail">
-            {decisions && decisions.length > 0 &&
-          <div>
-                <div className="pcard-block-label">{t.decisionsLabel}</div>
-                <ul className="pcard-decisions">{decisions.map((d, i) => <li key={i}>{d}</li>)}</ul>
-              </div>
-          }
-            {outcome &&
-          <div>
-                <div className="pcard-block-label">{t.outcomeLabel}</div>
-                <p className="pcard-outcome">{outcome}</p>
-              </div>
-          }
-          </div>
-        }
+        <ProjectDetail project={project} lang={lang} t={t} />
         <footer className="pcard-foot">
           <span className="pcard-year">{period || ""}</span>
-          <span className="pcard-links">
-            {live && <a className="pcard-link is-live" href={live} target="_blank" rel="noopener noreferrer">{t.liveLabel}</a>}
-            {repo &&
-          <a className="pcard-link" href={repo} target="_blank" rel="noopener noreferrer">
-                <GithubIcon />{repo.replace(/^https?:\/\//, "")}
-              </a>
-          }
-          </span>
+          <ProjectLinks project={project} t={t} />
         </footer>
       </div>
+    </div>);
+
+}
+
+// Karttaki ve paneldeki ayrinti bloklari; hicbiri yoksa hic render edilmez.
+function ProjectDetail({ project, lang, t }) {
+  const en = lang === "en";
+  const ownership = en ? project.ownershipEn : project.ownershipTr;
+  const decisions = en ? project.decisionsEn : project.decisionsTr;
+  const outcome = en ? project.outcomeEn : project.outcomeTr;
+  const gaps = en ? project.gapsEn : project.gapsTr;
+  const hasDecisions = decisions && decisions.length > 0;
+  if (!ownership && !hasDecisions && !outcome && !gaps) return null;
+  return (
+    <div className="pcard-detail">
+      {ownership &&
+      <div>
+          <div className="pcard-block-label">{t.ownershipLabel}</div>
+          <p className="pcard-outcome">{ownership}</p>
+        </div>
+      }
+      {hasDecisions &&
+      <div>
+          <div className="pcard-block-label">{t.decisionsLabel}</div>
+          <ul className="pcard-decisions">{decisions.map((d, i) => <li key={i}>{d}</li>)}</ul>
+        </div>
+      }
+      {outcome &&
+      <div>
+          <div className="pcard-block-label">{t.outcomeLabel}</div>
+          <p className="pcard-outcome">{outcome}</p>
+        </div>
+      }
+      {gaps &&
+      <div>
+          <div className="pcard-block-label">{t.gapsLabel}</div>
+          <p className="pcard-outcome">{gaps}</p>
+        </div>
+      }
+    </div>);
+
+}
+
+function ProjectLinks({ project, t }) {
+  const repo = isUrl(project.repoUrl) ? project.repoUrl : null;
+  const live = isUrl(project.liveUrl) ? project.liveUrl : null;
+  const doc = typeof project.docUrl === "string" && project.docUrl.trim() !== "" ? project.docUrl : null;
+  return (
+    <span className="pcard-links">
+      {live &&
+      <a className="pcard-link is-live" href={live} target="_blank" rel="noopener noreferrer">{t.liveLabel}</a>
+      }
+      {doc &&
+      <a className="pcard-link" href={doc} target="_blank" rel="noopener noreferrer">{t.docLabel}</a>
+      }
+      {repo &&
+      <a className="pcard-link" href={repo} target="_blank" rel="noopener noreferrer">
+          <GithubIcon />{repo.replace(/^https?:\/\//, "")}
+        </a>
+      }
+    </span>);
+
+}
+
+function ProjectCover({ cover, lang }) {
+  if (!cover || !cover.src) return null;
+  const alt = lang === "en" && cover.altEn ? cover.altEn : cover.alt;
+  return (
+    <div className="pcard-media is-cover">
+      <img src={cover.src} alt={alt || ""} width={cover.w} height={cover.h} loading="lazy" decoding="async" />
     </div>);
 
 }
@@ -1237,12 +1336,14 @@ function MediaList({ items, lang }) {
     <div className="media-list">
       {items.map((m, i) => {
         const cap = lang === "en" ? m.en : m.tr;
+        // Betimleyici alt metni yoksa altyazi alt metni olarak kullaniliyor.
+        const alt = (lang === "en" ? m.altEn : m.alt) || cap;
         return (
           <figure key={i} className="media-item">
             <div className="media-frame">
               {m.type === "video" ?
               <video src={m.src} controls muted playsInline preload="metadata" /> :
-              <img src={m.src} alt={cap || ""} loading="lazy" decoding="async" />
+              <img src={m.src} alt={alt || ""} width={m.w} height={m.h} loading="lazy" decoding="async" />
               }
             </div>
             {cap && <figcaption className="media-cap">{cap}</figcaption>}
@@ -1299,8 +1400,6 @@ function ProjectCard({ project, index, lang, t, variant }) {
   const live = isUrl(project.liveUrl) ? project.liveUrl : null;
   const primary = live || repo;
   const role = lang === "tr" ? project.roleTr : project.roleEn;
-  const decisions = lang === "tr" ? project.decisionsTr : project.decisionsEn;
-  const outcome = lang === "tr" ? project.outcomeTr : project.outcomeEn;
   const statusLabel = project.status && STATUS_LABELS[project.status] ? STATUS_LABELS[project.status][lang] : null;
   const period = lang === "en" && project.periodEn ? project.periodEn : project.period;
 
@@ -1324,31 +1423,17 @@ function ProjectCard({ project, index, lang, t, variant }) {
 
   const main =
   <React.Fragment>
+      <ProjectCover cover={project.cover} lang={lang} />
       {name}
       {role && <div className="pcard-role">{role}</div>}
       <p className="pcard-desc">{lang === "tr" ? project.descTr : project.descEn}</p>
       <div className="pcard-stack">{project.tags.map((s) => <span key={s} className="stack-pill">{s}</span>)}</div>
     </React.Fragment>;
 
-  const detail = (decisions && decisions.length > 0) || outcome ?
-  <div className="pcard-detail">
-      {decisions && decisions.length > 0 &&
-    <div>
-          <div className="pcard-block-label">{t.decisionsLabel}</div>
-          <ul className="pcard-decisions">{decisions.map((d, i) => <li key={i}>{d}</li>)}</ul>
-        </div>
-    }
-      {outcome &&
-    <div>
-          <div className="pcard-block-label">{t.outcomeLabel}</div>
-          <p className="pcard-outcome">{outcome}</p>
-        </div>
-    }
-    </div> :
-  null;
+  const detail = <ProjectDetail project={project} lang={lang} t={t} />;
 
   return (
-    <article ref={ref}
+    <article ref={ref} id={projectAnchor(project.id)} tabIndex={-1}
     className={"pcard is-" + variant + accentClass + " reveal reveal-card"}
     onMouseMove={onMove}
     style={{ "--mx": pos.x + "%", "--my": pos.y + "%", "--stagger": index * 70 + "ms" }}>
@@ -1378,16 +1463,7 @@ function ProjectCard({ project, index, lang, t, variant }) {
         <MediaButton lang={lang} onClick={() => setMediaOpen(true)} />
         }
         </span>
-        <span className="pcard-links">
-          {live &&
-        <a className="pcard-link is-live" href={live} target="_blank" rel="noopener noreferrer">{t.liveLabel}</a>
-        }
-          {repo &&
-        <a className="pcard-link" href={repo} target="_blank" rel="noopener noreferrer">
-              <GithubIcon />{repo.replace(/^https?:\/\//, "")}
-            </a>
-        }
-        </span>
+        <ProjectLinks project={project} t={t} />
       </footer>
       {mediaOpen && <MediaSheet project={project} lang={lang} t={t} onClose={() => setMediaOpen(false)} />}
     </article>);
@@ -1517,25 +1593,45 @@ function CertSheet({ cert, t, onClose }) {
 /* =========================================================================
    EXPERIENCE
    ========================================================================= */
-function CompactExpRow({ item, index, lang, t, onOpen }) {
-  const ref = useRevealRef();
-  const period = lang === "en" && item.periodEn ? item.periodEn : item.period;
-  const desc = lang === "tr" ? item.descTr : item.descEn;
+const EXP_SHEET_ID = "exp-sheet";
+
+// LinkedIn tarzi kart: unvan, kurum, tarih, konum. Ayrinti panelde.
+// Kartin her yeri fare ile tiklanabilir; klavye ve ekran okuyucu icin
+// gercek denetim basliktaki dugme, boylece h3 baslik olarak kaliyor.
+function ExpCard({ item, index, lang, open, onOpen }) {
+  const en = lang === "en";
+  const period = en && item.periodEn ? item.periodEn : item.period;
+  const location = en && item.locationEn ? item.locationEn : item.location;
   return (
-    <li ref={ref} className="crow reveal" style={{ "--stagger": index % 6 * 40 + "ms" }}>
-      <button className="crow-btn" onClick={() => onOpen(index)} aria-haspopup="dialog">
-        <span className="crow-period">{period}</span>
-        <span className="crow-title">{lang === "tr" ? item.roleTr : item.roleEn}</span>
-        <span className="crow-role">{lang === "tr" ? item.orgTr : item.orgEn}</span>
-        <span className="crow-excerpt">{excerpt(desc, 2)}</span>
-        {item.media && item.media.length > 0 &&
-        <span className="exp-media-hint">
-            <span className="media-btn-mark" aria-hidden="true"><StarMark /></span>
-            {(lang === "en" ? "Media" : "Medya") + " · " + item.media.length}
-          </span>
-        }
-        <span className="crow-chevron" aria-hidden="true">›</span>
-      </button>
+    <div className="exp-row is-clickable" onClick={() => onOpen(index)}>
+      <h3 className="exp-role">
+        <button type="button" className="exp-role-btn" aria-haspopup="dialog"
+        aria-expanded={open} aria-controls={open ? EXP_SHEET_ID : undefined}
+        onClick={(ev) => {ev.stopPropagation();onOpen(index);}}>
+          {en ? item.roleEn : item.roleTr}
+        </button>
+      </h3>
+      <div className="exp-org">{en ? item.orgEn : item.orgTr}</div>
+      <div className="exp-meta">
+        <span className="exp-when">{period}</span>
+        {location && <span className="exp-where">{location}</span>}
+      </div>
+      {item.media && item.media.length > 0 &&
+      <span className="exp-media-hint">
+          <span className="media-btn-mark" aria-hidden="true"><StarMark /></span>
+          {(en ? "Media" : "Medya") + " · " + item.media.length}
+        </span>
+      }
+      <span className="exp-chevron" aria-hidden="true">›</span>
+    </div>);
+
+}
+
+function CompactExpRow({ item, index, lang, open, onOpen }) {
+  const ref = useRevealRef();
+  return (
+    <li ref={ref} className="reveal" style={{ "--stagger": index % 6 * 40 + "ms" }}>
+      <ExpCard item={item} index={index} lang={lang} open={open} onOpen={onOpen} />
     </li>);
 
 }
@@ -1547,19 +1643,37 @@ function ExperienceSheet({ item, lang, t, onClose }) {
   useSheetBehavior(item, onClose, panelRef, closeBtnRef);
 
   if (!item) return null;
-  const period = lang === "en" && item.periodEn ? item.periodEn : item.period;
+  const en = lang === "en";
+  const period = en && item.periodEn ? item.periodEn : item.period;
+  const location = en && item.locationEn ? item.locationEn : item.location;
+  const project = item.projectId ? PROJECTS.find((p) => p.id === item.projectId) : null;
+
+  function goToProject(e) {
+    e.preventDefault();
+    onClose();
+    // Panel kapanip kaydirma kilidi kalktiktan sonra proje bolumune gec.
+    requestAnimationFrame(() => window.dispatchEvent(new CustomEvent(OPEN_PROJECT_EVENT, { detail: project.id })));
+  }
 
   return (
     <div className="sheet-backdrop" onClick={onClose}>
-      <div className="sheet-panel" ref={panelRef} role="dialog" aria-modal="true" aria-labelledby="exp-sheet-title" onClick={(e) => e.stopPropagation()}>
+      <div className="sheet-panel" id={EXP_SHEET_ID} ref={panelRef} role="dialog" aria-modal="true" aria-labelledby="exp-sheet-title" onClick={(e) => e.stopPropagation()}>
         <div className="sheet-handle" aria-hidden="true" />
         <button className="sheet-close" ref={closeBtnRef} onClick={onClose} aria-label={t.sheetClose}>×</button>
         <div className="sheet-head">
-          <span className="crow-period">{period}</span>
-          <h3 id="exp-sheet-title" className="sheet-title">{lang === "tr" ? item.roleTr : item.roleEn}</h3>
-          <div className="pcard-role">{lang === "tr" ? item.orgTr : item.orgEn}</div>
+          <span className="crow-period">{period}{location ? " — " + location : ""}</span>
+          <h3 id="exp-sheet-title" className="sheet-title">{en ? item.roleEn : item.roleTr}</h3>
+          <div className="pcard-role">{en ? item.orgEn : item.orgTr}</div>
         </div>
-        <p className="pcard-desc">{lang === "tr" ? item.descTr : item.descEn}</p>
+        <p className="pcard-desc">{en ? item.descEn : item.descTr}</p>
+        {/* Galeri uzun olabildigi icin baglanti aciklamanin hemen altinda. */}
+        {project &&
+        <a className="exp-project-link" href={"#" + projectAnchor(project.id)} onClick={goToProject}>
+            <span className="exp-project-label">{t.relatedProject}</span>
+            <span className="exp-project-title">{project.title}</span>
+            <span className="exp-project-arrow" aria-hidden="true">→</span>
+          </a>
+        }
         <MediaList items={item.media} lang={lang} />
       </div>
     </div>);
@@ -1622,9 +1736,9 @@ function Experience({ t, lang }) {
     return (
       <section id="experience" className="section" data-screen-label="Experience">
         <SectionHead num="05" title={t.expTitle} />
-        <ul className="crow-list exp-compact">
+        <ul className="exp-cards">
           {EXPERIENCE.map((e, i) =>
-          <CompactExpRow key={i} item={e} index={i} lang={lang} t={t} onOpen={setOpenIdx} />
+          <CompactExpRow key={i} item={e} index={i} lang={lang} open={openIdx === i} onOpen={setOpenIdx} />
           )}
         </ul>
         <ExperienceSheet item={openIdx === null ? null : EXPERIENCE[openIdx]} lang={lang} t={t} onClose={() => setOpenIdx(null)} />
@@ -1641,35 +1755,13 @@ function Experience({ t, lang }) {
           <path className="exp-road-edge" d={roadPath(6)} />
           <path className="exp-road-dash" d={roadPath(0)} style={{ strokeDashoffset: "calc(var(--scroll-progress, 0) * -400)" }} />
         </svg>
-        {EXPERIENCE.map((e, i) => {
-          const period = lang === "en" && e.periodEn ? e.periodEn : e.period;
-          return (
-            <article key={i} className={"exp-row-wrap side-" + (i % 2 === 0 ? "left" : "right")} style={{ "--exp-top": "0px" }}>
-              <span className="exp-connector" />
-              <span className="exp-node" />
-              <span className="exp-period">{period}</span>
-              {/* Kartin her yeri fare ile tiklanabilir; klavye ve ekran
-                  okuyucu icin gercek denetim basliktaki dugme. Boylece
-                  h3 basligi baslik olarak kalmaya devam ediyor. */}
-              <div className="exp-row is-clickable" onClick={() => setOpenIdx(i)}>
-                <h3 className="exp-role">
-                  <button type="button" className="exp-role-btn" aria-haspopup="dialog"
-                  onClick={(ev) => {ev.stopPropagation();setOpenIdx(i);}}>
-                    {lang === "tr" ? e.roleTr : e.roleEn}
-                  </button>
-                </h3>
-                <div className="exp-org">{lang === "tr" ? e.orgTr : e.orgEn}</div>
-                <p className="exp-desc">{lang === "tr" ? e.descTr : e.descEn}</p>
-                {e.media && e.media.length > 0 &&
-                <span className="exp-media-hint">
-                    <span className="media-btn-mark" aria-hidden="true"><StarMark /></span>
-                    {(lang === "en" ? "Media" : "Medya") + " · " + e.media.length}
-                  </span>
-                }
-              </div>
-            </article>);
-
-        })}
+        {EXPERIENCE.map((e, i) =>
+        <article key={i} className={"exp-row-wrap side-" + (i % 2 === 0 ? "left" : "right")} style={{ "--exp-top": "0px" }}>
+            <span className="exp-connector" />
+            <span className="exp-node" />
+            <ExpCard item={e} index={i} lang={lang} open={openIdx === i} onOpen={setOpenIdx} />
+          </article>
+        )}
       </div>
       <ExperienceSheet item={openIdx === null ? null : EXPERIENCE[openIdx]} lang={lang} t={t} onClose={() => setOpenIdx(null)} />
     </section>);
@@ -1847,12 +1939,7 @@ function App() {
   function jump(id) {
     const el = document.getElementById(id);
     if (!el) return;
-    const top = el.getBoundingClientRect().top + window.scrollY - 60;
-    const before = window.scrollY;
-    beginScrollJump();
-    window.scrollTo({ top, behavior: "smooth" });
-    // Fallback: some engines ignore smooth window scrolling when an ancestor clips overflow.
-    setTimeout(() => {if (Math.abs(window.scrollY - before) < 2 && Math.abs(top - before) > 2) window.scrollTo(0, top);}, 240);
+    scrollToElement(el);
     // A jump can skip a .reveal element straight past its IntersectionObserver
     // threshold (no intermediate frame ever intersects it), leaving it stuck
     // invisible. Force-reveal everything inside the destination section.
