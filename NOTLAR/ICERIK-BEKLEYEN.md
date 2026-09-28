@@ -31,7 +31,7 @@ Bu dosyadaki metinleri **Talat yazar**. Kod tarafı hazır; alan boş olduğu s�
 - **Neden gerekli:** 24 Ağustos 2026'da başlayan staj sitede hiç görünmüyor; bu eksik bilgi değil, **güncel olmayan bilgi** — site şu an "boşta" izlenimi veriyor.
 - **Kod tarafı:** **hazır, hiç değişiklik gerekmedi.** Şema zaten devam eden kaydı destekliyor: tarihler serbest metin ve dizide hâlihazırda iki `"– devam"` kaydı var. Planın öngördüğü "bitiş tarihi `null` olunca devam ediyor göster" işi diye bir şey yok, çünkü tarih alanı hiç yok.
 - **Dikkat — sıralama:** `EXPERIENCE` elle sıralı ve **kronolojik değil** (Ağu 2025 → Oca 2026 → Tem 2024 → Eki 2024 → Eki 2024). Otomatik sıralama yok, yani kaydı nereye koyarsan orada görünür. Devam eden ve en güncel kayıt olduğu için **başa** öneriliyor.
-- **Durum:** bekliyor
+- **Durum:** **tamamlandı — 28 Eylül 2026.** Probel kaydı dizinin başında (`Ağu – Eyl 2026`, İzmir), açıklama Talat'ın metni; üç ekran görüntüsü ve Anket Uygulaması proje kartına bağlantı taşıyor.
 
 ---
 
@@ -75,10 +75,10 @@ Bu dosyadaki metinleri **Talat yazar**. Kod tarafı hazır; alan boş olduğu s�
   ]
   ```
   `type` `"image"` veya `"video"`. Görsel dosyaları `public/assets/` altına konmalı — şu an orada yalnızca `projeler/` ve `sertifikalar/` klasörleri var, deneyim için yeni bir klasör açılmalı.
-  Altyazı (`tr` / `en`) aynı zamanda görselin `alt` metni oluyor, yani boş bırakılmamalı.
+  Altyazı (`tr` / `en`) ayrı bir `alt` / `altEn` verilmezse görselin `alt` metni oluyor, yani boş bırakılmamalı. Boyutu bilinen görsele `w` / `h` de eklenmeli (düzen kayması olmasın).
 - **Neden gerekli:** Deneyim bölümü şu an yalnızca metin; LinkedIn'deki gibi görsel kanıt gösterilemiyor.
 - **Kod tarafı:** **hazır.** `media` alanı yoksa kart yine tıklanır, panelde yalnızca metin görünür ve gösterge hiç render edilmez. Yol tarayıcıda geçici bir kayıtla uçtan uca doğrulandı (kart göstergesi, panelde görsel, altyazı).
-- **Durum:** bekliyor
+- **Durum:** kısmen — Probel kaydının görselleri eklendi (`public/assets/deneyim/`). Diğer beş kayıt için bekliyor.
 
 ---
 
@@ -94,3 +94,12 @@ Bu dosyadaki metinleri **Talat yazar**. Kod tarafı hazır; alan boş olduğu s�
 - **Neden gerekli:** Sertifika panelinde şu an yalnızca ad, kurum, tarih ve görsel var; sertifikanın neyi kapsadığı anlatılmıyor.
 - **Kod tarafı:** **hazır.** Alan yoksa açıklama satırı hiç render edilmiyor; notu olmayan bir sertifikada panelin son öğesi görselin kendisi olarak kalıyor (tarayıcıda doğrulandı).
 - **Durum:** bekliyor
+
+---
+
+### [D3] Anket Uygulaması — gereksinim ve tasarım dokümanı (PDF)
+
+- **Dosya:** PDF `public/belgeler/anket-uygulamasi-gereksinim-tasarim.pdf` olarak konacak (klasör henüz yok). Ardından `src/App.jsx` — `PROJECTS` içindeki `p15` kaydında `docUrl: ""` alanı `"belgeler/anket-uygulamasi-gereksinim-tasarim.pdf"` olarak doldurulacak.
+- **Nerede görünecek:** Anket Uygulaması proje kartının alt satırında, GitHub bağlantısının solunda: "Gereksinim ve tasarım dokümanı (PDF)" / "Requirements and design document (PDF)". Mobilde proje panelinin alt satırında.
+- **Kod tarafı:** **hazır.** `docUrl` boş olduğu sürece bağlantı hiç render edilmiyor; kırık bağlantı ya da yer tutucu metin çıkmıyor.
+- **Durum:** bekliyor — PDF Talat'tan gelecek.

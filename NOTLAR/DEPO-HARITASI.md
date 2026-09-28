@@ -19,12 +19,12 @@ Sonuç: "hangi klasörde şu veri var" biçimindeki sorular geçersiz. Doğru so
 
 | Ne | Satır | Kayıt |
 |---|---|---|
-| `PROJECTS` | 16 | 14 proje — 3 `featured`, 3 `project`, 8 `personal`; 6'sında `media` dizisi, 13'ünde `repoUrl` |
+| `PROJECTS` | 23 | 15 proje — 3 `featured`, 4 `project`, 8 `personal`; 6'sında `media` dizisi, 1'inde `cover`, 14'ünde `repoUrl` |
 | `STATUS_LABELS` | 228 | `elendi` / `tamamlandi` / `devam`, TR+EN |
 | `SKILLS` | 237 | 5 grup |
 | `LANGUAGES` | 259 | 3 dil (İngilizce B2, Almanca A2, Fransızca başlangıç) |
 | `CERTIFICATES` | 268 | 10 sertifika |
-| `EXPERIENCE` | 309 | 5 kayıt |
+| `EXPERIENCE` | 344 | 6 kayıt — hepsinde `location`; 1'inde `media` ve `projectId` |
 | `SOCIALS` | 348 | 2 (GitHub, LinkedIn) |
 | `EMAIL` / `GITHUB_URL` / `CV_URL` | 345-347 | `CV_URL` bilerek boş — dolana kadar İletişim'deki düğme render edilmiyor |
 

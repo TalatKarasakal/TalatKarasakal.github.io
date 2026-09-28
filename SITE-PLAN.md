@@ -356,7 +356,7 @@ Lint uyarısı 10'dan 9'a düştü.
 Bunlar davranış değiştirme riski taşıyor veya Talat'ın kararını gerektiriyor:
 
 - **Masaüstü/mobil içerik farkları** — [`NOTLAR/MOBIL-MASAUSTU-FARKI.md`](NOTLAR/MOBIL-MASAUSTU-FARKI.md). Kasıtlı gibi durmayan iki madde var: `ProjectSheet`'te eksik olan `project.category` ve mobil panele taşınmamış `.nav-cta`.
-- **Ölü CSS:** `.exp-row-wrap` için `@media (max-width: 900px)` kuralları (`index.html:2886` civarı) hiç uygulanmıyor — o genişlikte JS `CompactExpRow` render ediyor, `exp-row-wrap` DOM'da yok.
+- **Ölü CSS:** `.exp-row-wrap` için `@media (max-width: 900px)` kuralları (`index.html:2886` civarı) hiç uygulanmıyor — o genişlikte JS `CompactExpRow` (içinde `ExpCard`) render ediyor, `exp-row-wrap` DOM'da yok.
 - **Tekrarlı CSS:** üç ayrı `@media (max-width: 900px)` bloğu (`index.html:3961`, `4003`, `4024`) aynı `.nav-panel` / `.nav-inner` kurallarını `!important` ile üst üste yazıyor. Birleştirilebilir.
 - **Ölü i18n anahtarı:** `avail` (`src/App.jsx:408` ve `461`) tanımlı, hiçbir yerde render edilmiyor. 0.6 gereği dokunulmadı.
 - Kalan 9 lint uyarısı: kullanılmayan `t` parametreleri, boş `catch (e)` blokları, iki `exhaustive-deps`.
