@@ -546,6 +546,13 @@ const isUrl = (u) => typeof u === "string" && /^https?:\/\//.test(u);
 const OPEN_PROJECT_EVENT = "tk:open-project";
 const projectAnchor = (id) => "proje-" + id;
 
+// Deneyim kartindaki kisa aciklama: metnin ilk cumlesi. Tam metin panelde.
+const firstSentence = (s) => {
+  if (!s) return "";
+  const m = s.match(/^[^.!?]+[.!?]+/);
+  return m ? m[0].trim() : s;
+};
+
 // Nav atlamalari ve proje baglantisi ayni kaydirmayi kullaniyor.
 // Bolum basliklarinin ustunde zaten bosluk var; tek bir kart icin daha
 // genis pay (offset) gerekiyor, yoksa sabit menunun altinda kaliyor.
@@ -1633,7 +1640,8 @@ function CertSheet({ cert, t, onClose }) {
    ========================================================================= */
 const EXP_SHEET_ID = "exp-sheet";
 
-// LinkedIn tarzi kart: unvan, kurum, tarih, konum. Ayrinti panelde.
+// LinkedIn tarzi kart: unvan, kurum, tarih, konum ve kisa aciklama.
+// Tam aciklama, gorseller ve proje baglantisi panelde.
 // Kartin her yeri fare ile tiklanabilir; klavye ve ekran okuyucu icin
 // gercek denetim basliktaki dugme, boylece h3 baslik olarak kaliyor.
 function ExpCard({ item, index, lang, open, onOpen }) {
@@ -1654,6 +1662,7 @@ function ExpCard({ item, index, lang, open, onOpen }) {
         <span className="exp-when">{period}</span>
         {location && <span className="exp-where">{location}</span>}
       </div>
+      <p className="exp-summary">{firstSentence(en ? item.descEn : item.descTr)}</p>
       {item.media && item.media.length > 0 &&
       <span className="exp-media-hint">
           <span className="media-btn-mark" aria-hidden="true"><StarMark /></span>

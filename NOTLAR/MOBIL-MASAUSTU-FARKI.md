@@ -85,7 +85,7 @@ Telefonda proje satırına dokununca açılan panel **masaüstü kartındaki her
 
 Medya tarafında telefon aslında **daha iyi**: masaüstünde ayrı bir düğmeye basmak gerekirken panelde görseller doğrudan açılıyor. Eksik olan tek şey, proje satırında medya olduğunu belli eden bir ipucu (masaüstündeki "Medya" düğmesi orada yok).
 
-Deneyim bölümünde **eşitlik tam** (28 Eylül 2026'dan beri): iki genişlikte de aynı `ExpCard` bileşeni render ediliyor — kartta unvan, kurum, tarih ve konum; dokununca/tıklayınca panelde tam açıklama, görseller ve varsa ilgili proje bağlantısı açılıyor. Masaüstünde kartlar yol şeridi üzerinde, 900px altında alt alta.
+Deneyim bölümünde **eşitlik tam** (28 Eylül 2026'dan beri): iki genişlikte de aynı `ExpCard` bileşeni render ediliyor — kartta unvan, kurum, tarih, konum ve açıklamanın ilk cümlesi; dokununca/tıklayınca panelde tam açıklama, görseller ve varsa ilgili proje bağlantısı açılıyor. Masaüstünde kartlar yol şeridi üzerinde, 900px altında alt alta.
 
 Ayrıca bilerek düğme arkasına alınanlar: sertifikaların 5–10'u ("Tümünü göster"), kişisel projeler ("Diğer çalışmaları göster"), menü maddeleri ve dil/tema düğmeleri (hamburger menüsü).
 

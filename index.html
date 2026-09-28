@@ -4098,6 +4098,19 @@
       color: var(--text-mute);
     }
 
+    /* Aciklamanin ilk cumlesi; uzun bir cumle karti sisirmesin diye
+       uc satirda kesiliyor. Tam metin panelde. */
+    .exp-summary {
+      margin-top: 4px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--text-dim);
+      text-wrap: pretty;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
 
     .exp-chevron {
       position: absolute;
