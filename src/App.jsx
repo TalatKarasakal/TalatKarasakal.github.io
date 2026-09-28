@@ -13,7 +13,6 @@ const { useState, useEffect, useRef } = React;
    tier: "personal" → compact row: title, one-line description, tags, links
    Links only render when the URL actually starts with http(s).
    Opsiyonel alanlar (yoksa hic render edilmez):
-   cover       → kartin ustunde kapak: { src, w, h, alt, altEn }
    ownershipTr / ownershipEn → "Rol" blogu: kimin neyi yaptigi
    gapsTr / gapsEn           → "Bilinen eksikler" blogu
    docUrl      → site icindeki bir belge (orn. "belgeler/x.pdf"); bossa link yok
@@ -126,9 +125,13 @@ const PROJECTS = [
 },
 {
   id: "p15",
-  cover: { src: "assets/projeler/anket-duzenleme.webp", w: 1600, h: 1882,
-    alt: "Anket düzenleme ekranı. Solda başlık ve açıklama alanları ile sırası değiştirilebilen dört soru: ölçek, evet/hayır, çoktan seçmeli ve açık uçlu. Sağda izin verilen soru tipleri, anonim yanıt ve değerlendirme ayarları, erişim ve bitiş seçenekleri; en altta Kaydet, Yayına al ve Anketi sil düğmeleri.",
-    altEn: "Survey editing screen. On the left, title and description fields and four reorderable questions: scale, yes/no, multiple choice and open-ended. On the right, allowed question types, anonymous response and rating settings, access and end-date options; at the bottom, Save, Publish and Delete survey buttons." },
+  media: [
+    { type: "image", src: "assets/projeler/anket-duzenleme.webp", w: 1600, h: 1882,
+      tr: "Anket düzenleme ekranı: sorular solda, ayarlar sağda. Her ayar grubu, değiştirmek için hangi iznin gerektiğini gösteriyor.",
+      en: "Survey editing screen: questions on the left, settings on the right. Each settings group shows which permission is needed to change it.",
+      alt: "Anket düzenleme ekranı. Solda başlık ve açıklama alanları ile sırası değiştirilebilen dört soru: ölçek, evet/hayır, çoktan seçmeli ve açık uçlu. Sağda izin verilen soru tipleri, anonim yanıt ve değerlendirme ayarları, erişim ve bitiş seçenekleri; en altta Kaydet, Yayına al ve Anketi sil düğmeleri.",
+      altEn: "Survey editing screen. On the left, title and description fields and four reorderable questions: scale, yes/no, multiple choice and open-ended. On the right, allowed question types, anonymous response and rating settings, access and end-date options; at the bottom, Save, Publish and Delete survey buttons." }
+  ],
   tier: "project",
   title: "Anket Uygulaması",
   roleTr: "Probel stajı · bağımsız Ar-Ge projesi",
@@ -1289,7 +1292,6 @@ function ProjectSheet({ project, lang, t, onClose }) {
           <h3 id="sheet-title" className="sheet-title">{project.title}</h3>
           {role && <div className="pcard-role">{role}</div>}
         </div>
-        <ProjectCover cover={project.cover} lang={lang} />
         <p className="pcard-desc">{desc}</p>
         <div className="pcard-stack">{project.tags.map((s) => <span key={s} className="stack-pill">{s}</span>)}</div>
         <MediaList items={project.media} lang={lang} />
@@ -1360,16 +1362,6 @@ function ProjectLinks({ project, t }) {
         </a>
       }
     </span>);
-
-}
-
-function ProjectCover({ cover, lang }) {
-  if (!cover || !cover.src) return null;
-  const alt = lang === "en" && cover.altEn ? cover.altEn : cover.alt;
-  return (
-    <div className="pcard-media is-cover">
-      <img src={cover.src} alt={alt || ""} width={cover.w} height={cover.h} loading="lazy" decoding="async" />
-    </div>);
 
 }
 
@@ -1470,7 +1462,6 @@ function ProjectCard({ project, index, lang, t, variant }) {
 
   const main =
   <React.Fragment>
-      <ProjectCover cover={project.cover} lang={lang} />
       {name}
       {role && <div className="pcard-role">{role}</div>}
       <p className="pcard-desc">{lang === "tr" ? project.descTr : project.descEn}</p>
