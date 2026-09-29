@@ -409,7 +409,13 @@ const EXPERIENCE = [
    ------------------------------------------------------------------------- */
 const EMAIL = "talatkarasakal@outlook.com.tr";
 const GITHUB_URL = "https://github.com/TalatKarasakal";
-const CV_URL = ""; // <TODO: Talat — PDF hazır olunca doldur, örn. "/talat-karasakal-cv.pdf">
+// Dile gore ozgecmis: TR modda Turkce, EN modda Ingilizce PDF. Dosya adlari
+// indirilen dosyanin adi oldugu icin ozgun adlariyla duruyor. Bir dilin
+// degeri bos birakilirsa o dilde dugme render edilmez.
+const CV_URL = {
+  tr: "belgeler/Talat_Karasakal_Oz_Gecmis.pdf",
+  en: "belgeler/Talat_Karasakal_CV.pdf"
+};
 const SOCIALS = [
 { key: "GitHub", handle: "@TalatKarasakal", href: GITHUB_URL },
 { key: "LinkedIn", handle: "/in/talat-karasakal", href: "https://www.linkedin.com/in/talat-karasakal-077368251/" }];
@@ -1829,7 +1835,8 @@ function Experience({ t, lang }) {
 /* =========================================================================
    CONTACT
    ========================================================================= */
-function Contact({ t }) {
+function Contact({ t, lang }) {
+  const cvUrl = CV_URL[lang];
   return (
     <section id="contact" className="section contact" data-screen-label="Contact">
       <Divider kind="geyik" />
@@ -1842,9 +1849,9 @@ function Contact({ t }) {
             <span className="mailto-addr">{EMAIL}</span>
             <span className="mailto-arrow">↗</span>
           </a>
-          {CV_URL !== "" &&
+          {cvUrl &&
           <div className="cv-btn">
-              <a className="btn btn-ghost" href={CV_URL} download rel="noopener">{t.cvLabel}</a>
+              <a className="btn btn-ghost" href={cvUrl} download rel="noopener">{t.cvLabel}</a>
             </div>
           }
         </div>
@@ -2018,7 +2025,7 @@ function App() {
         <Certificates t={t} lang={lang} />
         <Divider kind="at" />
         <Experience t={t} lang={lang} />
-        <Contact t={t} />
+        <Contact t={t} lang={lang} />
       </main>
     </div>);
 

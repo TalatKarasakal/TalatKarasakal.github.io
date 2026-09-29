@@ -105,7 +105,7 @@ Aşağıdakiler bilinçli olarak dışarıda bırakıldı. Fikir olarak aklına 
 - Tasarım/renk/tipografi değişikliği. **Renk paletine, rozet renklerine ve tipografiye hiç dokunulmayacak** — mevcut hâlinde bir sorun yok.
 - Görselleri yeniden boyutlandırma, yeniden kodlama veya sıkıştırma. Çözünürlükler zaten yüksek değil; bozulmayacak.
 - **Masaüstü/mobil içerik paritesi değişiklikleri.** Farklar [`NOTLAR/MOBIL-MASAUSTU-FARKI.md`](NOTLAR/MOBIL-MASAUSTU-FARKI.md) dosyasında raporlandı; bir kısmı bilinçli olarak çıkarılmış. Hangisinin geri geleceğine Talat karar verir.
-- `CV_URL` boş olduğu için görünmeyen CV düğmesini kaldırmak. **Kasıtlı**: PDF yüklendiğinde düğme kendiliğinden görünecek, koşullu render doğru çalışıyor (`src/App.jsx:1597`).
+- `CV_URL` boş olduğu için görünmeyen CV düğmesini kaldırmak. **Kasıtlı**: PDF yüklendiğinde düğme kendiliğinden görünecek, koşullu render doğru çalışıyor. *(29 Eylül 2026: PDF'ler eklendi, düğme artık dile göre TR öz geçmişi / EN CV'yi indiriyor.)*
 - `COPY` içindeki kullanılmayan `avail` anahtarına dokunmak.
 - Yeni bağımlılık (dependency) ekleme — G9 hariç, orada da en hafif seçenek ve yalnızca `devDependencies`.
 
