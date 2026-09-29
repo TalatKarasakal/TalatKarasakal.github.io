@@ -187,6 +187,20 @@ const PROJECTS = [
   repoUrl: "https://github.com/TalatKarasakal/oyun-kutuphanesi-uygulamasi",
   period: "Nis – May 2025", periodEn: "Apr – May 2025"
 },
+{
+  id: "p06",
+  tier: "project",
+  title: "BIST / TEFAS Portföy Takip Uygulaması",
+  status: "devam",
+  roleTr: "Kişisel proje · tek kişilik",
+  roleEn: "Personal project · solo",
+  descTr: "BIST hisseleri ve TEFAS fonları için masaüstü portföy takip uygulaması. XIRR, Sharpe oranı, maksimum düşüş ve volatilite metrikleri hesaplanıyor; maliyet bazı ağırlıklı ortalama, FIFO veya LIFO olarak seçilebiliyor. Arayüz MVVM düzeninde kurulu, açık ve karanlık palet birlikte geliyor, macOS ve Windows için ayrı paketler üretiliyor.",
+  descEn: "A desktop portfolio tracker for Turkish equities (BIST) and funds (TEFAS). It computes XIRR, Sharpe ratio, maximum drawdown and volatility, with weighted-average, FIFO or LIFO cost basis. The interface follows an MVVM structure, ships with paired light and dark palettes, and is packaged separately for macOS and Windows.",
+  tags: ["Python", "PySide6", "SQLAlchemy", "SQLite", "PyQtGraph"],
+  category: "Masaüstü / Finans",
+  repoUrl: "https://github.com/TalatKarasakal/portfoy-takip-uygulamasi",
+  period: "2026"
+},
 { id: "p07", status: "devam", tier: "personal", title: "Kağanlar Çağı",
   descTr: "Türk devletleri temalı gerçek zamanlı strateji oyunu. Simülasyon çekirdeği deterministik çalışıyor: aynı başlangıç durumu ve aynı girdi dizisi her çalıştırmada aynı sonucu veriyor. Uygarlık, birim ve bina tanımları koddan ayrı JSON dosyalarında tutuluyor.",
   descEn: "A real-time strategy game themed on Turkic states. The simulation core is deterministic: the same initial state and input sequence produce the same result on every run. Civilisation, unit and building definitions live in JSON files, separate from the code.",
@@ -199,20 +213,11 @@ const PROJECTS = [
   tags: ["Python", "PySide6", "SQLAlchemy", "Ollama"], category: "Masaüstü",
   repoUrl: "https://github.com/TalatKarasakal/kariyer-takip-uygulamasi", period: "2026" },
 
-{
-  id: "p06",
-  tier: "personal",
-  title: "BIST / TEFAS Portföy Takip Uygulaması",
-  status: "devam",
-  roleTr: "Kişisel proje · tek kişilik",
-  roleEn: "Personal project · solo",
-  descTr: "BIST hisseleri ve TEFAS fonları için masaüstü portföy takip uygulaması. XIRR, Sharpe oranı, maksimum düşüş ve volatilite metrikleri hesaplanıyor; maliyet bazı ağırlıklı ortalama, FIFO veya LIFO olarak seçilebiliyor. Arayüz MVVM düzeninde kurulu, açık ve karanlık palet birlikte geliyor, macOS ve Windows için ayrı paketler üretiliyor.",
-  descEn: "A desktop portfolio tracker for Turkish equities (BIST) and funds (TEFAS). It computes XIRR, Sharpe ratio, maximum drawdown and volatility, with weighted-average, FIFO or LIFO cost basis. The interface follows an MVVM structure, ships with paired light and dark palettes, and is packaged separately for macOS and Windows.",
-  tags: ["Python", "PySide6", "SQLAlchemy", "SQLite", "PyQtGraph"],
-  category: "Masaüstü / Finans",
-  repoUrl: "https://github.com/TalatKarasakal/portfoy-takip-uygulamasi",
-  period: "2026"
-},
+{ id: "p09", status: "devam", tier: "personal", title: "Yapılacaklar Yöneticisi",
+  descTr: "Yerel bir dil modeliyle öncelik ve zaman planı öneren yapılacaklar uygulaması. Öneriler ayrı bir panelde birikiyor ve kabul edilene kadar görev listesine yazılmıyor — model hiçbir şeyi kendiliğinden değiştirmiyor.",
+  descEn: "A to-do application that proposes priorities and time blocks through a local language model. Suggestions collect in a separate panel and are not written to the task list until accepted — the model changes nothing on its own.",
+  tags: ["Python", "PySide6", "Ollama"], category: "Masaüstü",
+  repoUrl: "https://github.com/TalatKarasakal/yapilacaklar", period: "2026" },
 
 { id: "p10", status: "devam", tier: "personal", title: "Spor ve Diyet Planlayıcı",
   descTr: "Antrenman ve beslenme planı üreten masaüstü uygulaması. Plan üretilirken eldeki ekipman, sakatlık geçmişi ve diyet kısıtları girdi olarak alınıyor. İlerleme PyQtGraph ile çizilen grafikler üzerinden izleniyor.",
