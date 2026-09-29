@@ -133,7 +133,7 @@ const PROJECTS = [
       alt: "Anket düzenleme ekranı. Solda başlık ve açıklama alanları ile sırası değiştirilebilen dört soru: ölçek, evet/hayır, çoktan seçmeli ve açık uçlu. Sağda izin verilen soru tipleri, anonim yanıt ve değerlendirme ayarları, erişim ve bitiş seçenekleri; en altta Kaydet, Yayına al ve Anketi sil düğmeleri.",
       altEn: "Survey editing screen. On the left, title and description fields and four reorderable questions: scale, yes/no, multiple choice and open-ended. On the right, allowed question types, anonymous response and rating settings, access and end-date options; at the bottom, Save, Publish and Delete survey buttons." }
   ],
-  tier: "project",
+  tier: "featured",
   title: "Anket Uygulaması",
   roleTr: "Probel stajı · bağımsız Ar-Ge projesi",
   roleEn: "Probel internship · independent R&D project",

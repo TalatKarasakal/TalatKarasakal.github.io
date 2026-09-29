@@ -19,7 +19,7 @@ Sonuç: "hangi klasörde şu veri var" biçimindeki sorular geçersiz. Doğru so
 
 | Ne | Satır | Kayıt |
 |---|---|---|
-| `PROJECTS` | 23 | 14 proje — 3 `featured`, 3 `project`, 8 `personal`; 6'sında `media` dizisi, 13'ünde `repoUrl`, 1'inde `docUrl` (PDF, `public/belgeler/`) |
+| `PROJECTS` | 23 | 15 proje — 4 `featured`, 3 `project`, 8 `personal`; 7'sinde `media` dizisi, 14'ünde `repoUrl`, 1'inde `docUrl` (PDF, `public/belgeler/`) |
 | `STATUS_LABELS` | 228 | `elendi` / `tamamlandi` / `devam`, TR+EN |
 | `SKILLS` | 237 | 5 grup |
 | `LANGUAGES` | 259 | 3 dil (İngilizce B2, Almanca A2, Fransızca başlangıç) |
