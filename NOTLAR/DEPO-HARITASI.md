@@ -26,7 +26,7 @@ Sonuç: "hangi klasörde şu veri var" biçimindeki sorular geçersiz. Doğru so
 | `CERTIFICATES` | 268 | 10 sertifika |
 | `EXPERIENCE` | 344 | 6 kayıt — hepsinde `location`; 1'inde `media` ve `projectId` |
 | `SOCIALS` | 348 | 2 (GitHub, LinkedIn) |
-| `EMAIL` / `GITHUB_URL` / `CV_URL` | 410-418 | `CV_URL` dile göre: `tr` → `public/belgeler/Talat_Karasakal_Oz_Gecmis.pdf`, `en` → `public/belgeler/Talat_Karasakal_CV.pdf`. Bir dilin değeri boşsa o dilde İletişim'deki düğme render edilmez |
+| `EMAIL` / `GITHUB_URL` / `CV_FILES` | 410-424 | `CV_FILES`: dil başına bir öz geçmiş (`tr` → `public/belgeler/Talat_Karasakal_Oz_Gecmis.pdf`, `en` → `public/belgeler/Talat_Karasakal_CV.pdf`). Üst bardaki indirme düğmesi bunları `CvSheet` panelinde kart olarak gösterir; sayfanın dilindeki kart önce gelir |
 
 ## Çeviri sözlüğü — `src/App.jsx`
 

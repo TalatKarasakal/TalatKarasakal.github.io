@@ -414,13 +414,12 @@ const EXPERIENCE = [
    ------------------------------------------------------------------------- */
 const EMAIL = "talatkarasakal@outlook.com.tr";
 const GITHUB_URL = "https://github.com/TalatKarasakal";
-// Dile gore ozgecmis: TR modda Turkce, EN modda Ingilizce PDF. Dosya adlari
-// indirilen dosyanin adi oldugu icin ozgun adlariyla duruyor. Bir dilin
-// degeri bos birakilirsa o dilde dugme render edilmez.
-const CV_URL = {
-  tr: "belgeler/Talat_Karasakal_Oz_Gecmis.pdf",
-  en: "belgeler/Talat_Karasakal_CV.pdf"
-};
+// Ozgecmisler: ust bardaki indirme dugmesi bunlari kart olarak gosterir.
+// Dosya adlari indirilen dosyanin adi oldugu icin ozgun adlariyla duruyor.
+// title belgenin kendi basligi, cevrilmez. Sayfanin dilindeki kart once gelir.
+const CV_FILES = [
+{ lang: "tr", title: "Öz Geçmiş", src: "belgeler/Talat_Karasakal_Oz_Gecmis.pdf" },
+{ lang: "en", title: "CV", src: "belgeler/Talat_Karasakal_CV.pdf" }];
 const SOCIALS = [
 { key: "GitHub", handle: "@TalatKarasakal", href: GITHUB_URL },
 { key: "LinkedIn", handle: "/in/talat-karasakal", href: "https://www.linkedin.com/in/talat-karasakal-077368251/" }];
@@ -442,6 +441,7 @@ const COPY = {
     ogDescription: "TEKNOFEST nesne tespiti hattı, Java masaüstü uygulamaları ve bilgisayarlı görü projeleri. İzmir Ekonomi Üniversitesi.",
     nav: { hero: "Ana Sayfa", about: "Hakkımda", projects: "Projeler", certificates: "Sertifikalar", experience: "Deneyim", contact: "İletişim" },
     menuLabel: "Menü",
+    settingsLabel: "Dil ve tema",
     cta: "Staja açık",
     ctaTitle: ["Aydınlık moda geç", "Karanlık moda geç"],
     portfolio: "PORTFOLYO", locKey: "KONUM",
@@ -483,7 +483,11 @@ const COPY = {
     contactTitle: "İletişim",
     contactLede: "Staj fırsatları ve proje iş birlikleri için bana ulaşabilirsiniz.",
     emailLabel: "E-POSTA",
-    cvLabel: "Özgeçmişi indir (PDF)",
+    cvButton: "Öz geçmişi indir",
+    cvTitle: "Öz geçmiş",
+    cvLede: "İki dilde hazırlandı; istediğiniz sürümü indirebilirsiniz.",
+    cvDownload: "İndir",
+    langNames: { tr: "Türkçe", en: "İngilizce" },
     avail: "Ekim 2026'dan itibaren staja açığım",
     socialLabels: { GitHub: "GitHub", LinkedIn: "LinkedIn", Email: "E-posta" },
     footer: ["© 2026 — Talat Karasakal", "Türkiye"]
@@ -498,6 +502,7 @@ const COPY = {
     // EN modda etiketler index.html'deki degeriyle kalir.
     nav: { hero: "Index", about: "About", projects: "Projects", certificates: "Certificates", experience: "Experience", contact: "Contact" },
     menuLabel: "Menu",
+    settingsLabel: "Language and theme",
     cta: "Open to internships",
     ctaTitle: ["Switch to light", "Switch to dark"],
     portfolio: "PORTFOLIO", locKey: "LOCATION",
@@ -539,7 +544,11 @@ const COPY = {
     contactTitle: "Contact",
     contactLede: "Get in touch about internship opportunities and project collaborations.",
     emailLabel: "EMAIL",
-    cvLabel: "Download CV (PDF)",
+    cvButton: "Download CV",
+    cvTitle: "CV",
+    cvLede: "Available in two languages; download whichever version you prefer.",
+    cvDownload: "Download",
+    langNames: { tr: "Turkish", en: "English" },
     avail: "Open to internships from October 2026",
     socialLabels: { GitHub: "GitHub", LinkedIn: "LinkedIn", Email: "Email" },
     footer: ["© 2026 — Talat Karasakal", "Türkiye"]
@@ -879,7 +888,7 @@ function useRevealRef() {
    ========================================================================= */
 const SECTIONS = ["hero", "about", "projects", "certificates", "experience", "contact"];
 
-function Nav({ active, onJump, theme, onToggleTheme, lang, onLang, t, showBrand }) {
+function Nav({ active, onJump, theme, onToggleTheme, lang, onLang, t, showBrand, onOpenCv, cvOpen }) {
   const [menu, setMenu] = useState(false);
   useEffect(() => {
     if (!menu) return;
@@ -909,33 +918,20 @@ function Nav({ active, onJump, theme, onToggleTheme, lang, onLang, t, showBrand 
             </li>
           )}
         </ul>
+        {/* Sirasi: ozgecmis indirme · staja acik · menu (dil, tema ve dar
+            ekranda bolumler). Dil ve tema yalnizca menu panelinde. */}
         <div className="nav-right">
-          <button className="nav-menu-btn" aria-label={t.menuLabel} aria-expanded={menu} onClick={() => setMenu(!menu)}>
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M2 4h12M2 8h12M2 12h12" strokeLinecap="round" /></svg>
-          </button>
-          <div className="lang-switch nav-btn" role="group" aria-label="Language">
-            <button className={"lang-opt" + (lang === "tr" ? " is-active" : "")} onClick={() => onLang("tr")}>TR</button>
-            <button className={"lang-opt" + (lang === "en" ? " is-active" : "")} onClick={() => onLang("en")}>EN</button>
-            <span className="lang-pill" data-pos={lang} />
-          </div>
-          <button className="theme-toggle nav-btn" onClick={onToggleTheme}
-          aria-label={theme === "dark" ? t.ctaTitle[0] : t.ctaTitle[1]}
-          title={theme === "dark" ? t.ctaTitle[0] : t.ctaTitle[1]}>
-            {theme === "dark" ?
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                <circle cx="12" cy="12" r="4" />
-                <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" strokeLinecap="round" />
-              </svg> :
-
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                <path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" strokeLinejoin="round" />
-              </svg>
-            }
+          <button className="nav-icon-btn" onClick={() => {setMenu(false);onOpenCv();}}
+          aria-label={t.cvButton} title={t.cvButton} aria-haspopup="dialog" aria-expanded={cvOpen}>
+            <DownloadIcon />
           </button>
           <a className="nav-cta nav-btn" href="#contact" onClick={(e) => {e.preventDefault();onJump("contact");}}>
             <span>{t.cta}</span>
             <span className="pulse" />
           </a>
+          <button className="nav-menu-btn" aria-label={t.menuLabel} aria-expanded={menu} onClick={() => setMenu(!menu)}>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M2 4h12M2 8h12M2 12h12" strokeLinecap="round" /></svg>
+          </button>
         </div>
       </div>
       {menu &&
@@ -945,7 +941,7 @@ function Nav({ active, onJump, theme, onToggleTheme, lang, onLang, t, showBrand 
               <span>{it.num}</span><span>{it.label}</span>
             </button>
         )}
-          <div className="nav-panel-tools">
+          <div className="nav-panel-tools" role="group" aria-label={t.settingsLabel}>
             <div className="lang-switch nav-btn" role="group" aria-label="Language">
               <button className={"lang-opt" + (lang === "tr" ? " is-active" : "")} onClick={() => onLang("tr")}>TR</button>
               <button className={"lang-opt" + (lang === "en" ? " is-active" : "")} onClick={() => onLang("en")}>EN</button>
@@ -1375,6 +1371,46 @@ function ProjectLinks({ project, t }) {
         </a>
       }
     </span>);
+
+}
+
+function DownloadIcon() {
+  return <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M8 2.5v7.5M4.75 6.75 8 10l3.25-3.25M2.75 13.25h10.5" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+}
+
+// Ust bardaki indirme dugmesinin actigi panel: her dil icin bir kart,
+// karta tiklamak o PDF'i indirir. Sayfanin dilindeki kart once gelir.
+function CvSheet({ open, lang, t, onClose }) {
+  const panelRef = useRef(null);
+  const closeBtnRef = useRef(null);
+  useSheetBehavior(open, onClose, panelRef, closeBtnRef);
+  if (!open) return null;
+  const files = CV_FILES.filter((f) => f.lang === lang).concat(CV_FILES.filter((f) => f.lang !== lang));
+  return (
+    <div className="sheet-backdrop" onClick={onClose}>
+      <div className="sheet-panel is-cv" id="cv-sheet" ref={panelRef} role="dialog" aria-modal="true" aria-labelledby="cv-sheet-title" onClick={(e) => e.stopPropagation()}>
+        <div className="sheet-handle" aria-hidden="true" />
+        <button className="sheet-close" ref={closeBtnRef} onClick={onClose} aria-label={t.sheetClose}>×</button>
+        <div className="sheet-head">
+          <h3 id="cv-sheet-title" className="sheet-title">{t.cvTitle}</h3>
+          <p className="cv-lede">{t.cvLede}</p>
+        </div>
+        <ul className="cv-cards">
+          {files.map((f) =>
+          <li key={f.lang}>
+              <a className="cv-card" href={f.src} download hrefLang={f.lang}>
+                <span className="cv-card-lang">{t.langNames[f.lang]}</span>
+                <span className="cv-card-title">Talat Karasakal — {f.title}</span>
+                <span className="cv-card-foot">
+                  <span className="cv-card-type">PDF</span>
+                  <span className="cv-card-action">{t.cvDownload}<DownloadIcon /></span>
+                </span>
+              </a>
+            </li>
+          )}
+        </ul>
+      </div>
+    </div>);
 
 }
 
@@ -1840,8 +1876,7 @@ function Experience({ t, lang }) {
 /* =========================================================================
    CONTACT
    ========================================================================= */
-function Contact({ t, lang }) {
-  const cvUrl = CV_URL[lang];
+function Contact({ t }) {
   return (
     <section id="contact" className="section contact" data-screen-label="Contact">
       <Divider kind="geyik" />
@@ -1854,11 +1889,6 @@ function Contact({ t, lang }) {
             <span className="mailto-addr">{EMAIL}</span>
             <span className="mailto-arrow">↗</span>
           </a>
-          {cvUrl &&
-          <div className="cv-btn">
-              <a className="btn btn-ghost" href={cvUrl} download rel="noopener">{t.cvLabel}</a>
-            </div>
-          }
         </div>
         <ul className="socials reveal">
           {SOCIALS.map((s, i) =>
@@ -1913,6 +1943,7 @@ function App() {
     } catch (e) {return "tr";}
   });
   const t = COPY[lang];
+  const [cvOpen, setCvOpen] = useState(false);
   const firstTheme = useRef(true);
 
   useEffect(() => {
@@ -2020,7 +2051,9 @@ function App() {
     <div className="app">
       <ScrollDriver />
       <Atmosphere />
-      <Nav active={active} onJump={jump} theme={theme} onToggleTheme={() => {beginScrollJump();setTheme(theme === "dark" ? "light" : "dark");}} lang={lang} onLang={(l) => {beginScrollJump();setLang(l);}} t={t} showBrand={!heroInView} />
+      <Nav active={active} onJump={jump} theme={theme} onToggleTheme={() => {beginScrollJump();setTheme(theme === "dark" ? "light" : "dark");}} lang={lang} onLang={(l) => {beginScrollJump();setLang(l);}} t={t} showBrand={!heroInView}
+      onOpenCv={() => setCvOpen(true)} cvOpen={cvOpen} />
+      <CvSheet open={cvOpen} lang={lang} t={t} onClose={() => setCvOpen(false)} />
       <main>
         <Hero onJump={jump} t={t} />
         <About t={t} lang={lang} />
@@ -2030,7 +2063,7 @@ function App() {
         <Certificates t={t} lang={lang} />
         <Divider kind="at" />
         <Experience t={t} lang={lang} />
-        <Contact t={t} lang={lang} />
+        <Contact t={t} />
       </main>
     </div>);
 
