@@ -485,7 +485,6 @@ const COPY = {
     emailLabel: "E-POSTA",
     cvButton: "Öz geçmişi indir",
     cvTitle: "Öz geçmiş",
-    cvLede: "İki dilde hazırlandı; istediğiniz sürümü indirebilirsiniz.",
     cvDownload: "İndir",
     langNames: { tr: "Türkçe", en: "İngilizce" },
     avail: "Ekim 2026'dan itibaren staja açığım",
@@ -546,7 +545,6 @@ const COPY = {
     emailLabel: "EMAIL",
     cvButton: "Download CV",
     cvTitle: "CV",
-    cvLede: "Available in two languages; download whichever version you prefer.",
     cvDownload: "Download",
     langNames: { tr: "Turkish", en: "English" },
     avail: "Open to internships from October 2026",
@@ -1393,7 +1391,6 @@ function CvSheet({ open, lang, t, onClose }) {
         <button className="sheet-close" ref={closeBtnRef} onClick={onClose} aria-label={t.sheetClose}>×</button>
         <div className="sheet-head">
           <h3 id="cv-sheet-title" className="sheet-title">{t.cvTitle}</h3>
-          <p className="cv-lede">{t.cvLede}</p>
         </div>
         <ul className="cv-cards">
           {files.map((f) =>

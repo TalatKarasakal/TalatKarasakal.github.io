@@ -4080,6 +4080,21 @@
   .nav-panel { right: calc(50% - 780px); }
 }
 
+/* Panel koseleri mobildeki gibi yuvarlak (bkz. DUZELTME 10): panel 22px,
+   icteki bolum maddeleri 14px. Dil ve tema kendi pill / daire bicimini
+   korur. */
+@media (min-width: 901px) {
+  .nav-panel {
+    border-radius: 22px;
+    overflow: hidden;
+    padding: 10px;
+  }
+
+  .nav-panel .nav-panel-item {
+    border-radius: 14px;
+  }
+}
+
 @media (min-width: 1181px) {
   .nav-panel { min-width: 0; }
   .nav-panel-item { display: none !important; }
@@ -4112,12 +4127,6 @@
    Kart dili .cert-row / .exp-row desenini tekrar ediyor. */
 .sheet-panel.is-cv {
   max-width: 560px;
-}
-
-.cv-lede {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--text-dim);
 }
 
 .cv-cards {
