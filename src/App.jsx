@@ -295,37 +295,31 @@ const LANGUAGES = [
 
 /* -------------------------------------------------------------------------
    CERTIFICATES — *En variants fall back to the base field.
-   Liste LinkedIn'deki "Lisanslar ve sertifikalar" bolumuyle esit tutuluyor
-   (3 Ekim 2026'da 18 kayit). Belgelerin kaynagi kariyer-vault/_ekler.
-   featured: true → ana sayfada gorunen kisa liste; digerleri "Tum
-     sertifikalar" dugmesiyle aciliyor. Siralama: once one cikanlar, sonra
-     yeniden eskiye.
+   Liste LinkedIn'deki "Lisanslar ve sertifikalar" bolumunden secildi;
+   topluluk organizasyon belgeleri, ogrenci elciligi ve IEU Yapay Zekaya
+   Giris bilerek yok. Belgelerin kaynagi kariyer-vault/_ekler.
+   featured: true → ana sayfada gorunen kisa liste, her kurumdan yalnizca
+     bir sertifika. Ayni kurumun digerleri "Tum sertifikalar" ile acilir.
+   Siralama elle: once one cikanlar (Cisco basta), sonra Veri Bilimine
+     Giris (masaustunde ikinci satirin basi), sonra yeniden eskiye.
    image: "" → bas harfli yer tutucu kutu; kart yine tiklanir.
    note / noteEn → panelde gorselin altinda kisa aciklama.
    verifyUrl → panelde "Belgeyi dogrula" baglantisi; yoksa render edilmez.
    ------------------------------------------------------------------------- */
 const CERTIFICATES = [
-{ featured: true, name: "Claude Platform 101", originalName: "Claude Platform 101",
-  issuer: "Anthropic", date: "Ağu 2026", dateEn: "Aug 2026",
-  image: "assets/sertifikalar/anthropic-claude-platform-101.webp",
-  note: "Anthropic'in geliştiricilere yönelik Claude Platform kursu: model seçimi, tool use, extended thinking, MCP sunucuları, bağlam yönetimi ve yönetilen ajan akışlarıyla Claude API'nin uçtan uca kullanımı.",
-  noteEn: "Anthropic's developer course on the Claude Platform: model selection, tool use, extended thinking, MCP servers, context management and managed agent workflows, covering the Claude API end to end.",
-  verifyUrl: "https://academy.claude.com/verify/67cbb758558fd2fe6be7ddc4879c442a" },
-
-{ featured: true, name: "Model Context Protocol: İleri Konular", nameEn: "Model Context Protocol: Advanced Topics",
-  originalName: "Model Context Protocol: Advanced Topics",
-  issuer: "Anthropic", date: "Eyl 2026", dateEn: "Sep 2026",
-  image: "assets/sertifikalar/anthropic-mcp-ileri-konular.webp",
-  note: "Üretim düzeyinde MCP: sampling, bildirimler (notifications) ve roots; istemci ile sunucu arasındaki çift yönlü iletişim kalıpları.",
-  noteEn: "Production-level MCP: sampling, notifications and roots, and the patterns for two-way communication between client and server.",
-  verifyUrl: "https://academy.claude.com/verify/8ebdba2146dc918ad9c3dd86258c3db8" },
-
 { featured: true, name: "Modern Yapay Zekâya Giriş", nameEn: "Introduction to Modern AI",
   originalName: "Introduction to Modern AI",
   issuer: "Cisco", date: "Ara 2024", dateEn: "Dec 2024", image: "assets/sertifikalar/cisco-modern-ai.webp",
   note: "Cisco Networking Academy üzerinden tamamlanan, modern yapay zekânın temel kavramlarını ele alan giriş kursu.",
   noteEn: "An introductory course on the core concepts of modern AI, completed through Cisco Networking Academy.",
   verifyUrl: "https://www.credly.com/badges/29ae1d29-5ff5-4086-a9c2-02a8ade229ae" },
+
+{ featured: true, name: "Claude Platform 101", originalName: "Claude Platform 101",
+  issuer: "Anthropic", date: "Ağu 2026", dateEn: "Aug 2026",
+  image: "assets/sertifikalar/anthropic-claude-platform-101.webp",
+  note: "Anthropic'in geliştiricilere yönelik Claude Platform kursu: model seçimi, tool use, extended thinking, MCP sunucuları, bağlam yönetimi ve yönetilen ajan akışlarıyla Claude API'nin uçtan uca kullanımı.",
+  noteEn: "Anthropic's developer course on the Claude Platform: model selection, tool use, extended thinking, MCP servers, context management and managed agent workflows, covering the Claude API end to end.",
+  verifyUrl: "https://academy.claude.com/verify/67cbb758558fd2fe6be7ddc4879c442a" },
 
 { featured: true, name: "ISO 9001:2015 Kalite Yönetim Sistemi", nameEn: "ISO 9001:2015 Quality Management Systems",
   issuer: "Sigmacert Global", date: "Mar 2026", dateEn: "Mar 2026", image: "assets/sertifikalar/sigmacert-iso-9001.webp",
@@ -337,6 +331,27 @@ const CERTIFICATES = [
   note: "Çevik (Agile) proje yönetiminin temel prensipleri ve uygulaması: esnek planlama, yinelemeli geliştirme ve ekip içi iş birliği.",
   noteEn: "The principles and practice of agile project management: flexible planning, iterative development and collaboration within the team.",
   verifyUrl: "https://www.btkakademi.gov.tr/portal/certificate/validate?certificateId=bx1hLoLxNB" },
+
+{ featured: true, name: "Temel Bilgi Güvenliği", nameEn: "Fundamentals of Information Security",
+  issuer: "İzmir Ekonomi Üniversitesi", issuerEn: "Izmir University of Economics",
+  date: "Kas 2024", dateEn: "Nov 2024", image: "assets/sertifikalar/ieu-bilgi-guvenligi.webp",
+  note: "Çevrim içi mikro-yeterlilik kursu: bilgi güvenliğinin temel kavramları, veri gizliliği, parola ve kimlik doğrulama güvenliği ile yaygın saldırı türlerine karşı korunma.",
+  noteEn: "An online micro-credential course: the fundamentals of information security, data privacy, password and authentication security, and protection against common attacks." },
+
+{ name: "Veri Bilimine Giriş", nameEn: "Introduction to Data Science",
+  originalName: "Introduction to Data Science",
+  issuer: "Cisco", date: "Eki 2024", dateEn: "Oct 2024", image: "assets/sertifikalar/cisco-veri-bilimi.jpg",
+  note: "Cisco Networking Academy üzerinden tamamlanan veri bilimine giriş kursu.",
+  noteEn: "An introductory data science course completed through Cisco Networking Academy.",
+  verifyUrl: "https://www.credly.com/badges/b01c27aa-1c6a-4cd9-a1f7-452104e9aafd" },
+
+{ name: "Model Context Protocol: İleri Konular", nameEn: "Model Context Protocol: Advanced Topics",
+  originalName: "Model Context Protocol: Advanced Topics",
+  issuer: "Anthropic", date: "Eyl 2026", dateEn: "Sep 2026",
+  image: "assets/sertifikalar/anthropic-mcp-ileri-konular.webp",
+  note: "Üretim düzeyinde MCP: sampling, bildirimler (notifications) ve roots; istemci ile sunucu arasındaki çift yönlü iletişim kalıpları.",
+  noteEn: "Production-level MCP: sampling, notifications and roots, and the patterns for two-way communication between client and server.",
+  verifyUrl: "https://academy.claude.com/verify/8ebdba2146dc918ad9c3dd86258c3db8" },
 
 { name: "Model Context Protocol'e Giriş", nameEn: "Introduction to Model Context Protocol",
   originalName: "Introduction to Model Context Protocol",
@@ -353,13 +368,6 @@ const CERTIFICATES = [
   noteEn: "Anthropic's AI literacy programme: using the 4D framework of delegation, description, discernment and diligence to verify output and set the limits of responsibility when working with AI tools.",
   verifyUrl: "https://verify.skilljar.com/c/pbib4nsqsy8y" },
 
-{ name: "Organizasyon Ekibi Katkı Sertifikası", nameEn: "Organising Team Contribution Certificate",
-  issuer: "Endüstri Sistemleri Topluluğu", issuerEn: "Industrial Systems Community",
-  date: "Nis 2026", dateEn: "Apr 2026", image: "",
-  note: "Topluluğun 2025-2026 döneminde düzenlediği etkinliklerin planlama, yürütme ve koordinasyonunda organizasyon ekibinde yer aldığım için verildi.",
-  noteEn: "Awarded for serving on the organising team for the planning, running and coordination of the community's 2025–2026 events.",
-  verifyUrl: "https://verified.sertifier.com/en/verify/26051977170925/" },
-
 { name: "Kariyer ve Yetkinlik Buluşmaları", nameEn: "Career and Competency Meetings",
   issuer: "Savunma Sanayii Akademi", issuerEn: "Defence Industry Academy",
   date: "Ara 2024 – Mar 2026", dateEn: "Dec 2024 – Mar 2026", image: "assets/sertifikalar/savunma-sanayii-akademi.jpg",
@@ -372,58 +380,17 @@ const CERTIFICATES = [
   noteEn: "A hands-on online course on project planning, scheduling, resource management and progress tracking in Microsoft Project.",
   verifyUrl: "https://www.btkakademi.gov.tr/portal/certificate/validate?certificateId=GoDfm6XJGv" },
 
-{ name: "InterCView Mülakat Simülasyonları · Organizasyon", nameEn: "InterCView Interview Simulations · Organising Team",
-  issuer: "Endüstri Sistemleri Topluluğu", issuerEn: "Industrial Systems Community",
-  date: "Ara 2025", dateEn: "Dec 2025", image: "assets/sertifikalar/intercview-organizasyon-2025.webp",
-  note: "İzmir Ekonomi Üniversitesi'nde düzenlenen mülakat simülasyonu etkinliğinin organizasyon ekibinde; etkinlik günü katılımcı yönlendirmesi ve akış koordinasyonu.",
-  noteEn: "Organising team for the interview simulation event at Izmir University of Economics: guiding participants and coordinating the flow on the day.",
-  verifyUrl: "https://verified.sertifier.com/en/verify/79231432913647/" },
-
-{ name: "Yapay Zekâya Giriş", nameEn: "Introduction to Artificial Intelligence",
-  issuer: "İEÜ Öğretme ve Öğrenme Merkezi", issuerEn: "IUE Teaching and Learning Center",
-  date: "Eki 2025", dateEn: "Oct 2025", image: "",
-  note: "Yapay zekâ ve üretken yapay zekânın temel kavramları, alt alanları ve üretken modellerin çalışma prensipleri; veri gizliliği, model önyargısı ve telif hakları gibi etik boyutlar.",
-  noteEn: "The core concepts and subfields of AI and generative AI and how generative models work, along with ethical aspects such as data privacy, model bias and copyright.",
-  verifyUrl: "https://api.eu.badgr.io/public/assertions/v0b6GDsyRcKxJkM0_HeBNA" },
-
 { name: "Kuika Designer ve Builder", nameEn: "Kuika Designer and Builder",
   issuer: "İEÜ ÖÖM · Kuika Akademi", issuerEn: "IUE Lifelong Learning · Kuika Academy",
   date: "Eyl 2025", dateEn: "Sep 2025", image: "assets/sertifikalar/kuika-designer-builder.jpg",
   note: "Yedi haftalık programda alınan Designer 1 ve Builder 1 sertifikaları: düşük kodlu (low-code) platformda arayüz tasarımı, veri modelleme ve uygulama akışı kurgulama.",
   noteEn: "Designer 1 and Builder 1 certificates from a seven-week programme: interface design, data modelling and application flows on a low-code platform." },
 
-{ name: "Tanıtım Günleri Öğrenci Elçisi", nameEn: "Open House Student Ambassador",
-  issuer: "İzmir Ekonomi Üniversitesi", issuerEn: "Izmir University of Economics",
-  date: "Ağu 2025", dateEn: "Aug 2025", image: "assets/sertifikalar/ieu-ogrenci-elcisi.webp",
-  note: "Üniversitenin tanıtım günlerinde öğrenci elçisi olarak görev aldığım için verilen belge.",
-  noteEn: "Issued for serving as a student ambassador at the university's open house days.",
-  verifyUrl: "https://drdogrulama.sanayi.gov.tr/en/verify/02289074271874/" },
-
 { name: "Makine Öğrenmesine Giriş Çalıştayı", nameEn: "Introduction to Machine Learning Workshop",
   issuer: "İEÜ Yazılım Topluluğu", issuerEn: "IUE Software Community",
   date: "Mar 2025", dateEn: "Mar 2025", image: "assets/sertifikalar/ieu-makine-ogrenmesi-calistayi.jpg",
   note: "İEÜ Yazılım Topluluğu'nun düzenlediği makine öğrenmesine giriş çalıştayına katılım belgesi.",
-  noteEn: "Participation certificate for the introduction to machine learning workshop run by the IUE Software Community." },
-
-{ name: "interCView Mülakat Simülasyonu · Organizasyon Takımı", nameEn: "interCView Interview Simulation · Organising Team",
-  issuer: "Endüstri Sistemleri Topluluğu", issuerEn: "Industrial Systems Community",
-  date: "Ara 2024", dateEn: "Dec 2024", image: "assets/sertifikalar/intercview-organizasyon-2024.webp",
-  note: "7 Aralık 2024'te düzenlenen mülakat simülasyonu etkinliğinin organizasyonundaki emek ve katkı için verilen organizasyon takımı sertifikası.",
-  noteEn: "Organising team certificate for the work put into running the interview simulation event on 7 December 2024.",
-  verifyUrl: "https://verified.sertifier.com/en/verify/61523398237510/" },
-
-{ name: "Temel Bilgi Güvenliği", nameEn: "Fundamentals of Information Security",
-  issuer: "İzmir Ekonomi Üniversitesi", issuerEn: "Izmir University of Economics",
-  date: "Kas 2024", dateEn: "Nov 2024", image: "assets/sertifikalar/ieu-bilgi-guvenligi.jpg",
-  note: "Çevrim içi mikro-yeterlilik kursu: bilgi güvenliğinin temel kavramları, veri gizliliği, parola ve kimlik doğrulama güvenliği ile yaygın saldırı türlerine karşı korunma.",
-  noteEn: "An online micro-credential course: the fundamentals of information security, data privacy, password and authentication security, and protection against common attacks." },
-
-{ name: "Veri Bilimine Giriş", nameEn: "Introduction to Data Science",
-  originalName: "Introduction to Data Science",
-  issuer: "Cisco", date: "Eki 2024", dateEn: "Oct 2024", image: "assets/sertifikalar/cisco-veri-bilimi.jpg",
-  note: "Cisco Networking Academy üzerinden tamamlanan veri bilimine giriş kursu.",
-  noteEn: "An introductory data science course completed through Cisco Networking Academy.",
-  verifyUrl: "https://www.credly.com/badges/b01c27aa-1c6a-4cd9-a1f7-452104e9aafd" }];
+  noteEn: "Participation certificate for the introduction to machine learning workshop run by the IUE Software Community." }];
 
 
 /* -------------------------------------------------------------------------
