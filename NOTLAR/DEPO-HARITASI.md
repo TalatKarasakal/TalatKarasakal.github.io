@@ -19,11 +19,11 @@ Sonuç: "hangi klasörde şu veri var" biçimindeki sorular geçersiz. Doğru so
 
 | Ne | Satır | Kayıt |
 |---|---|---|
-| `PROJECTS` | 23 | 15 proje — 4 `featured`, 3 `project`, 8 `personal`; 7'sinde `media` dizisi, 14'ünde `repoUrl`, 1'inde `docUrl` (PDF, `public/belgeler/`) |
+| `PROJECTS` | 23 | 10 proje — 3 `featured`, 3 `project`, 4 `personal`; 7'sinde `media` dizisi, 9'unda `repoUrl`, 1'inde `docUrl` (PDF, `public/belgeler/`) |
 | `STATUS_LABELS` | 228 | `elendi` / `tamamlandi` / `devam`, TR+EN |
 | `SKILLS` | 237 | 5 grup |
 | `LANGUAGES` | 259 | 3 dil (İngilizce B2, Almanca A2, Fransızca başlangıç) |
-| `CERTIFICATES` | 309 | 13 sertifika (LinkedIn'den seçilmiş; topluluk organizasyon belgeleri, öğrenci elçiliği ve İEÜ Yapay Zekâya Giriş bilerek yok) — 5'i `featured`, her kurumdan en fazla biri; hepsinde `note`/`noteEn`, 8'inde `verifyUrl` |
+| `CERTIFICATES` | 271 | 10 sertifika (LinkedIn'den seçilmiş; topluluk organizasyon belgeleri, öğrenci elçiliği, İEÜ Yapay Zekâya Giriş, AI Fluency, ML çalıştayı ve Kuika bilerek yok) — 5'i `featured`, her kurumdan en fazla biri; hepsinde `note`/`noteEn`, 7'inde `verifyUrl` |
 | `EXPERIENCE` | 344 | 6 kayıt — hepsinde `location`; 1'inde `media` ve `projectId` |
 | `SOCIALS` | 348 | 2 (GitHub, LinkedIn) |
 | `EMAIL` / `GITHUB_URL` / `CV_FILES` | 410-424 | `CV_FILES`: dil başına bir öz geçmiş (`tr` → `public/belgeler/Talat_Karasakal_Oz_Gecmis.pdf`, `en` → `public/belgeler/Talat_Karasakal_CV.pdf`). Üst bardaki indirme düğmesi bunları `CvSheet` panelinde kart olarak gösterir; sayfanın dilindeki kart önce gelir |

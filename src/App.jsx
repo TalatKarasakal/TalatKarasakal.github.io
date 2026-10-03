@@ -58,46 +58,6 @@ const PROJECTS = [
   // videoUrl: <TODO: Talat — ekran kaydı sonra eklenecek>
 },
 {
-  id: "p02",
-  media: [
-    { type: "video", src: "assets/projeler/sinav-planlama-demo.mp4",
-      tr: "Çizelgenin üretilmesi ve sonucun tabloya dökülmesi.",
-      en: "Generating the timetable and populating the results table." },
-    { type: "image", src: "assets/projeler/sinav-planlama-takvim.png",
-      tr: "Öğrenci başına ilk ve son sınav tarihleri.",
-      en: "First and last exam dates per student." },
-    { type: "image", src: "assets/projeler/sinav-planlama-kurallar.png",
-      tr: "Ders bazlı özel kurallar: süre, sınıf kapasitesi, çizelge dışı bırakma.",
-      en: "Per-course rule overrides: duration, room capacity, exclusion from the schedule." },
-    { type: "image", src: "assets/projeler/sinav-planlama-disa-aktarim.png",
-      tr: "CSV, Excel ve PDF dışa aktarım.",
-      en: "CSV, Excel and PDF export." }
-  ],
-  tier: "featured",
-  title: "Sınav Planlama ve Yönetim Sistemi",
-  status: "tamamlandi",
-  roleTr: "5 kişilik ders projesi · arayüz katmanı ve iki teknik ekleme",
-  roleEn: "Five-person course project · UI layer and two technical additions",
-  descTr: "Üniversite sınav haftası çizelgelemesini otomatikleştiren Java/JavaFX/SQLite masaüstü uygulaması. Öğrenci çakışması, sınıf kapasitesi, günlük sınav limiti ve minimum ara süresi kısıtlarını birlikte değerlendiriyor; sabit bir tohum değeriyle çalıştığı için aynı girdi her seferinde aynı takvimi üretiyor. Sonuçlar CSV ve Excel olarak dışa aktarılabiliyor. Çekirdek çizelgeleme algoritması bir takım arkadaşıma aittir; benim alanım arayüz katmanı ve girdi işleme oldu.",
-  descEn: "A Java/JavaFX/SQLite desktop application that automates university exam-week scheduling. It weighs student conflicts, room capacity, daily exam limits and minimum gaps together, and runs from a fixed seed so the same input always produces the same timetable. Results export to CSV and Excel. The core scheduling algorithm belongs to a teammate; my area was the UI layer and input handling.",
-  decisionsTr: [
-    "Takıma Java'yı önerdim; ekibin ortak deneyimi ve masaüstü dağıtım kolaylığı gerekçesiyle kabul edildi.",
-    "Çizelgeleme hesaplamalarının paralelleştirilmesini önerdim — çalışma süresi belirgin biçimde kısaldı.",
-    "Kalıcılık sorununa, son açılan dosyaları ve filtreleri saklayıp her açılışta yeniden hesaplama çözümünü önerdim."
-  ],
-  decisionsEn: [
-    "Proposed Java to the team; accepted on the grounds of shared experience and straightforward desktop distribution.",
-    "Proposed parallelising the scheduling computation — runtime dropped noticeably.",
-    "Proposed solving persistence by storing the last-opened files and filters and recomputing on each launch."
-  ],
-  outcomeTr: "Uygulama tamamlandı; Windows, macOS ve Linux için paketler yayımlandı.",
-  outcomeEn: "The application was completed and packaged for Windows, macOS and Linux.",
-  tags: ["Java", "JavaFX", "SQLite", "Gradle"],
-  category: "Masaüstü / Java",
-  repoUrl: "https://github.com/TalatKarasakal/sinav-programi-olusturma-uygulamasi",
-  period: "Eki – Ara 2025", periodEn: "Oct – Dec 2025"
-},
-{
   id: "p03",
   media: [
     { type: "video", src: "assets/projeler/ayrik-olay-demo.mp4",
@@ -188,44 +148,46 @@ const PROJECTS = [
   period: "Nis – May 2025", periodEn: "Apr – May 2025"
 },
 {
-  id: "p06",
+  id: "p02",
+  media: [
+    { type: "video", src: "assets/projeler/sinav-planlama-demo.mp4",
+      tr: "Çizelgenin üretilmesi ve sonucun tabloya dökülmesi.",
+      en: "Generating the timetable and populating the results table." },
+    { type: "image", src: "assets/projeler/sinav-planlama-takvim.png",
+      tr: "Öğrenci başına ilk ve son sınav tarihleri.",
+      en: "First and last exam dates per student." },
+    { type: "image", src: "assets/projeler/sinav-planlama-kurallar.png",
+      tr: "Ders bazlı özel kurallar: süre, sınıf kapasitesi, çizelge dışı bırakma.",
+      en: "Per-course rule overrides: duration, room capacity, exclusion from the schedule." },
+    { type: "image", src: "assets/projeler/sinav-planlama-disa-aktarim.png",
+      tr: "CSV, Excel ve PDF dışa aktarım.",
+      en: "CSV, Excel and PDF export." }
+  ],
   tier: "project",
-  title: "BIST / TEFAS Portföy Takip Uygulaması",
-  status: "devam",
-  roleTr: "Kişisel proje · tek kişilik",
-  roleEn: "Personal project · solo",
-  descTr: "BIST hisseleri ve TEFAS fonları için masaüstü portföy takip uygulaması. XIRR, Sharpe oranı, maksimum düşüş ve volatilite metrikleri hesaplanıyor; maliyet bazı ağırlıklı ortalama, FIFO veya LIFO olarak seçilebiliyor. Arayüz MVVM düzeninde kurulu, açık ve karanlık palet birlikte geliyor, macOS ve Windows için ayrı paketler üretiliyor.",
-  descEn: "A desktop portfolio tracker for Turkish equities (BIST) and funds (TEFAS). It computes XIRR, Sharpe ratio, maximum drawdown and volatility, with weighted-average, FIFO or LIFO cost basis. The interface follows an MVVM structure, ships with paired light and dark palettes, and is packaged separately for macOS and Windows.",
-  tags: ["Python", "PySide6", "SQLAlchemy", "SQLite", "PyQtGraph"],
-  category: "Masaüstü / Finans",
-  repoUrl: "https://github.com/TalatKarasakal/portfoy-takip-uygulamasi",
-  period: "2026"
+  title: "Sınav Planlama ve Yönetim Sistemi",
+  status: "tamamlandi",
+  roleTr: "5 kişilik ders projesi · arayüz katmanı ve iki teknik ekleme",
+  roleEn: "Five-person course project · UI layer and two technical additions",
+  descTr: "Üniversite sınav haftası çizelgelemesini otomatikleştiren Java/JavaFX/SQLite masaüstü uygulaması. Öğrenci çakışması, sınıf kapasitesi, günlük sınav limiti ve minimum ara süresi kısıtlarını birlikte değerlendiriyor; sabit bir tohum değeriyle çalıştığı için aynı girdi her seferinde aynı takvimi üretiyor. Sonuçlar CSV ve Excel olarak dışa aktarılabiliyor. Çekirdek çizelgeleme algoritması bir takım arkadaşıma aittir; benim alanım arayüz katmanı ve girdi işleme oldu.",
+  descEn: "A Java/JavaFX/SQLite desktop application that automates university exam-week scheduling. It weighs student conflicts, room capacity, daily exam limits and minimum gaps together, and runs from a fixed seed so the same input always produces the same timetable. Results export to CSV and Excel. The core scheduling algorithm belongs to a teammate; my area was the UI layer and input handling.",
+  decisionsTr: [
+    "Takıma Java'yı önerdim; ekibin ortak deneyimi ve masaüstü dağıtım kolaylığı gerekçesiyle kabul edildi.",
+    "Çizelgeleme hesaplamalarının paralelleştirilmesini önerdim — çalışma süresi belirgin biçimde kısaldı.",
+    "Kalıcılık sorununa, son açılan dosyaları ve filtreleri saklayıp her açılışta yeniden hesaplama çözümünü önerdim."
+  ],
+  decisionsEn: [
+    "Proposed Java to the team; accepted on the grounds of shared experience and straightforward desktop distribution.",
+    "Proposed parallelising the scheduling computation — runtime dropped noticeably.",
+    "Proposed solving persistence by storing the last-opened files and filters and recomputing on each launch."
+  ],
+  outcomeTr: "Uygulama tamamlandı; Windows, macOS ve Linux için paketler yayımlandı.",
+  outcomeEn: "The application was completed and packaged for Windows, macOS and Linux.",
+  tags: ["Java", "JavaFX", "SQLite", "Gradle"],
+  category: "Masaüstü / Java",
+  repoUrl: "https://github.com/TalatKarasakal/sinav-programi-olusturma-uygulamasi",
+  period: "Eki – Ara 2025", periodEn: "Oct – Dec 2025"
 },
-{ id: "p07", status: "devam", tier: "personal", title: "Kağanlar Çağı",
-  descTr: "Türk devletleri temalı gerçek zamanlı strateji oyunu. Simülasyon çekirdeği deterministik çalışıyor: aynı başlangıç durumu ve aynı girdi dizisi her çalıştırmada aynı sonucu veriyor. Uygarlık, birim ve bina tanımları koddan ayrı JSON dosyalarında tutuluyor.",
-  descEn: "A real-time strategy game themed on Turkic states. The simulation core is deterministic: the same initial state and input sequence produce the same result on every run. Civilisation, unit and building definitions live in JSON files, separate from the code.",
-  tags: ["C++20", "SDL3", "CMake"], category: "Oyun",
-  repoUrl: "https://github.com/TalatKarasakal/savas-oyunu", period: "2026" },
-
-{ id: "p08", status: "devam", tier: "personal", title: "Kariyer Takip Uygulaması",
-  descTr: "İş ve staj başvurularının takibi ile öz geçmiş üretimini tek veritabanında birleştiren masaüstü uygulaması. Başvuru durumu, mülakat tarihleri ve şirket notları aynı yerde tutuluyor. Metin üretimi cihazda çalışan bir dil modeli üzerinden yapıldığı için veriler dışarı çıkmıyor.",
-  descEn: "A desktop application that combines job and internship application tracking with résumé generation on a single database. Application status, interview dates and company notes live in one place. Text generation runs through a language model on the machine itself, so nothing leaves the device.",
-  tags: ["Python", "PySide6", "SQLAlchemy", "Ollama"], category: "Masaüstü",
-  repoUrl: "https://github.com/TalatKarasakal/kariyer-takip-uygulamasi", period: "2026" },
-
-{ id: "p09", status: "devam", tier: "personal", title: "Yapılacaklar Yöneticisi",
-  descTr: "Yerel bir dil modeliyle öncelik ve zaman planı öneren yapılacaklar uygulaması. Öneriler ayrı bir panelde birikiyor ve kabul edilene kadar görev listesine yazılmıyor — model hiçbir şeyi kendiliğinden değiştirmiyor.",
-  descEn: "A to-do application that proposes priorities and time blocks through a local language model. Suggestions collect in a separate panel and are not written to the task list until accepted — the model changes nothing on its own.",
-  tags: ["Python", "PySide6", "Ollama"], category: "Masaüstü",
-  repoUrl: "https://github.com/TalatKarasakal/yapilacaklar", period: "2026" },
-
-{ id: "p10", status: "devam", tier: "personal", title: "Spor ve Diyet Planlayıcı",
-  descTr: "Antrenman ve beslenme planı üreten masaüstü uygulaması. Plan üretilirken eldeki ekipman, sakatlık geçmişi ve diyet kısıtları girdi olarak alınıyor. İlerleme PyQtGraph ile çizilen grafikler üzerinden izleniyor.",
-  descEn: "A desktop application that generates training and nutrition plans, taking available equipment, injury history and dietary constraints as inputs. Progress is tracked through PyQtGraph charts.",
-  tags: ["Python", "PySide6", "Ollama", "PyQtGraph"], category: "Masaüstü",
-  repoUrl: "https://github.com/TalatKarasakal/spor-diyet-uygulamasi", period: "2026" },
-
-{ id: "p11", status: "devam", tier: "personal", title: "Kütüphanem",
+{ id: "p11", status: "tamamlandi", tier: "personal", title: "Kütüphanem",
   descTr: "Kitap, film ve dizi koleksiyonlarını tek yerde tutan masaüstü uygulaması. Her tür için ayrı alan şeması var; veriler tamamen cihazda, IndexedDB üzerinde saklanıyor. Excel ve CSV ile içe ve dışa aktarma destekleniyor.",
   descEn: "A desktop application that keeps book, film and series collections in one place. Each type has its own field schema, and all data stays on the device in IndexedDB. Excel and CSV import and export are supported.",
   tags: ["Electron", "React", "TypeScript", "IndexedDB"], category: "Masaüstü",
@@ -296,8 +258,8 @@ const LANGUAGES = [
 /* -------------------------------------------------------------------------
    CERTIFICATES — *En variants fall back to the base field.
    Liste LinkedIn'deki "Lisanslar ve sertifikalar" bolumunden secildi;
-   topluluk organizasyon belgeleri, ogrenci elciligi ve IEU Yapay Zekaya
-   Giris bilerek yok. Belgelerin kaynagi kariyer-vault/_ekler.
+   topluluk organizasyon belgeleri, ogrenci elciligi, IEU Yapay Zekaya
+   Giris, AI Fluency, ML calistayi ve Kuika bilerek yok. Belgelerin kaynagi kariyer-vault/_ekler.
    featured: true → ana sayfada gorunen kisa liste, her kurumdan yalnizca
      bir sertifika. Ayni kurumun digerleri "Tum sertifikalar" ile acilir.
    Siralama elle: once one cikanlar (Cisco basta), sonra Veri Bilimine
@@ -361,13 +323,6 @@ const CERTIFICATES = [
   noteEn: "Building an MCP server and client from scratch with the Python SDK, and the protocol's three core primitives: tools, resources and prompts.",
   verifyUrl: "https://academy.claude.com/verify/a4759ffe470efb7a84116337ca857ee3" },
 
-{ name: "Öğrenciler için Yapay Zekâ Yetkinliği", nameEn: "AI Fluency for Students",
-  originalName: "AI Fluency for Students",
-  issuer: "Anthropic", date: "Tem 2026", dateEn: "Jul 2026", image: "assets/sertifikalar/anthropic-ai-fluency.jpg",
-  note: "Anthropic'in yapay zekâ okuryazarlığı programı: delegasyon, tanımlama, ayırt etme ve özen (4D) çerçevesiyle yapay zekâ araçlarıyla çalışırken çıktıyı doğrulamak ve sorumluluk sınırlarını belirlemek.",
-  noteEn: "Anthropic's AI literacy programme: using the 4D framework of delegation, description, discernment and diligence to verify output and set the limits of responsibility when working with AI tools.",
-  verifyUrl: "https://verify.skilljar.com/c/pbib4nsqsy8y" },
-
 { name: "Kariyer ve Yetkinlik Buluşmaları", nameEn: "Career and Competency Meetings",
   issuer: "Savunma Sanayii Akademi", issuerEn: "Defence Industry Academy",
   date: "Ara 2024 – Mar 2026", dateEn: "Dec 2024 – Mar 2026", image: "assets/sertifikalar/savunma-sanayii-akademi.jpg",
@@ -378,19 +333,7 @@ const CERTIFICATES = [
   issuer: "BTK Akademi", date: "Şub 2026", dateEn: "Feb 2026", image: "assets/sertifikalar/btk-microsoft-project.jpg",
   note: "Microsoft Project ile proje planlama, zamanlama, kaynak yönetimi ve ilerleme takibi üzerine uygulamalı çevrim içi eğitim.",
   noteEn: "A hands-on online course on project planning, scheduling, resource management and progress tracking in Microsoft Project.",
-  verifyUrl: "https://www.btkakademi.gov.tr/portal/certificate/validate?certificateId=GoDfm6XJGv" },
-
-{ name: "Kuika Designer ve Builder", nameEn: "Kuika Designer and Builder",
-  issuer: "İEÜ ÖÖM · Kuika Akademi", issuerEn: "IUE Lifelong Learning · Kuika Academy",
-  date: "Eyl 2025", dateEn: "Sep 2025", image: "assets/sertifikalar/kuika-designer-builder.jpg",
-  note: "Yedi haftalık programda alınan Designer 1 ve Builder 1 sertifikaları: düşük kodlu (low-code) platformda arayüz tasarımı, veri modelleme ve uygulama akışı kurgulama.",
-  noteEn: "Designer 1 and Builder 1 certificates from a seven-week programme: interface design, data modelling and application flows on a low-code platform." },
-
-{ name: "Makine Öğrenmesine Giriş Çalıştayı", nameEn: "Introduction to Machine Learning Workshop",
-  issuer: "İEÜ Yazılım Topluluğu", issuerEn: "IUE Software Community",
-  date: "Mar 2025", dateEn: "Mar 2025", image: "assets/sertifikalar/ieu-makine-ogrenmesi-calistayi.jpg",
-  note: "İEÜ Yazılım Topluluğu'nun düzenlediği makine öğrenmesine giriş çalıştayına katılım belgesi.",
-  noteEn: "Participation certificate for the introduction to machine learning workshop run by the IUE Software Community." }];
+  verifyUrl: "https://www.btkakademi.gov.tr/portal/certificate/validate?certificateId=GoDfm6XJGv" }];
 
 
 /* -------------------------------------------------------------------------
@@ -429,8 +372,8 @@ const EXPERIENCE = [
   projectId: "p15" },
 
 { roleTr: "Çalışan Öğrenci", roleEn: "Student Employee",
-  orgTr: "İzmir Ekonomi Üniversitesi · Kurumsal İletişim Ofisi, Etkinlik Birimi",
-  orgEn: "Izmir University of Economics · Corporate Communications, Events Unit",
+  orgTr: "İzmir Ekonomi Üniversitesi · Kurumsal İletişim Müdürlüğü, Etkinlik Birimi",
+  orgEn: "Izmir University of Economics · Directorate of Corporate Communications, Events Unit",
   period: "Ağu – Ara 2025 · Şub – Tem 2026", periodEn: "Aug – Dec 2025 · Feb – Jul 2026",
   location: "İzmir", locationEn: "Izmir",
   media: [
@@ -448,10 +391,15 @@ const EXPERIENCE = [
       tr: "Kıdem Takdir Töreni: akademik ve idari personelin onurlandırıldığı tören; organizasyonunda görev aldım.",
       en: "Long Service Awards: the ceremony honouring academic and administrative staff, which I helped organise.",
       alt: "Masaya dizilmiş, üniversite logosu biçiminde metal kıdem ödülleri; siyah kaidelerin üzerinde '20. yıl' yazılı plaketler.",
-      altEn: "Metal long-service awards shaped like the university logo lined up on a table, with '20th year' plaques on their black bases." }
+      altEn: "Metal long-service awards shaped like the university logo lined up on a table, with '20th year' plaques on their black bases." },
+    { type: "image", src: "assets/deneyim/ieu-9-eylul-celenk-sunumu.webp", w: 664, h: 1186,
+      tr: "9 Eylül 2025, İzmir'in Kurtuluşu: üniversiteyi temsilen Cumhuriyet Meydanı'ndaki Atatürk Anıtı'na çelenk sunumu (üniversitenin Instagram hikâyesinden).",
+      en: "9 September 2025, Izmir's Liberation Day: presenting a wreath at the Atatürk Monument in Cumhuriyet Square on behalf of the university (from the university's Instagram story).",
+      alt: "İzmir Ekonomi Üniversitesi'nin Instagram hikâyesi: Cumhuriyet Meydanı'ndaki atlı Atatürk Anıtı'nın önünde, üzerinde 'İzmir Ekonomi Üniversitesi' yazan çelenkle poz veren dört öğrenci; üstte çelenk sunumunu yapan öğrencilerin adlarını veren not.",
+      altEn: "Izmir University of Economics Instagram story: four students posing with a wreath reading 'İzmir Ekonomi Üniversitesi' in front of the equestrian Atatürk Monument in Cumhuriyet Square, with a note at the top naming the students who presented the wreath." }
   ],
-  descTr: "Kurumsal İletişim Ofisi Etkinlik Birimi'nde, üniversitenin yıl boyunca düzenlediği büyük ölçekli etkinliklerin saha koordinasyonunda görev aldım. Akademik yıl açılışı, mezuniyet törenleri, Kıdem Takdir Töreni, Bahar Şenlikleri konseri ve üniversitenin 25. kuruluş yıl dönümü kutlamaları bu kapsamdaydı. Görev, sözleşmenin sona ermesiyle Temmuz 2026'da tamamlandı.",
-  descEn: "In the Events Unit of the Corporate Communications Office, I worked on the field coordination of the university's large-scale events across the year: the academic year opening, graduation ceremonies, the long-service awards, the spring festival concert and the university's 25th anniversary. The role ended in July 2026 when the contract expired." },
+  descTr: "Kurumsal İletişim Müdürlüğü Etkinlik Birimi'nde, üniversitenin yıl boyunca düzenlediği büyük ölçekli etkinliklerin saha koordinasyonunda görev aldım. Akademik yıl açılışı, mezuniyet törenleri, Kıdem Takdir Töreni, Bahar Şenlikleri konseri ve üniversitenin 25. kuruluş yıl dönümü kutlamaları bu kapsamdaydı. Görev, sözleşmenin sona ermesiyle Temmuz 2026'da tamamlandı.",
+  descEn: "In the Events Unit of the Directorate of Corporate Communications, I worked on the field coordination of the university's large-scale events across the year: the academic year opening, graduation ceremonies, the long-service awards, the spring festival concert and the university's 25th anniversary. The role ended in July 2026 when the contract expired." },
 
 { roleTr: "Proje Yönetimi Stajyeri", roleEn: "Project Management Intern",
   orgTr: "SCA Social", orgEn: "SCA Social",
@@ -492,6 +440,16 @@ const EXPERIENCE = [
   periodEn: "Oct 2024 – present",
   location: "İzmir", locationEn: "Izmir",
   media: [
+    { type: "image", src: "assets/deneyim/software-community-izmir-yz-zirvesi.webp", w: 1044, h: 1088,
+      tr: "BBT İzmir ile birlikte düzenlenen 2026 İzmir Yapay Zekâ Zirvesi'nin afişi; zirvenin organizasyon ekibinde yer aldım.",
+      en: "Poster for the 2026 Izmir AI Summit, organised with BBT Izmir; I was on the summit's organising team.",
+      alt: "2026 İzmir Yapay Zeka Zirvesi afişi: üstte bir etkinlikten sohbet eden katılımcıların fotoğrafı, altta '16 Mayıs Cumartesi, 13.00-17.00, İzmir Ekonomi Üniversitesi D Blok Çok Amaçlı Salon' bilgileri ve düzenleyicilerin logoları.",
+      altEn: "Poster for the 2026 Izmir AI Summit: a photo of attendees chatting at an event at the top, and below it 'Saturday 16 May, 13.00–17.00, Izmir University of Economics, D Block Multi-Purpose Hall' with the organisers' logos." },
+    { type: "image", src: "assets/deneyim/software-community-software-testing-semineri.webp", w: 1229, h: 918,
+      tr: "Kulübün düzenlediği 'Software Testing – An Overview' semineri: yazılım test süreçleri, otomasyon araçları ve güncel test metodolojileri.",
+      en: "The club's 'Software Testing – An Overview' seminar: software testing processes, automation tools and current testing methodologies.",
+      alt: "Seminer sonrasında bir derslikte yan yana poz veren katılımcılar ve kulüp üyeleri; arkada beyaz tahta ve tavanda projeksiyon cihazı.",
+      altEn: "Attendees and club members posing side by side in a classroom after the seminar, with a whiteboard behind them and a projector on the ceiling." },
     { type: "image", src: "assets/sertifikalar/ieu-makine-ogrenmesi-calistayi.jpg", w: 2922, h: 2066,
       tr: "Kulübün düzenlediği makine öğrenmesine giriş çalıştayının katılım belgesi, Mart 2025.",
       en: "Certificate of participation from the club's introduction to machine learning workshop, March 2025.",
