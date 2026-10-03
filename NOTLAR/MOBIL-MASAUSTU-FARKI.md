@@ -87,7 +87,7 @@ Medya tarafında telefon aslında **daha iyi**: masaüstünde ayrı bir düğmey
 
 Deneyim bölümünde **eşitlik tam** (28 Eylül 2026'dan beri): iki genişlikte de aynı `ExpCard` bileşeni render ediliyor — kartta unvan, kurum, tarih, konum ve açıklamanın ilk cümlesi; dokununca/tıklayınca panelde tam açıklama, görseller ve varsa ilgili proje bağlantısı açılıyor. Masaüstünde kartlar yol şeridi üzerinde, 900px altında alt alta.
 
-Ayrıca bilerek düğme arkasına alınanlar: sertifikaların 5–10'u ("Tümünü göster"), kişisel projeler ("Diğer çalışmaları göster"), menü maddeleri ve dil/tema düğmeleri (hamburger menüsü).
+Ayrıca bilerek düğme arkasına alınanlar: sertifikaların öne çıkan 5'i dışındakiler ("Tüm sertifikalar"; 3 Ekim 2026'dan beri masaüstünde de aynı), kişisel projeler ("Diğer çalışmaları göster"), menü maddeleri ve dil/tema düğmeleri (hamburger menüsü).
 
 ---
 

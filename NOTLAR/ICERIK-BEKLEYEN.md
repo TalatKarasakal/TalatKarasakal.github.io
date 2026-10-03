@@ -78,7 +78,7 @@ Bu dosyadaki metinleri **Talat yazar**. Kod tarafı hazır; alan boş olduğu s�
   Altyazı (`tr` / `en`) ayrı bir `alt` / `altEn` verilmezse görselin `alt` metni oluyor, yani boş bırakılmamalı. Boyutu bilinen görsele `w` / `h` de eklenmeli (düzen kayması olmasın).
 - **Neden gerekli:** Deneyim bölümü şu an yalnızca metin; LinkedIn'deki gibi görsel kanıt gösterilemiyor.
 - **Kod tarafı:** **hazır.** `media` alanı yoksa kart yine tıklanır, panelde yalnızca metin görünür ve gösterge hiç render edilmez. Yol tarayıcıda geçici bir kayıtla uçtan uca doğrulandı (kart göstergesi, panelde görsel, altyazı).
-- **Durum:** kısmen — Probel kaydının görselleri eklendi (`public/assets/deneyim/`). Diğer beş kayıt için bekliyor.
+- **Durum:** kısmen — 3 Ekim 2026'da kariyer-vault belgelerinden SCA Social (staj sertifikası), Tanıtım Personeli (öğrenci elçisi belgesi), IEU Software Community (iki katılım belgesi) ve Endüstri Sistemleri Topluluğu (iki InterCView organizasyon sertifikası) eklendi. Görseller belge; etkinlik fotoğrafı yok. **Çalışan Öğrenci** kaydında görsel yok — vault'ta uygun dosya bulunamadı.
 
 ---
 
@@ -93,7 +93,7 @@ Bu dosyadaki metinleri **Talat yazar**. Kod tarafı hazır; alan boş olduğu s�
   Dizideki diğer alanların adlandırma düzenine uyuyor (`name`/`nameEn`, `date`/`dateEn`). `noteEn` yoksa TR metne düşülür.
 - **Neden gerekli:** Sertifika panelinde şu an yalnızca ad, kurum, tarih ve görsel var; sertifikanın neyi kapsadığı anlatılmıyor.
 - **Kod tarafı:** **hazır.** Alan yoksa açıklama satırı hiç render edilmiyor; notu olmayan bir sertifikada panelin son öğesi görselin kendisi olarak kalıyor (tarayıcıda doğrulandı).
-- **Durum:** bekliyor
+- **Durum:** **tamamlandı — 3 Ekim 2026.** 18 kaydın hepsinde `note`/`noteEn` var. Kaynak: LinkedIn'deki sertifika açıklamaları (Talat'ın kendi metni) ve kariyer-vault belgeleri; açıklaması olmayanlarda (Cisco, ML çalıştayı, öğrenci elçisi) yalnızca belgenin söylediği yazıldı. Vault'taki "Gerçekten Ne Öğrendim" alanları boş olduğu için kişisel kazanım cümlesi eklenmedi.
 
 ---
 
