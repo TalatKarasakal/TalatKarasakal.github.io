@@ -1524,10 +1524,14 @@ function MediaSheet({ project, lang, t, onClose }) {
     <div className="sheet-backdrop" onClick={onClose}>
       <div className="sheet-panel is-media" ref={panelRef} role="dialog" aria-modal="true"
         aria-labelledby="media-sheet-title" onClick={(e) => e.stopPropagation()}>
-        <div className="sheet-handle" aria-hidden="true" />
-        <button className="sheet-close" ref={closeBtnRef} onClick={onClose} aria-label={t.sheetClose}>×</button>
-        <div className="sheet-head">
-          <h3 id="media-sheet-title" className="sheet-title">{project.title}</h3>
+        {/* Baslik ve kapat dugmesi tek blokta, kaydirirken tepede sabit
+            kaliyor; uzun galeride kapat dugmesi gozden kaybolmasin. */}
+        <div className="sheet-bar">
+          <div className="sheet-handle" aria-hidden="true" />
+          <div className="sheet-bar-row">
+            <h3 id="media-sheet-title" className="sheet-title">{project.title}</h3>
+            <button className="sheet-close" ref={closeBtnRef} onClick={onClose} aria-label={t.sheetClose}>×</button>
+          </div>
         </div>
         <MediaList items={project.media} lang={lang} />
       </div>
