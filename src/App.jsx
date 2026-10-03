@@ -433,6 +433,23 @@ const EXPERIENCE = [
   orgEn: "Izmir University of Economics · Corporate Communications, Events Unit",
   period: "Ağu – Ara 2025 · Şub – Tem 2026", periodEn: "Aug – Dec 2025 · Feb – Jul 2026",
   location: "İzmir", locationEn: "Izmir",
+  media: [
+    { type: "image", src: "assets/deneyim/ieu-mezuniyet-2026.webp", w: 1238, h: 948,
+      tr: "2025-2026 akademik yılı mezuniyet törenleri: törenlerin organizasyon ekibi.",
+      en: "2025–2026 graduation ceremonies: the ceremonies' organising team.",
+      alt: "İzmir Ekonomi Üniversitesi 2026 mezuniyet töreni sahnesinde poz veren kalabalık organizasyon ekibi; arkadaki dev ekranda üniversitenin 25. yıl logosu ve 'Tebrikler / Congratulations' yazısı.",
+      altEn: "The large organising team posing on the Izmir University of Economics 2026 graduation stage; the giant screen behind them shows the university's 25th-year logo and 'Tebrikler / Congratulations'." },
+    { type: "image", src: "assets/deneyim/ieu-bahar-senlikleri-konser.webp", w: 948, h: 1256,
+      tr: "Bahar Şenlikleri kapsamındaki Dolu Kadehi Ters Tut konseri; konserin organizasyon ekibinde yer aldım.",
+      en: "The Dolu Kadehi Ters Tut concert at the Spring Festival; I was on the concert's organising team.",
+      alt: "Turuncu sahne ışıkları ve ışık hüzmeleri altında konser veren grup: vokalist bir kolunu havaya kaldırmış, yanında gitarist başını geriye atarak çalıyor.",
+      altEn: "A band performing under orange stage lights and beams: the vocalist raises one arm in the air while the guitarist plays alongside, head thrown back." },
+    { type: "image", src: "assets/deneyim/ieu-kidem-takdir-toreni.webp", w: 1441, h: 780,
+      tr: "Kıdem Takdir Töreni: akademik ve idari personelin onurlandırıldığı tören; organizasyonunda görev aldım.",
+      en: "Long Service Awards: the ceremony honouring academic and administrative staff, which I helped organise.",
+      alt: "Masaya dizilmiş, üniversite logosu biçiminde metal kıdem ödülleri; siyah kaidelerin üzerinde '20. yıl' yazılı plaketler.",
+      altEn: "Metal long-service awards shaped like the university logo lined up on a table, with '20th year' plaques on their black bases." }
+  ],
   descTr: "Kurumsal İletişim Ofisi Etkinlik Birimi'nde, üniversitenin yıl boyunca düzenlediği büyük ölçekli etkinliklerin saha koordinasyonunda görev aldım. Akademik yıl açılışı, mezuniyet törenleri, Kıdem Takdir Töreni, Bahar Şenlikleri konseri ve üniversitenin 25. kuruluş yıl dönümü kutlamaları bu kapsamdaydı. Görev, sözleşmenin sona ermesiyle Temmuz 2026'da tamamlandı.",
   descEn: "In the Events Unit of the Corporate Communications Office, I worked on the field coordination of the university's large-scale events across the year: the academic year opening, graduation ceremonies, the long-service awards, the spring festival concert and the university's 25th anniversary. The role ended in July 2026 when the contract expired." },
 
@@ -441,11 +458,11 @@ const EXPERIENCE = [
   period: "Oca – Şub 2026", periodEn: "Jan – Feb 2026",
   location: "Uzaktan", locationEn: "Remote",
   media: [
-    { type: "image", src: "assets/deneyim/sca-social-staj-sertifikasi.webp", w: 1600, h: 1131,
-      tr: "Proje Yönetimi Stajı katılım sertifikası: proje yönetimi, bilişim hukuku, yönetim ve organizasyon, yapay zekâ ve veri bilimi eğitimleri.",
-      en: "Project Management Internship certificate of participation: project management, IT law, management and organisation, and AI and data science training.",
-      alt: "SCA Social Proje Yönetimi Stajı Katılım Sertifikası. Talat Karasakal adına düzenlenmiş; Proje Yönetimi, Bilişim Hukuku, Yönetim ve Organizasyon, Yapay Zeka ve Veri Bilimi başlıkları, altta TNC Group yetkililerinin imzaları.",
-      altEn: "SCA Social Project Management Internship certificate of participation issued to Talat Karasakal, listing Project Management, IT Law, Management and Organisation, and AI and Data Science, with signatures from TNC Group officials at the bottom." }
+    { type: "image", src: "assets/deneyim/sca-proje-baslatma-belgesi.webp", w: 798, h: 1126,
+      tr: "Stajın son aşamasında hazırladığım Proje Başlatma Belgesi'nin ilk sayfası: örnek bir yapay zekâ projesi için kapsam, hedefler ve başarı kriterleri.",
+      en: "The first page of the Project Initiation Document prepared in the final stage of the internship: scope, goals and success criteria for a sample AI project.",
+      alt: "Proje Başlatma Belgesi'nin ilk sayfası: 'Yapay Zeka Destekli İnşaat Proje Simülasyon ve Karar Destek Sistemi' adlı projenin genel bilgiler tablosu, proje tanımı ve gerekçesi, hedefler ve başarı kriterleri tablosu.",
+      altEn: "First page of the Project Initiation Document: the general information table for a project titled 'AI-Supported Construction Project Simulation and Decision Support System', the project description and rationale, and a table of goals and success criteria." }
   ],
   descTr: "Stajın ilk dört haftasında yönetim ve organizasyon, bilişim hukuku, yapay zekâ ve proje yönetimi alanlarında teorik eğitim aldım. Devamında savunma sanayii odaklı yıllık bütçe planlaması ve maliyet tabloları hazırladım. İnşaat projelerindeki belirsizlik ve risklerin erken tespiti için yapay zekâ temelli bir simülasyon yaklaşımı tasarlayarak derin öğrenme ve görüntü işleme tekniklerinin risk analizindeki kullanım senaryolarını modelledim. Bilişim hukuku kapsamında KVKK süreçlerini vaka analizi üzerinden inceleyip veri sorumlusuna başvuru ve Kurul şikâyet mekanizmalarını resmî dokümantasyona dönüştürdüm. Son aşamada Proje Başlatma Belgesi ve Gantt çizelgesi hazırlayarak bir projenin kapsam, kaynak ve zaman planlamasını uçtan uca kurguladım.",
   descEn: "The first four weeks covered theory in management and organisation, information technology law, artificial intelligence and project management. I then prepared annual budget planning and cost tables for the defence sector. To catch uncertainty and risk early in construction projects, I designed an AI-based simulation approach and modelled how deep learning and computer vision techniques could be used in risk analysis. Under information technology law, I examined data-protection procedures through a case study and turned the application and complaint mechanisms into formal documentation. In the final stage I prepared a project initiation document and a Gantt chart, planning a project's scope, resources and schedule end to end." },
@@ -455,11 +472,16 @@ const EXPERIENCE = [
   period: "Tem – Eyl 2024 · Tem – Ağu 2025", periodEn: "Jul – Sep 2024 · Jul – Aug 2025",
   location: "İzmir", locationEn: "Izmir",
   media: [
-    { type: "image", src: "assets/sertifikalar/ieu-ogrenci-elcisi.webp", w: 1600, h: 2263,
-      tr: "Tanıtım Günleri öğrenci elçisi belgesi, Ağustos 2025.",
-      en: "Open house student ambassador credential, August 2025.",
-      alt: "İzmir Ekonomi Üniversitesi tarafından Talat Karasakal adına düzenlenmiş IUE Open House Student Ambassador dijital belgesi; düzenlenme tarihi 15 Ağustos 2025, belge kimliği ve doğrulama karekodu.",
-      altEn: "IUE Open House Student Ambassador digital credential issued to Talat Karasakal by Izmir University of Economics, dated 15 August 2025, with the credential ID and a verification QR code." }
+    { type: "image", src: "assets/deneyim/ieu-tanitim-2025.webp", w: 1350, h: 892,
+      tr: "2025 tercih ve tanıtım dönemi: tanıtım ekibi.",
+      en: "The 2025 admissions and outreach period: the outreach team.",
+      alt: "Renkli tişörtler ve yaka kartlarıyla kampüs avlusunda toplanıp kameraya el sallayan kalabalık tanıtım ekibi, yukarıdan çekilmiş.",
+      altEn: "The large outreach team in coloured T-shirts and lanyards, gathered in a campus courtyard and waving at the camera, shot from above." },
+    { type: "image", src: "assets/deneyim/ieu-tanitim-2024.webp", w: 1092, h: 1088,
+      tr: "2024 tercih ve tanıtım dönemi: çağrı merkezi ve tanıtım ekibi.",
+      en: "The 2024 admissions and outreach period: the call centre and outreach team.",
+      alt: "Mavi, yeşil, kırmızı, pembe ve sarı polo tişörtlü tanıtım ekibi, cam cephenin önünde kameraya gülümseyip el sallarken yukarıdan çekilmiş.",
+      altEn: "The outreach team in blue, green, red, pink and yellow polo shirts, smiling and waving at the camera in front of a glass façade, shot from above." }
   ],
   descTr: "2024 tanıtım döneminde çağrı merkezi biriminde çalıştım; İzmir Ekonomi Üniversitesi ile ilgilenen adayların sorularını yanıtladım ve bilgilendirme yaptım. 2025 döneminde transfer biriminde görev aldım: aday öğrenciler ve velilere kampüs içi turlar düzenledim, üniversite ve ilgilendikleri bölümler hakkındaki sorularını yanıtladım. İşin özü, aynı bilgiyi çok farklı hazırlık seviyelerindeki kişilere anlaşılır biçimde aktarmaktı.",
   descEn: "In the 2024 admissions period I worked in the call centre unit, answering questions from prospective students interested in Izmir University of Economics. In 2025 I worked in the transfer unit: running campus tours for prospective students and their families, and answering their questions about the university and the departments they were considering. The core of the job was conveying the same information clearly to people at very different levels of preparation." },
@@ -1850,7 +1872,7 @@ function CompactExpRow({ item, index, lang, open, onOpen }) {
 
 }
 
-function ExperienceSheet({ item, lang, t, onClose }) {
+function ExperienceSheet({ item, lang, t, onClose, onOpenMedia }) {
   const panelRef = useRef(null);
   const closeBtnRef = useRef(null);
 
@@ -1880,7 +1902,6 @@ function ExperienceSheet({ item, lang, t, onClose }) {
           <div className="pcard-role">{en ? item.orgEn : item.orgTr}</div>
         </div>
         <p className="pcard-desc">{en ? item.descEn : item.descTr}</p>
-        {/* Galeri uzun olabildigi icin baglanti aciklamanin hemen altinda. */}
         {project &&
         <a className="exp-project-link" href={"#" + projectAnchor(project.id)} onClick={goToProject}>
             <span className="exp-project-label">{t.relatedProject}</span>
@@ -1888,7 +1909,13 @@ function ExperienceSheet({ item, lang, t, onClose }) {
             <span className="exp-project-arrow" aria-hidden="true">→</span>
           </a>
         }
-        <MediaList items={item.media} lang={lang} />
+        {/* Gorseller panelde dogrudan acilmiyor; projelerdeki gibi Medya
+            dugmesiyle ayri panelde aciliyor. */}
+        {item.media && item.media.length > 0 &&
+        <div className="exp-sheet-actions">
+            <MediaButton lang={lang} onClick={onOpenMedia} />
+          </div>
+        }
       </div>
     </div>);
 
@@ -1897,6 +1924,14 @@ function ExperienceSheet({ item, lang, t, onClose }) {
 function Experience({ t, lang }) {
   const compact = useMediaQuery("(max-width: 900px)");
   const [openIdx, setOpenIdx] = useState(null);
+  // Medya paneli icin nesne state'te tutuluyor: useSheetBehavior nesnenin
+  // kimligine bagli, her render'da yeni nesne uretmek paneli yeniden kurardi.
+  const [mediaItem, setMediaItem] = useState(null);
+  function openMedia() {
+    const e = EXPERIENCE[openIdx];
+    setOpenIdx(null);
+    setMediaItem({ title: lang === "en" ? e.roleEn : e.roleTr, media: e.media });
+  }
   const n = EXPERIENCE.length;
   const step = 92;
   const listRef = React.useRef(null);
@@ -1955,7 +1990,8 @@ function Experience({ t, lang }) {
           <CompactExpRow key={i} item={e} index={i} lang={lang} open={openIdx === i} onOpen={setOpenIdx} />
           )}
         </ul>
-        <ExperienceSheet item={openIdx === null ? null : EXPERIENCE[openIdx]} lang={lang} t={t} onClose={() => setOpenIdx(null)} />
+        <ExperienceSheet item={openIdx === null ? null : EXPERIENCE[openIdx]} lang={lang} t={t} onClose={() => setOpenIdx(null)} onOpenMedia={openMedia} />
+        <MediaSheet project={mediaItem} lang={lang} t={t} onClose={() => setMediaItem(null)} />
       </section>);
 
   }
@@ -1977,7 +2013,8 @@ function Experience({ t, lang }) {
           </article>
         )}
       </div>
-      <ExperienceSheet item={openIdx === null ? null : EXPERIENCE[openIdx]} lang={lang} t={t} onClose={() => setOpenIdx(null)} />
+      <ExperienceSheet item={openIdx === null ? null : EXPERIENCE[openIdx]} lang={lang} t={t} onClose={() => setOpenIdx(null)} onOpenMedia={openMedia} />
+      <MediaSheet project={mediaItem} lang={lang} t={t} onClose={() => setMediaItem(null)} />
     </section>);
 
 }
