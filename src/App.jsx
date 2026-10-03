@@ -546,7 +546,7 @@ const COPY = {
     projTitle: "Projeler",
     tierFeatured: "Öne çıkanlar", tierProject: "Projeler", tierPersonal: "Diğer çalışmalar",
     decisionsLabel: "Kararlar", outcomeLabel: "Sonuç",
-    ownershipLabel: "Rol", gapsLabel: "Bilinen eksikler",
+    ownershipLabel: "Rol", gapsLabel: "Bilinen eksikler", detailsLabel: "Ayrıntılar",
     docLabel: "Yazılım geliştirme ve gereksinim dokümanı (PDF)", docShort: "Doküman (PDF)",
     relatedProject: "İlgili proje",
     liveLabel: "canlı demo", sheetClose: "Kapat",
@@ -607,7 +607,7 @@ const COPY = {
     projTitle: "Projects",
     tierFeatured: "Featured", tierProject: "Projects", tierPersonal: "Other work",
     decisionsLabel: "Decisions", outcomeLabel: "Outcome",
-    ownershipLabel: "Role", gapsLabel: "Known gaps",
+    ownershipLabel: "Role", gapsLabel: "Known gaps", detailsLabel: "Details",
     docLabel: "Software development and requirements document (PDF)", docShort: "Document (PDF)",
     relatedProject: "Related project",
     liveLabel: "live demo", sheetClose: "Close",
@@ -1393,12 +1393,23 @@ function ProjectSheet({ project, lang, t, onClose }) {
 }
 
 // Karttaki ve paneldeki ayrinti bloklari; hicbiri yoksa hic render edilmez.
-function ProjectDetail({ project, lang, t }) {
+function projectDetailParts(project, lang) {
   const en = lang === "en";
-  const ownership = en ? project.ownershipEn : project.ownershipTr;
-  const decisions = en ? project.decisionsEn : project.decisionsTr;
-  const outcome = en ? project.outcomeEn : project.outcomeTr;
-  const gaps = en ? project.gapsEn : project.gapsTr;
+  return {
+    ownership: en ? project.ownershipEn : project.ownershipTr,
+    decisions: en ? project.decisionsEn : project.decisionsTr,
+    outcome: en ? project.outcomeEn : project.outcomeTr,
+    gaps: en ? project.gapsEn : project.gapsTr
+  };
+}
+
+function hasProjectDetail(project, lang) {
+  const d = projectDetailParts(project, lang);
+  return !!(d.ownership || d.decisions && d.decisions.length > 0 || d.outcome || d.gaps);
+}
+
+function ProjectDetail({ project, lang, t }) {
+  const { ownership, decisions, outcome, gaps } = projectDetailParts(project, lang);
   const hasDecisions = decisions && decisions.length > 0;
   if (!ownership && !hasDecisions && !outcome && !gaps) return null;
   return (
@@ -1515,27 +1526,48 @@ function MediaList({ items, lang }) {
 
 }
 
-function MediaSheet({ project, lang, t, onClose }) {
+// Basligi ve kapat dugmesi yapiskan bir ust blokta duran panel kabugu;
+// uzun icerikte kapat dugmesi gozden kaybolmasin. Medya ve Ayrintilar
+// panelleri bunu kullaniyor.
+function BarSheet({ active, title, titleId, className, t, onClose, children }) {
   const panelRef = useRef(null);
   const closeBtnRef = useRef(null);
-  useSheetBehavior(project, onClose, panelRef, closeBtnRef);
-  if (!project) return null;
+  useSheetBehavior(active, onClose, panelRef, closeBtnRef);
+  if (!active) return null;
   return (
     <div className="sheet-backdrop" onClick={onClose}>
-      <div className="sheet-panel is-media" ref={panelRef} role="dialog" aria-modal="true"
-        aria-labelledby="media-sheet-title" onClick={(e) => e.stopPropagation()}>
-        {/* Baslik ve kapat dugmesi tek blokta, kaydirirken tepede sabit
-            kaliyor; uzun galeride kapat dugmesi gozden kaybolmasin. */}
+      <div className={"sheet-panel has-bar " + className} ref={panelRef} role="dialog" aria-modal="true"
+        aria-labelledby={titleId} onClick={(e) => e.stopPropagation()}>
         <div className="sheet-bar">
           <div className="sheet-handle" aria-hidden="true" />
           <div className="sheet-bar-row">
-            <h3 id="media-sheet-title" className="sheet-title">{project.title}</h3>
+            <h3 id={titleId} className="sheet-title">{title}</h3>
             <button className="sheet-close" ref={closeBtnRef} onClick={onClose} aria-label={t.sheetClose}>×</button>
           </div>
         </div>
-        <MediaList items={project.media} lang={lang} />
+        {children}
       </div>
     </div>);
+
+}
+
+function MediaSheet({ project, lang, t, onClose }) {
+  return (
+    <BarSheet active={project} title={project && project.title} titleId="media-sheet-title"
+    className="is-media" t={t} onClose={onClose}>
+      {project && <MediaList items={project.media} lang={lang} />}
+    </BarSheet>);
+
+}
+
+// Proje kartinda Rol / Kararlar / Sonuc / Bilinen eksikler bloklari karti
+// uzattigi icin "Ayrintilar" dugmesinin arkasinda bu panelde aciliyor.
+function DetailSheet({ project, lang, t, onClose }) {
+  return (
+    <BarSheet active={project} title={project && project.title} titleId="detail-sheet-title"
+    className="is-detail" t={t} onClose={onClose}>
+      {project && <ProjectDetail project={project} lang={lang} t={t} />}
+    </BarSheet>);
 
 }
 
@@ -1557,9 +1589,20 @@ function DocButton({ project, t }) {
 
 function MediaButton({ lang, onClick }) {
   return (
-    <button type="button" className="media-btn" onClick={onClick}>
+    <button type="button" className="media-btn" onClick={onClick} aria-haspopup="dialog">
       <span className="media-btn-mark" aria-hidden="true"><StarMark /></span>
       {lang === "en" ? "Media" : "Medya"}
+    </button>);
+
+}
+
+function DetailButton({ t, onClick }) {
+  return (
+    <button type="button" className="media-btn" onClick={onClick} aria-haspopup="dialog">
+      <span className="media-btn-mark" aria-hidden="true">
+        <svg viewBox="0 0 16 16"><path d="M2.5 4h11M2.5 8h11M2.5 12h7" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+      </span>
+      {t.detailsLabel}
     </button>);
 
 }
@@ -1568,7 +1611,11 @@ function ProjectCard({ project, index, lang, t, variant }) {
   const ref = useRevealRef();
   const [pos, setPos] = useState({ x: 50, y: 50 });
   const [mediaOpen, setMediaOpen] = useState(false);
+  const [detailOpen, setDetailOpen] = useState(false);
   const featured = variant === "featured";
+  // One cikan kartta ayrinti sag sutunda acik; Projeler satirinda kartlar
+  // ayni boyda kalsin diye "Ayrintilar" dugmesinin arkasinda.
+  const detailBehindButton = !featured && hasProjectDetail(project, lang);
   const accentClass = featured ? "" : " pcard-blue";
 
   function onMove(e) {
@@ -1633,7 +1680,7 @@ function ProjectCard({ project, index, lang, t, variant }) {
           <div className="pcard-main">{main}</div>
           {detail}
         </div> :
-      <React.Fragment>{main}{detail}</React.Fragment>
+      <React.Fragment>{main}{!detailBehindButton && detail}</React.Fragment>
       }
 
       <footer className="pcard-foot">
@@ -1641,11 +1688,13 @@ function ProjectCard({ project, index, lang, t, variant }) {
           {project.media && project.media.length > 0 &&
         <MediaButton lang={lang} onClick={() => setMediaOpen(true)} />
         }
+          {detailBehindButton && <DetailButton t={t} onClick={() => setDetailOpen(true)} />}
           <DocButton project={project} t={t} />
         </span>
         <ProjectLinks project={project} t={t} />
       </footer>
       {mediaOpen && <MediaSheet project={project} lang={lang} t={t} onClose={() => setMediaOpen(false)} />}
+      {detailOpen && <DetailSheet project={project} lang={lang} t={t} onClose={() => setDetailOpen(false)} />}
     </article>);
 
 }
