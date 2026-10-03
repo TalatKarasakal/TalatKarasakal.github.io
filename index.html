@@ -4268,6 +4268,27 @@
       color: var(--text-dim);
     }
 
+    /* Sertifika panelinde dogrulama baglantisi; .pcard-link dilinde. */
+    .cert-verify {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      min-height: 32px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      letter-spacing: 0.03em;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--line-strong);
+      text-decoration: none;
+      transition: color 200ms, border-color 200ms;
+    }
+
+    .cert-verify:hover {
+      color: var(--accent-1);
+      border-color: var(--accent-1);
+    }
+
     /* LinkedIn tarzi kart: unvan, kurum, tarih ve konum. Aciklama panelde. */
     .exp-row.is-clickable {
       position: relative;

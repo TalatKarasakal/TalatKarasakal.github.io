@@ -295,47 +295,136 @@ const LANGUAGES = [
 
 /* -------------------------------------------------------------------------
    CERTIFICATES — *En variants fall back to the base field.
-   image: "" → initials placeholder tile. Fill in a path to show a thumbnail.
-   note / noteEn → panel acildiginda gorselin altinda cikan kisa aciklama.
-   Alan yoksa aciklama satiri hic render edilmez.
+   Liste LinkedIn'deki "Lisanslar ve sertifikalar" bolumuyle esit tutuluyor
+   (3 Ekim 2026'da 18 kayit). Belgelerin kaynagi kariyer-vault/_ekler.
+   featured: true → ana sayfada gorunen kisa liste; digerleri "Tum
+     sertifikalar" dugmesiyle aciliyor. Siralama: once one cikanlar, sonra
+     yeniden eskiye.
+   image: "" → bas harfli yer tutucu kutu; kart yine tiklanir.
+   note / noteEn → panelde gorselin altinda kisa aciklama.
+   verifyUrl → panelde "Belgeyi dogrula" baglantisi; yoksa render edilmez.
    ------------------------------------------------------------------------- */
 const CERTIFICATES = [
+{ featured: true, name: "Claude Platform 101", originalName: "Claude Platform 101",
+  issuer: "Anthropic", date: "Ağu 2026", dateEn: "Aug 2026",
+  image: "assets/sertifikalar/anthropic-claude-platform-101.webp",
+  note: "Anthropic'in geliştiricilere yönelik Claude Platform kursu: model seçimi, tool use, extended thinking, MCP sunucuları, bağlam yönetimi ve yönetilen ajan akışlarıyla Claude API'nin uçtan uca kullanımı.",
+  noteEn: "Anthropic's developer course on the Claude Platform: model selection, tool use, extended thinking, MCP servers, context management and managed agent workflows, covering the Claude API end to end.",
+  verifyUrl: "https://academy.claude.com/verify/67cbb758558fd2fe6be7ddc4879c442a" },
+
+{ featured: true, name: "Model Context Protocol: İleri Konular", nameEn: "Model Context Protocol: Advanced Topics",
+  originalName: "Model Context Protocol: Advanced Topics",
+  issuer: "Anthropic", date: "Eyl 2026", dateEn: "Sep 2026",
+  image: "assets/sertifikalar/anthropic-mcp-ileri-konular.webp",
+  note: "Üretim düzeyinde MCP: sampling, bildirimler (notifications) ve roots; istemci ile sunucu arasındaki çift yönlü iletişim kalıpları.",
+  noteEn: "Production-level MCP: sampling, notifications and roots, and the patterns for two-way communication between client and server.",
+  verifyUrl: "https://academy.claude.com/verify/8ebdba2146dc918ad9c3dd86258c3db8" },
+
+{ featured: true, name: "Modern Yapay Zekâya Giriş", nameEn: "Introduction to Modern AI",
+  originalName: "Introduction to Modern AI",
+  issuer: "Cisco", date: "Ara 2024", dateEn: "Dec 2024", image: "assets/sertifikalar/cisco-modern-ai.webp",
+  note: "Cisco Networking Academy üzerinden tamamlanan, modern yapay zekânın temel kavramlarını ele alan giriş kursu.",
+  noteEn: "An introductory course on the core concepts of modern AI, completed through Cisco Networking Academy.",
+  verifyUrl: "https://www.credly.com/badges/29ae1d29-5ff5-4086-a9c2-02a8ade229ae" },
+
+{ featured: true, name: "ISO 9001:2015 Kalite Yönetim Sistemi", nameEn: "ISO 9001:2015 Quality Management Systems",
+  issuer: "Sigmacert Global", date: "Mar 2026", dateEn: "Mar 2026", image: "assets/sertifikalar/sigmacert-iso-9001.webp",
+  note: "Standardın temel prensipleri, kalite yönetim sisteminin yapısı, süreç yaklaşımı ve sürekli iyileştirme (PUKÖ) döngüsü; dokümantasyon gereklilikleri ve süreçlerin ölçülebilir hâle getirilmesi.",
+  noteEn: "The standard's core principles, the structure of a quality management system, the process approach and the plan-do-check-act cycle, along with documentation requirements and making processes measurable." },
+
+{ featured: true, name: "Çevik Proje Yönetimi", nameEn: "Agile Project Management",
+  issuer: "BTK Akademi", date: "Oca 2026", dateEn: "Jan 2026", image: "assets/sertifikalar/btk-cevik-proje-yonetimi.webp",
+  note: "Çevik (Agile) proje yönetiminin temel prensipleri ve uygulaması: esnek planlama, yinelemeli geliştirme ve ekip içi iş birliği.",
+  noteEn: "The principles and practice of agile project management: flexible planning, iterative development and collaboration within the team.",
+  verifyUrl: "https://www.btkakademi.gov.tr/portal/certificate/validate?certificateId=bx1hLoLxNB" },
+
+{ name: "Model Context Protocol'e Giriş", nameEn: "Introduction to Model Context Protocol",
+  originalName: "Introduction to Model Context Protocol",
+  issuer: "Anthropic", date: "Eyl 2026", dateEn: "Sep 2026",
+  image: "assets/sertifikalar/anthropic-mcp-giris.webp",
+  note: "Python SDK ile sıfırdan bir MCP sunucusu ve istemcisi kurmak; protokolün üç temel yapı taşı olan araçlar (tools), kaynaklar (resources) ve promptlar.",
+  noteEn: "Building an MCP server and client from scratch with the Python SDK, and the protocol's three core primitives: tools, resources and prompts.",
+  verifyUrl: "https://academy.claude.com/verify/a4759ffe470efb7a84116337ca857ee3" },
+
 { name: "Öğrenciler için Yapay Zekâ Yetkinliği", nameEn: "AI Fluency for Students",
   originalName: "AI Fluency for Students",
-  issuer: "Anthropic", date: "2026", image: "assets/sertifikalar/anthropic-ai-fluency.jpg" },
+  issuer: "Anthropic", date: "Tem 2026", dateEn: "Jul 2026", image: "assets/sertifikalar/anthropic-ai-fluency.jpg",
+  note: "Anthropic'in yapay zekâ okuryazarlığı programı: delegasyon, tanımlama, ayırt etme ve özen (4D) çerçevesiyle yapay zekâ araçlarıyla çalışırken çıktıyı doğrulamak ve sorumluluk sınırlarını belirlemek.",
+  noteEn: "Anthropic's AI literacy programme: using the 4D framework of delegation, description, discernment and diligence to verify output and set the limits of responsibility when working with AI tools.",
+  verifyUrl: "https://verify.skilljar.com/c/pbib4nsqsy8y" },
 
-{ name: "Modern Yapay Zekâya Giriş", nameEn: "Introduction to Modern AI",
-  originalName: "Introduction to Modern AI",
-  issuer: "Cisco", date: "Ara 2024", dateEn: "Dec 2024", image: "assets/sertifikalar/cisco-modern-ai.jpg" },
-
-{ name: "Veri Bilimine Giriş", nameEn: "Introduction to Data Science",
-  originalName: "Introduction to Data Science",
-  issuer: "Cisco", date: "Eki 2024", dateEn: "Oct 2024", image: "assets/sertifikalar/cisco-veri-bilimi.jpg" },
-
-{ name: "Makine Öğrenmesine Giriş Çalıştayı", nameEn: "Introduction to Machine Learning Workshop",
-  issuer: "İEÜ Yazılım Topluluğu", issuerEn: "IUE Software Community",
-  date: "Mar 2025", dateEn: "Mar 2025", image: "assets/sertifikalar/ieu-makine-ogrenmesi-calistayi.jpg" },
-
-{ name: "Çevik Proje Yönetimi", nameEn: "Agile Project Management",
-  issuer: "BTK Akademi", date: "Oca 2026", dateEn: "Jan 2026", image: "assets/sertifikalar/btk-cevik-proje-yonetimi.jpg" },
-
-{ name: "Microsoft Project ile Proje Yönetimi", nameEn: "Project Management with Microsoft Project",
-  issuer: "BTK Akademi", date: "Şub 2026", dateEn: "Feb 2026", image: "assets/sertifikalar/btk-microsoft-project.jpg" },
-
-{ name: "ISO 9001:2015 Kalite Yönetim Sistemi", nameEn: "ISO 9001:2015 Quality Management Systems",
-  issuer: "Sigmacert Global", date: "Mar 2026", dateEn: "Mar 2026", image: "assets/sertifikalar/sigmacert-iso-9001.jpg" },
-
-{ name: "Kuika Designer ve Builder", nameEn: "Kuika Designer and Builder",
-  issuer: "İEÜ ÖÖM · Kuika Akademi", issuerEn: "IUE Lifelong Learning · Kuika Academy",
-  date: "2025", image: "assets/sertifikalar/kuika-designer-builder.jpg" },
+{ name: "Organizasyon Ekibi Katkı Sertifikası", nameEn: "Organising Team Contribution Certificate",
+  issuer: "Endüstri Sistemleri Topluluğu", issuerEn: "Industrial Systems Community",
+  date: "Nis 2026", dateEn: "Apr 2026", image: "",
+  note: "Topluluğun 2025-2026 döneminde düzenlediği etkinliklerin planlama, yürütme ve koordinasyonunda organizasyon ekibinde yer aldığım için verildi.",
+  noteEn: "Awarded for serving on the organising team for the planning, running and coordination of the community's 2025–2026 events.",
+  verifyUrl: "https://verified.sertifier.com/en/verify/26051977170925/" },
 
 { name: "Kariyer ve Yetkinlik Buluşmaları", nameEn: "Career and Competency Meetings",
   issuer: "Savunma Sanayii Akademi", issuerEn: "Defence Industry Academy",
-  date: "2024 – 2026", image: "assets/sertifikalar/savunma-sanayii-akademi.jpg" },
+  date: "Ara 2024 – Mar 2026", dateEn: "Dec 2024 – Mar 2026", image: "assets/sertifikalar/savunma-sanayii-akademi.jpg",
+  note: "Milli Yetkinlik Hamlesi kapsamında düzenlenen serinin üç buluşmasına katılım belgeleri: Aralık 2024, Mayıs 2025 ve Mart 2026.",
+  noteEn: "Participation certificates for three sessions of the series held under Türkiye's National Competency Initiative: December 2024, May 2025 and March 2026." },
+
+{ name: "Microsoft Project ile Proje Yönetimi", nameEn: "Project Management with Microsoft Project",
+  issuer: "BTK Akademi", date: "Şub 2026", dateEn: "Feb 2026", image: "assets/sertifikalar/btk-microsoft-project.jpg",
+  note: "Microsoft Project ile proje planlama, zamanlama, kaynak yönetimi ve ilerleme takibi üzerine uygulamalı çevrim içi eğitim.",
+  noteEn: "A hands-on online course on project planning, scheduling, resource management and progress tracking in Microsoft Project.",
+  verifyUrl: "https://www.btkakademi.gov.tr/portal/certificate/validate?certificateId=GoDfm6XJGv" },
+
+{ name: "InterCView Mülakat Simülasyonları · Organizasyon", nameEn: "InterCView Interview Simulations · Organising Team",
+  issuer: "Endüstri Sistemleri Topluluğu", issuerEn: "Industrial Systems Community",
+  date: "Ara 2025", dateEn: "Dec 2025", image: "assets/sertifikalar/intercview-organizasyon-2025.webp",
+  note: "İzmir Ekonomi Üniversitesi'nde düzenlenen mülakat simülasyonu etkinliğinin organizasyon ekibinde; etkinlik günü katılımcı yönlendirmesi ve akış koordinasyonu.",
+  noteEn: "Organising team for the interview simulation event at Izmir University of Economics: guiding participants and coordinating the flow on the day.",
+  verifyUrl: "https://verified.sertifier.com/en/verify/79231432913647/" },
+
+{ name: "Yapay Zekâya Giriş", nameEn: "Introduction to Artificial Intelligence",
+  issuer: "İEÜ Öğretme ve Öğrenme Merkezi", issuerEn: "IUE Teaching and Learning Center",
+  date: "Eki 2025", dateEn: "Oct 2025", image: "",
+  note: "Yapay zekâ ve üretken yapay zekânın temel kavramları, alt alanları ve üretken modellerin çalışma prensipleri; veri gizliliği, model önyargısı ve telif hakları gibi etik boyutlar.",
+  noteEn: "The core concepts and subfields of AI and generative AI and how generative models work, along with ethical aspects such as data privacy, model bias and copyright.",
+  verifyUrl: "https://api.eu.badgr.io/public/assertions/v0b6GDsyRcKxJkM0_HeBNA" },
+
+{ name: "Kuika Designer ve Builder", nameEn: "Kuika Designer and Builder",
+  issuer: "İEÜ ÖÖM · Kuika Akademi", issuerEn: "IUE Lifelong Learning · Kuika Academy",
+  date: "Eyl 2025", dateEn: "Sep 2025", image: "assets/sertifikalar/kuika-designer-builder.jpg",
+  note: "Yedi haftalık programda alınan Designer 1 ve Builder 1 sertifikaları: düşük kodlu (low-code) platformda arayüz tasarımı, veri modelleme ve uygulama akışı kurgulama.",
+  noteEn: "Designer 1 and Builder 1 certificates from a seven-week programme: interface design, data modelling and application flows on a low-code platform." },
+
+{ name: "Tanıtım Günleri Öğrenci Elçisi", nameEn: "Open House Student Ambassador",
+  issuer: "İzmir Ekonomi Üniversitesi", issuerEn: "Izmir University of Economics",
+  date: "Ağu 2025", dateEn: "Aug 2025", image: "assets/sertifikalar/ieu-ogrenci-elcisi.webp",
+  note: "Üniversitenin tanıtım günlerinde öğrenci elçisi olarak görev aldığım için verilen belge.",
+  noteEn: "Issued for serving as a student ambassador at the university's open house days.",
+  verifyUrl: "https://drdogrulama.sanayi.gov.tr/en/verify/02289074271874/" },
+
+{ name: "Makine Öğrenmesine Giriş Çalıştayı", nameEn: "Introduction to Machine Learning Workshop",
+  issuer: "İEÜ Yazılım Topluluğu", issuerEn: "IUE Software Community",
+  date: "Mar 2025", dateEn: "Mar 2025", image: "assets/sertifikalar/ieu-makine-ogrenmesi-calistayi.jpg",
+  note: "İEÜ Yazılım Topluluğu'nun düzenlediği makine öğrenmesine giriş çalıştayına katılım belgesi.",
+  noteEn: "Participation certificate for the introduction to machine learning workshop run by the IUE Software Community." },
+
+{ name: "interCView Mülakat Simülasyonu · Organizasyon Takımı", nameEn: "interCView Interview Simulation · Organising Team",
+  issuer: "Endüstri Sistemleri Topluluğu", issuerEn: "Industrial Systems Community",
+  date: "Ara 2024", dateEn: "Dec 2024", image: "assets/sertifikalar/intercview-organizasyon-2024.webp",
+  note: "7 Aralık 2024'te düzenlenen mülakat simülasyonu etkinliğinin organizasyonundaki emek ve katkı için verilen organizasyon takımı sertifikası.",
+  noteEn: "Organising team certificate for the work put into running the interview simulation event on 7 December 2024.",
+  verifyUrl: "https://verified.sertifier.com/en/verify/61523398237510/" },
 
 { name: "Temel Bilgi Güvenliği", nameEn: "Fundamentals of Information Security",
   issuer: "İzmir Ekonomi Üniversitesi", issuerEn: "Izmir University of Economics",
-  date: "Kas 2024", dateEn: "Nov 2024", image: "assets/sertifikalar/ieu-bilgi-guvenligi.jpg" }];
+  date: "Kas 2024", dateEn: "Nov 2024", image: "assets/sertifikalar/ieu-bilgi-guvenligi.jpg",
+  note: "Çevrim içi mikro-yeterlilik kursu: bilgi güvenliğinin temel kavramları, veri gizliliği, parola ve kimlik doğrulama güvenliği ile yaygın saldırı türlerine karşı korunma.",
+  noteEn: "An online micro-credential course: the fundamentals of information security, data privacy, password and authentication security, and protection against common attacks." },
+
+{ name: "Veri Bilimine Giriş", nameEn: "Introduction to Data Science",
+  originalName: "Introduction to Data Science",
+  issuer: "Cisco", date: "Eki 2024", dateEn: "Oct 2024", image: "assets/sertifikalar/cisco-veri-bilimi.jpg",
+  note: "Cisco Networking Academy üzerinden tamamlanan veri bilimine giriş kursu.",
+  noteEn: "An introductory data science course completed through Cisco Networking Academy.",
+  verifyUrl: "https://www.credly.com/badges/b01c27aa-1c6a-4cd9-a1f7-452104e9aafd" }];
+
 
 /* -------------------------------------------------------------------------
    EXPERIENCE — LinkedIn tarzi kartlar: kartta unvan, kurum, tarih ve konum;
@@ -479,6 +568,7 @@ const COPY = {
     seeMore: "Tümünü göster", seeLess: "Daha az göster", showPersonal: "Diğer çalışmaları göster",
     seeAll: "Tüm depoları GitHub'da gör",
     certTitle: "Sertifikalar",
+    certAll: "Tüm sertifikalar", certVerify: "Belgeyi doğrula",
     expTitle: "Deneyim",
     contactTitle: "İletişim",
     contactLede: "Staj fırsatları ve proje iş birlikleri için bana ulaşabilirsiniz.",
@@ -539,6 +629,7 @@ const COPY = {
     seeMore: "Show all", seeLess: "Show less", showPersonal: "Show other work",
     seeAll: "See all repositories on GitHub",
     certTitle: "Certificates",
+    certAll: "All certificates", certVerify: "Verify credential",
     expTitle: "Experience",
     contactTitle: "Contact",
     contactLede: "Get in touch about internship opportunities and project collaborations.",
@@ -1610,9 +1701,20 @@ function CertThumb({ img, name, initials }) {
 function Certificates({ t, lang }) {
   const pick = (c, key) => lang === "en" && c[key + "En"] ? c[key + "En"] : c[key];
   const [shot, setShot] = useState(null);
-  const compact = useMediaQuery("(max-width: 900px)");
   const [showAllCerts, setShowAllCerts] = useState(false);
-  const visibleCerts = compact && !showAllCerts ? CERTIFICATES.slice(0, 4) : CERTIFICATES;
+  const sectionRef = useRef(null);
+  // Ana sayfada yalnizca one cikanlar; masaustu ve mobil ayni. Kisa listeye
+  // donulurken bolum ekranin ustunde kaldiysa basina kaydiriliyor, yoksa
+  // kullanici bos bir alanda kalirdi.
+  const featured = CERTIFICATES.filter((c) => c.featured);
+  const visibleCerts = showAllCerts ? CERTIFICATES : featured;
+  function toggleAll() {
+    const collapsing = showAllCerts;
+    setShowAllCerts(!showAllCerts);
+    if (collapsing && sectionRef.current && sectionRef.current.getBoundingClientRect().top < 0) {
+      requestAnimationFrame(() => scrollToElement(sectionRef.current, { instant: true }));
+    }
+  }
 
   useEffect(() => {
     if (!shot) return;
@@ -1625,32 +1727,31 @@ function Certificates({ t, lang }) {
   map((w) => w[0]).join("").toLocaleUpperCase("tr");
 
   return (
-    <section id="certificates" className="section" data-screen-label="Certificates">
+    <section id="certificates" className="section" data-screen-label="Certificates" ref={sectionRef}>
       <SectionHead num="04" title={t.certTitle} />
       <div className="cert-list reveal">
-        {visibleCerts.map((c, i) => {
+        {visibleCerts.map((c) => {
           const name = pick(c, "name");
           const issuer = pick(c, "issuer");
           const img = typeof c.image === "string" && c.image.trim() !== "" ? c.image : null;
-          const open = () => setShot({ src: img, alt: name, issuer: issuer, date: pick(c, "date"), note: pick(c, "note"), original: c.originalName && c.originalName !== name ? c.originalName : null });
-          const Tag = img ? "button" : "div";
+          const open = () => setShot({ src: img, alt: name, issuer: issuer, date: pick(c, "date"), note: pick(c, "note"), verifyUrl: isUrl(c.verifyUrl) ? c.verifyUrl : null, original: c.originalName && c.originalName !== name ? c.originalName : null });
+          // Gorseli olmayan kart da acilir: panelde aciklama ve dogrulama var.
           return (
-            <Tag key={i} className={"cert-row" + (img ? " is-clickable" : "")}
-              {...img ? { onClick: open, type: "button", "aria-label": name } : {}}>
+            <button key={name} type="button" className="cert-row is-clickable" onClick={open} aria-haspopup="dialog">
               <CertThumb img={img} name={name} initials={initialsOf(issuer)} />
               <div className="cert-text">
                 <div className="cert-name">{name}</div>
                 <div className="cert-date">{pick(c, "date")}</div>
                 <div className="cert-issuer">{issuer}</div>
               </div>
-            </Tag>);
+            </button>);
 
         })}
       </div>
-      {compact && CERTIFICATES.length > 4 &&
+      {CERTIFICATES.length > featured.length &&
       <div className="show-more-wrap is-tight">
-          <button className="ghost-link show-more" onClick={() => setShowAllCerts(!showAllCerts)}>
-            {showAllCerts ? t.seeLess : t.seeMore + " (" + CERTIFICATES.length + ")"}
+          <button className="ghost-link show-more" onClick={toggleAll} aria-expanded={showAllCerts}>
+            {showAllCerts ? t.seeLess : t.certAll + " (" + CERTIFICATES.length + ")"}
           </button>
         </div>
       }
@@ -1674,6 +1775,7 @@ function CertSheet({ cert, t, onClose }) {
         <button className="sheet-close" ref={closeBtnRef} onClick={onClose} aria-label={t.sheetClose}>×</button>
         <div className="sheet-head">
           <h3 id="cert-sheet-title" className="sheet-title">{cert.alt}</h3>
+          {cert.original && <div className="pcard-role">{cert.original}</div>}
           <div className="cert-sheet-meta">
             <span className="cert-issuer-chip">{cert.issuer}</span>
             {cert.date && <span className="cert-sheet-date">{cert.date}</span>}
@@ -1685,6 +1787,11 @@ function CertSheet({ cert, t, onClose }) {
           </div>
         }
         {cert.note && <p className="cert-note">{cert.note}</p>}
+        {cert.verifyUrl &&
+        <a className="cert-verify" href={cert.verifyUrl} target="_blank" rel="noopener noreferrer">
+            {t.certVerify}<span aria-hidden="true">↗</span>
+          </a>
+        }
       </div>
     </div>);
 
