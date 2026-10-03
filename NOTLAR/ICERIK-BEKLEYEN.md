@@ -78,7 +78,7 @@ Bu dosyadaki metinleri **Talat yazar**. Kod tarafı hazır; alan boş olduğu s�
   Altyazı (`tr` / `en`) ayrı bir `alt` / `altEn` verilmezse görselin `alt` metni oluyor, yani boş bırakılmamalı. Boyutu bilinen görsele `w` / `h` de eklenmeli (düzen kayması olmasın).
 - **Neden gerekli:** Deneyim bölümü şu an yalnızca metin; LinkedIn'deki gibi görsel kanıt gösterilemiyor.
 - **Kod tarafı:** **hazır.** `media` alanı yoksa kart yine tıklanır, panelde yalnızca metin görünür ve gösterge hiç render edilmez. Yol tarayıcıda geçici bir kayıtla uçtan uca doğrulandı (kart göstergesi, panelde görsel, altyazı).
-- **Durum:** kısmen — 3 Ekim 2026'da kariyer-vault belgelerinden SCA Social (staj sertifikası), Tanıtım Personeli (öğrenci elçisi belgesi), IEU Software Community (iki katılım belgesi) ve Endüstri Sistemleri Topluluğu (iki InterCView organizasyon sertifikası) eklendi. Görseller belge; etkinlik fotoğrafı yok. **Çalışan Öğrenci** kaydında görsel yok — vault'ta uygun dosya bulunamadı.
+- **Durum:** **tamamlandı — 3 Ekim 2026.** Probel: anket uygulaması ekranları. Çalışan Öğrenci (mezuniyet 2026, Bahar Şenlikleri konseri, Kıdem Takdir Töreni), Tanıtım Personeli (2024 ve 2025 tercih dönemi) ve SCA Social (Proje Başlatma Belgesi) görselleri LinkedIn deneyim paylaşımlarının ekran görüntüleri. Kulüpler: vault'taki katılım/organizasyon belgeleri. Görseller panelde doğrudan değil, **Medya** düğmesiyle ayrı panelde açılıyor.
 
 ---
 
