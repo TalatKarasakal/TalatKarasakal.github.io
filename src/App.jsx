@@ -473,6 +473,13 @@ const EXPERIENCE = [
   orgTr: "SCA Social", orgEn: "SCA Social",
   period: "Oca – Şub 2026", periodEn: "Jan – Feb 2026",
   location: "Uzaktan", locationEn: "Remote",
+  media: [
+    { type: "image", src: "assets/deneyim/sca-social-staj-sertifikasi.webp", w: 1600, h: 1131,
+      tr: "Proje Yönetimi Stajı katılım sertifikası: proje yönetimi, bilişim hukuku, yönetim ve organizasyon, yapay zekâ ve veri bilimi eğitimleri.",
+      en: "Project Management Internship certificate of participation: project management, IT law, management and organisation, and AI and data science training.",
+      alt: "SCA Social Proje Yönetimi Stajı Katılım Sertifikası. Talat Karasakal adına düzenlenmiş; Proje Yönetimi, Bilişim Hukuku, Yönetim ve Organizasyon, Yapay Zeka ve Veri Bilimi başlıkları, altta TNC Group yetkililerinin imzaları.",
+      altEn: "SCA Social Project Management Internship certificate of participation issued to Talat Karasakal, listing Project Management, IT Law, Management and Organisation, and AI and Data Science, with signatures from TNC Group officials at the bottom." }
+  ],
   descTr: "Stajın ilk dört haftasında yönetim ve organizasyon, bilişim hukuku, yapay zekâ ve proje yönetimi alanlarında teorik eğitim aldım. Devamında savunma sanayii odaklı yıllık bütçe planlaması ve maliyet tabloları hazırladım. İnşaat projelerindeki belirsizlik ve risklerin erken tespiti için yapay zekâ temelli bir simülasyon yaklaşımı tasarlayarak derin öğrenme ve görüntü işleme tekniklerinin risk analizindeki kullanım senaryolarını modelledim. Bilişim hukuku kapsamında KVKK süreçlerini vaka analizi üzerinden inceleyip veri sorumlusuna başvuru ve Kurul şikâyet mekanizmalarını resmî dokümantasyona dönüştürdüm. Son aşamada Proje Başlatma Belgesi ve Gantt çizelgesi hazırlayarak bir projenin kapsam, kaynak ve zaman planlamasını uçtan uca kurguladım.",
   descEn: "The first four weeks covered theory in management and organisation, information technology law, artificial intelligence and project management. I then prepared annual budget planning and cost tables for the defence sector. To catch uncertainty and risk early in construction projects, I designed an AI-based simulation approach and modelled how deep learning and computer vision techniques could be used in risk analysis. Under information technology law, I examined data-protection procedures through a case study and turned the application and complaint mechanisms into formal documentation. In the final stage I prepared a project initiation document and a Gantt chart, planning a project's scope, resources and schedule end to end." },
 
@@ -480,6 +487,13 @@ const EXPERIENCE = [
   orgTr: "İzmir Ekonomi Üniversitesi", orgEn: "Izmir University of Economics",
   period: "Tem – Eyl 2024 · Tem – Ağu 2025", periodEn: "Jul – Sep 2024 · Jul – Aug 2025",
   location: "İzmir", locationEn: "Izmir",
+  media: [
+    { type: "image", src: "assets/sertifikalar/ieu-ogrenci-elcisi.webp", w: 1600, h: 2263,
+      tr: "Tanıtım Günleri öğrenci elçisi belgesi, Ağustos 2025.",
+      en: "Open house student ambassador credential, August 2025.",
+      alt: "İzmir Ekonomi Üniversitesi tarafından Talat Karasakal adına düzenlenmiş IUE Open House Student Ambassador dijital belgesi; düzenlenme tarihi 15 Ağustos 2025, belge kimliği ve doğrulama karekodu.",
+      altEn: "IUE Open House Student Ambassador digital credential issued to Talat Karasakal by Izmir University of Economics, dated 15 August 2025, with the credential ID and a verification QR code." }
+  ],
   descTr: "2024 tanıtım döneminde çağrı merkezi biriminde çalıştım; İzmir Ekonomi Üniversitesi ile ilgilenen adayların sorularını yanıtladım ve bilgilendirme yaptım. 2025 döneminde transfer biriminde görev aldım: aday öğrenciler ve velilere kampüs içi turlar düzenledim, üniversite ve ilgilendikleri bölümler hakkındaki sorularını yanıtladım. İşin özü, aynı bilgiyi çok farklı hazırlık seviyelerindeki kişilere anlaşılır biçimde aktarmaktı.",
   descEn: "In the 2024 admissions period I worked in the call centre unit, answering questions from prospective students interested in Izmir University of Economics. In 2025 I worked in the transfer unit: running campus tours for prospective students and their families, and answering their questions about the university and the departments they were considering. The core of the job was conveying the same information clearly to people at very different levels of preparation." },
 
@@ -488,6 +502,18 @@ const EXPERIENCE = [
   period: "Eki 2024 – devam",
   periodEn: "Oct 2024 – present",
   location: "İzmir", locationEn: "Izmir",
+  media: [
+    { type: "image", src: "assets/sertifikalar/ieu-makine-ogrenmesi-calistayi.jpg", w: 2922, h: 2066,
+      tr: "Kulübün düzenlediği makine öğrenmesine giriş çalıştayının katılım belgesi, Mart 2025.",
+      en: "Certificate of participation from the club's introduction to machine learning workshop, March 2025.",
+      alt: "İEÜ Yazılım Topluluğu Makine Öğrenmesine Giriş Çalıştayı katılım belgesi, Talat Karasakal adına.",
+      altEn: "Certificate of participation in the IUE Software Community introduction to machine learning workshop, issued to Talat Karasakal." },
+    { type: "image", src: "assets/deneyim/software-community-modern-web-yz.webp", w: 1600, h: 1132,
+      tr: "Kulübün düzenlediği Modern Web ve Yapay Zekâ kursunun katılım belgesi, Mart 2026.",
+      en: "Certificate of participation from the club's Modern Web and AI course, March 2026.",
+      alt: "Software Community katılım belgesi: Talat Karasakal'ın 16.03.2026 tarihinde Modern Web ve Yapay Zeka kursunu tamamladığını belirtiyor; altta Software Community ve BBT İzmir logoları.",
+      altEn: "Software Community certificate of participation stating that Talat Karasakal completed the Modern Web and AI course on 16 March 2026, with the Software Community and BBT Izmir logos at the bottom." }
+  ],
   descTr: "2024-2025 döneminde kulüp üyesi olarak Cisco ve yapay zekâ alanındaki kurs ve çalıştaylara katıldım; makine öğrenmesine giriş çalıştayı bunlardan biriydi. Eylül 2025 – Temmuz 2026 arasında denetim kurulunda görev aldım: etkinlik planlamalarına katkı sağladım, Bahar Şenlikleri stant organizasyonunda destek verdim ve kulübün düzenlediği seminerlerde yönetime destek oldum.",
   descEn: "As a club member in 2024-2025 I attended Cisco and artificial intelligence courses and workshops, including an introduction to machine learning. Between September 2025 and July 2026 I served on the audit board: contributing to event planning, supporting the spring festival stand, and assisting the committee at the seminars the club ran." },
 
@@ -495,6 +521,18 @@ const EXPERIENCE = [
   orgTr: "Endüstri Sistemleri Topluluğu", orgEn: "Industrial Systems Community",
   period: "Eki 2024 – devam", periodEn: "Oct 2024 – present",
   location: "İzmir", locationEn: "Izmir",
+  media: [
+    { type: "image", src: "assets/sertifikalar/intercview-organizasyon-2025.webp", w: 1600, h: 1131,
+      tr: "InterCView Mülakat Simülasyonları organizasyon sertifikası, Aralık 2025.",
+      en: "InterCView Interview Simulations organising certificate, December 2025.",
+      alt: "Endüstri Sistemleri Topluluğu InterCView Mülakat Simülasyonu organizasyon sertifikası; Talat Karasakal'ın İzmir Ekonomi Üniversitesi'ndeki etkinliğin organizasyon ekibinde yer aldığını belirtiyor. Mor tonlu tasarım, altta yönetim kurulu başkanı ve genel sekreterin imzaları.",
+      altEn: "Industrial Systems Community InterCView Interview Simulation organising certificate, stating that Talat Karasakal served on the organising team for the event at Izmir University of Economics. Purple design with the board chair's and general secretary's signatures at the bottom." },
+    { type: "image", src: "assets/sertifikalar/intercview-organizasyon-2024.webp", w: 1600, h: 1131,
+      tr: "interCView organizasyon takımı sertifikası, 7 Aralık 2024.",
+      en: "interCView organising team certificate, 7 December 2024.",
+      alt: "Endüstri Sistemleri Topluluğu interCView Mülakat Simülasyonu organizasyon takımı sertifikası; 7 Aralık 2024'teki etkinliğin organizasyonundaki emeği için Talat Karasakal adına düzenlenmiş. Mavi tonlu tasarım, altta imzalar ve mühür.",
+      altEn: "Industrial Systems Community interCView Interview Simulation organising team certificate issued to Talat Karasakal for work on the event of 7 December 2024. Blue design with signatures and a seal at the bottom." }
+  ],
   descTr: "Topluluğun düzenlediği etkinliklerin organizasyon ekibinde yer alıyorum. Etkinliklere katılım için şirketlerden insan kaynakları uzmanları ve yöneticilerle LinkedIn üzerinden iletişime geçerek davet süreçlerini yürütüyorum. Etkinlik günlerinde konuk ağırlama, genel koordinasyon ve katılımcı yönetiminde görev alıyorum.",
   descEn: "I am part of the organising team for the community's events. I run the invitation process, reaching out to human resources specialists and managers at companies through LinkedIn. On event days I work on hosting guests, general coordination and attendee management." }];
 
