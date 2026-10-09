@@ -496,7 +496,7 @@ const CV_FILES = [
 { lang: "en", title: "CV", src: "belgeler/Talat_Karasakal_CV.pdf" }];
 const SOCIALS = [
 { key: "GitHub", handle: "@TalatKarasakal", href: GITHUB_URL },
-{ key: "LinkedIn", handle: "/in/talat-karasakal", href: "https://www.linkedin.com/in/talat-karasakal-077368251/" }];
+{ key: "LinkedIn", handle: "/in/talat-karasakal", href: "https://www.linkedin.com/in/talat-karasakal/" }];
 
 /* -------------------------------------------------------------------------
    UI COPY — one language at a time, no mixed glosses.
