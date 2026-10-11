@@ -523,7 +523,7 @@ const COPY = {
     specHead: "KİMLİK",
     spec: { handle: "kullanıcı", role: "rol", uni: "üniversite", focus: "odak", loc: "konum", open: "açık" },
     focusLine: "Yapay zekâ · Bilgisayarlı görü · Yazılım",
-    openLine: "staj · Ekim 2026'dan itibaren",
+    openLine: "staj · Ocak 2027'den itibaren",
     tagline: "Yapay Zekâ · Bilgisayarlı Görü · Yazılım Geliştirme",
     firstName: "Talat", lastName: "Karasakal",
     bio: "İzmir Ekonomi Üniversitesi'nde bilgisayar mühendisliği okuyorum. Görüntü işleme ve masaüstü uygulama projelerinde çalıştım; ilgim mimari kararlar ve ölçülebilir sonuçlar tarafında.",
@@ -562,7 +562,7 @@ const COPY = {
     cvTitle: "Öz geçmiş",
     cvDownload: "İndir",
     langNames: { tr: "Türkçe", en: "İngilizce" },
-    avail: "Ekim 2026'dan itibaren staja açığım",
+    avail: "Ocak 2027'den itibaren staja açığım",
     socialLabels: { GitHub: "GitHub", LinkedIn: "LinkedIn", Email: "E-posta" },
     footer: ["© 2026 — Talat Karasakal", "Türkiye"]
   },
@@ -584,7 +584,7 @@ const COPY = {
     specHead: "IDENTITY",
     spec: { handle: "handle", role: "role", uni: "university", focus: "focus", loc: "location", open: "open_to" },
     focusLine: "Artificial intelligence · Computer vision · Software",
-    openLine: "internship · from October 2026",
+    openLine: "internship · from January 2027",
     tagline: "Artificial Intelligence · Computer Vision · Software Development",
     firstName: "Talat", lastName: "Karasakal",
     bio: "I study computer engineering at Izmir University of Economics. I've worked on computer vision and desktop application projects; my interest sits on the side of architectural decisions and measurable results.",
@@ -623,7 +623,7 @@ const COPY = {
     cvTitle: "CV",
     cvDownload: "Download",
     langNames: { tr: "Turkish", en: "English" },
-    avail: "Open to internships from October 2026",
+    avail: "Open to internships from January 2027",
     socialLabels: { GitHub: "GitHub", LinkedIn: "LinkedIn", Email: "Email" },
     footer: ["© 2026 — Talat Karasakal", "Türkiye"]
   }
